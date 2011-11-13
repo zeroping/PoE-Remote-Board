@@ -1,0 +1,644 @@
+# EESchema Netlist Version 1.1 created  Sun 25 Sep 2011 08:42:12 PM EDT
+(
+ ( /4E769BF2 SM1206 C4 100nF
+  ( 1 +3.3V )
+  ( 2 /VNEG )
+ )
+ ( /4E769612 SM1206 C5 100nF
+  ( 1 +3.3V )
+  ( 2 /Switched48 )
+ )
+ ( /4E769700 SM1206 C6 100nF
+  ( 1 N-000045 )
+  ( 2 N-000064 )
+ )
+ ( /4E76968D SM1206 C8 150pF
+  ( 1 N-000076 )
+  ( 2 N-000046 )
+ )
+ ( /4E7699FF SM1210L C9 15uF
+  ( 1 +3.3V )
+  ( 2 N-000072 )
+ )
+ ( /4E769318 SM0805 C12 1nF
+  ( 1 /SPARE45 )
+  ( 2 +3.3V )
+ )
+ ( /4E76934C SM0805 C13 1nF
+  ( 1 /SPARE45 )
+  ( 2 /VNEG )
+ )
+ ( /4E769333 SM0805 C14 1nF
+  ( 1 /SPARE78 )
+  ( 2 +3.3V )
+ )
+ ( /4E76934B SM0805 C15 1nF
+  ( 1 /SPARE78 )
+  ( 2 /VNEG )
+ )
+ ( /4E769335 SM0805 C16 1nF
+  ( 1 /TXCT )
+  ( 2 +3.3V )
+ )
+ ( /4E76934A SM0805 C17 1nF
+  ( 1 /TXCT )
+  ( 2 /VNEG )
+ )
+ ( /4E769338 SM0805 C18 1nF
+  ( 1 /RXCT )
+  ( 2 +3.3V )
+ )
+ ( /4E769349 SM0805 C19 1nF
+  ( 1 /RXCT )
+  ( 2 /VNEG )
+ )
+ ( /4E769D06 SM0805 C20 1nF
+  ( 1 /Switched48 )
+  ( 2 N-000073 )
+ )
+ ( /4E769BA6 SM0805 C21 22uF
+  ( 1 +3.3V )
+  ( 2 GND )
+ )
+ ( /4E76968C SM0603 C22 3.3nF
+  ( 1 N-000046 )
+  ( 2 N-000045 )
+ )
+ ( /4E769813 SM0603 C23 3.3nF
+  ( 1 N-000044 )
+  ( 2 GND )
+ )
+ ( /4E769883 SM1206 C24 0.33uF
+  ( 1 +3.3V )
+  ( 2 N-000043 )
+ )
+ ( /4E769B8A SM2917 C25 560uF
+  ( 1 +3.3V )
+  ( 2 N-000048 )
+ )
+ ( /4E7814EC SM0603 C27 .1uF
+  ( 1 +3.3V )
+  ( 2 GND )
+ )
+ ( /4E781509 SM0603 C28 10-100nF
+  ( 1 N-000003 )
+  ( 2 GND )
+ )
+ ( /4E78150E SM0603 C29 10-100nF
+  ( 1 /TCT )
+  ( 2 GND )
+ )
+ ( /4E7814F8 SM0805 C30 10uF
+  ( 1 N-000034 )
+  ( 2 GND )
+ )
+ ( /4E781500 SM0603 C31 18pF
+  ( 1 N-000004 )
+  ( 2 GND )
+ )
+ ( /4E7814FF SM0603 C32 18pF
+  ( 1 N-000005 )
+  ( 2 GND )
+ )
+ ( /4E7F62EB SM0603 C33 .1uF
+  ( 1 +3.3V )
+  ( 2 GND )
+ )
+ ( /4E76D52A DIODE_SMB_CUST D1 DIODESCH
+  ( 1 N-000065 )
+  ( 2 +3.3V )
+ )
+ ( /4E7FBB3C -SOD123 D2 ZENER
+  ( 1 /Switched48 )
+  ( 2 /PWM5V )
+ )
+ ( /4E769257 PIN_ARRAY_2X1 J1 3.3VDC
+  ( 1 GND )
+  ( 2 +3.3V )
+ )
+ ( /4E769266 PIN_ARRAY_2X1 J2 48VDC
+  ( 1 /Switched48 )
+  ( 2 +3.3V )
+ )
+ ( /4E76B14A RJHS-508x J3 RJ45
+  ( 1 N-000051 )
+  ( 2 N-000066 )
+  ( 3 N-000050 )
+  ( 4 /SPARE45 )
+  ( 5 /SPARE45 )
+  ( 6 N-000067 )
+  ( 7 /SPARE78 )
+  ( 8 /SPARE78 )
+  ( 9 /LED2 )
+  ( 10 +3.3V )
+  ( 11 /LED1 )
+  ( 12 +3.3V )
+ )
+ ( /4E789A05 SIL-6 J4 SERIAL
+  ( 1 GND )
+  ( 2 /SER_DTR )
+  ( 3 +3.3V )
+  ( 4 /SER_RX )
+  ( 5 /SER_TX )
+  ( 6 /SER_CTS )
+ )
+ ( /4E781651 pin_array_3x2 J5 ISP
+  ( 1 VCC )
+  ( 2 /PDI_DATA )
+  ( 3 ? )
+  ( 4 ? )
+  ( 5 GND )
+  ( 6 /PDI_CLK )
+ )
+ ( /4E7F6801 SIL-7 J6 CONN_7
+  ( 1 N-000012 )
+  ( 2 N-000014 )
+  ( 3 N-000057 )
+  ( 4 N-000058 )
+  ( 5 N-000060 )
+  ( 6 N-000077 )
+  ( 7 N-000075 )
+ )
+ ( /4CCE4599 SIL-3 J7 LAMP
+  ( 1 /Switched48 )
+  ( 2 /PWM5V )
+  ( 3 +3.3V )
+ )
+ ( /4E76979A SM0805 L1 30ohmFB
+  ( 1 GND )
+  ( 2 N-000048 )
+ )
+ ( /4E769777 SDR0805 L2 33uH
+  ( 1 N-000048 )
+  ( 2 N-000065 )
+ )
+ ( /4E78150F SM0805 L3 FB
+  ( 1 +3.3V )
+  ( 2 /TCT )
+ )
+ ( /4E7F67A9 SIL-5 P4 J?
+  ( 1 N-000078 )
+  ( 2 N-000021 )
+  ( 3 N-000079 )
+  ( 4 N-000007 )
+  ( 5 N-000080 )
+ )
+ ( /4E796B7A transistor-SOT23-BEC Q1 SOT23-BEC
+  ( B N-000073 )
+  ( C N-000076 )
+  ( E /Switched48 )
+ )
+ ( /4E796A98 transistor-SOT23-BEC Q2 PNP
+  ( B N-000030 )
+  ( C N-000031 )
+  ( E +3.3V )
+ )
+ ( /4E769CBB SM0603 R1 10K
+  ( 1 N-000072 )
+  ( 2 N-000073 )
+ )
+ ( /4E7697ED SM0603 R3 2.87K
+  ( 1 +3.3V )
+  ( 2 N-000044 )
+ )
+ ( /4E769C63 SM0603 R6 25.5K
+  ( 1 +3.3V )
+  ( 2 N-000047 )
+ )
+ ( /4E769691 SM0603 R10 30.1k
+  ( 1 N-000076 )
+  ( 2 N-000046 )
+ )
+ ( /4E7693F8 SM0603 R11 45.3R
+  ( 1 N-000053 )
+  ( 2 /VNEG )
+ )
+ ( /4E76957E SM0603 R12 5.1R
+  ( 1 N-000072 )
+  ( 2 /Switched48 )
+ )
+ ( /4E7697F0 SM0603 R17 8.66K
+  ( 1 N-000044 )
+  ( 2 GND )
+ )
+ ( /4E781505 SM0603 R40 2.32K_1%
+  ( 1 GND )
+  ( 2 N-000032 )
+ )
+ ( /4E7814EF SM0603 R41 220
+  ( 1 N-000015 )
+  ( 2 /LED1 )
+ )
+ ( /4E7814EE SM0603 R42 220
+  ( 1 N-000016 )
+  ( 2 /LED2 )
+ )
+ ( /4E7814FB SM0603 R43 270
+  ( 1 /ETHRST )
+  ( 2 +3.3V )
+ )
+ ( /4E7814FD SM0603 R44 270
+  ( 1 N-000036 )
+  ( 2 /MISO )
+ )
+ ( /4E7814FC SM0603 R45 270
+  ( 1 /ETHEN )
+  ( 2 +3.3V )
+ )
+ ( /4E78150B SM0603 R47 50
+  ( 1 N-000003 )
+  ( 2 /RX- )
+ )
+ ( /4E78150A SM0603 R48 50
+  ( 1 N-000003 )
+  ( 2 /RX+ )
+ )
+ ( /4E78150D SM0603 R49 50
+  ( 1 /TCT )
+  ( 2 /TX+ )
+ )
+ ( /4E78150C SM0603 R50 50
+  ( 1 /TCT )
+  ( 2 /TX- )
+ )
+ ( /4E78979D SM0603 R51 1.3M
+  ( 1 N-000031 )
+  ( 2 /PWM5V )
+ )
+ ( /4E78992C SM0603 R52 50K
+  ( 1 N-000030 )
+  ( 2 /LAMPPWM )
+ )
+ ( /4C9D7452 T1 T1 H2019
+  ( 1 /TX+ )
+  ( 2 /TCT )
+  ( 3 /TX- )
+  ( 6 /RX+ )
+  ( 7 ? )
+  ( 8 /RX- )
+  ( 9 N-000067 )
+  ( 10 /RXCT )
+  ( 11 N-000050 )
+  ( 14 N-000066 )
+  ( 15 /TXCT )
+  ( 16 N-000051 )
+ )
+ ( /4E769FB7 QFN20-rect U3 SI3402
+  ( 1 N-000076 )
+  ( 2 N-000043 )
+  ( 3 N-000064 )
+  ( 4 N-000064 )
+  ( 5 ? )
+  ( 6 N-000047 )
+  ( 7 /Switched48 )
+  ( 8 N-000053 )
+  ( 9 /VNEG )
+  ( 10 /SPARE45 )
+  ( 11 /SPARE78 )
+  ( 12 +3.3V )
+  ( 13 /TXCT )
+  ( 14 /RXCT )
+  ( 15 N-000045 )
+  ( 16 +3.3V )
+  ( 17 N-000072 )
+  ( 18 N-000065 )
+  ( 19 N-000072 )
+  ( 20 N-000044 )
+  ( 21 /VNEG )
+ )
+ ( /4E781510 microchip-enc28j60-SSOP28 U4 ENC28J60-SSOP
+  ( 1 N-000034 )
+  ( 2 GND )
+  ( 3 /CLKOUT )
+  ( 4 /ETHINT )
+  ( 5 ? )
+  ( 6 N-000036 )
+  ( 7 /MOSI )
+  ( 8 /SCK )
+  ( 9 /ETHEN )
+  ( 10 /ETHRST )
+  ( 11 GND )
+  ( 12 /RX- )
+  ( 13 /RX+ )
+  ( 14 N-000032 )
+  ( 15 +3.3V )
+  ( 16 /TX- )
+  ( 17 /TX+ )
+  ( 18 GND )
+  ( 19 +3.3V )
+  ( 20 +3.3V )
+  ( 21 GND )
+  ( 22 GND )
+  ( 23 N-000004 )
+  ( 24 N-000005 )
+  ( 25 +3.3V )
+  ( 26 N-000016 )
+  ( 27 N-000015 )
+  ( 28 +3.3V )
+ )
+ ( /4E7814E0 TQFP44 U5 XMEGA_A4
+  ( 1 ? )
+  ( 2 ? )
+  ( 3 ? )
+  ( 4 ? )
+  ( 5 N-000078 )
+  ( 6 N-000021 )
+  ( 7 N-000079 )
+  ( 8 GND )
+  ( 9 VCC )
+  ( 10 N-000007 )
+  ( 11 N-000080 )
+  ( 12 /LAMPPWM )
+  ( 13 N-000012 )
+  ( 14 N-000014 )
+  ( 15 N-000057 )
+  ( 16 N-000058 )
+  ( 17 N-000060 )
+  ( 18 GND )
+  ( 19 VCC )
+  ( 20 N-000077 )
+  ( 21 N-000075 )
+  ( 22 /SER_CTS )
+  ( 23 /SER_DTR )
+  ( 24 /ETHEN )
+  ( 25 /MOSI )
+  ( 26 /MISO )
+  ( 27 /SCK )
+  ( 28 /ETHINT )
+  ( 29 ? )
+  ( 30 GND )
+  ( 31 VCC )
+  ( 32 /SER_TX )
+  ( 33 /SER_RX )
+  ( 34 /PDI_DATA )
+  ( 35 /PDI_CLK )
+  ( 36 ? )
+  ( 37 /CLKOUT )
+  ( 38 GND )
+  ( 39 VCC )
+  ( 40 ? )
+  ( 41 ? )
+  ( 42 ? )
+  ( 43 ? )
+  ( 44 ? )
+ )
+ ( /4E781501 crystal-ABMM X1 15MHz
+  ( 1 N-000004 )
+  ( 2 N-000005 )
+ )
+)
+*
+{ Allowed footprints by component:
+$component C4
+ SM*
+ C?
+ C1-1
+$endlist
+$component C5
+ SM*
+ C?
+ C1-1
+$endlist
+$component C6
+ SM*
+ C?
+ C1-1
+$endlist
+$component C8
+ SM*
+ C?
+ C1-1
+$endlist
+$component C9
+ SM*
+ C?
+ C1-1
+$endlist
+$component C12
+ SM*
+ C?
+ C1-1
+$endlist
+$component C13
+ SM*
+ C?
+ C1-1
+$endlist
+$component C14
+ SM*
+ C?
+ C1-1
+$endlist
+$component C15
+ SM*
+ C?
+ C1-1
+$endlist
+$component C16
+ SM*
+ C?
+ C1-1
+$endlist
+$component C17
+ SM*
+ C?
+ C1-1
+$endlist
+$component C18
+ SM*
+ C?
+ C1-1
+$endlist
+$component C19
+ SM*
+ C?
+ C1-1
+$endlist
+$component C20
+ SM*
+ C?
+ C1-1
+$endlist
+$component C21
+ SM*
+ C?
+ C1-1
+$endlist
+$component C22
+ SM*
+ C?
+ C1-1
+$endlist
+$component C23
+ SM*
+ C?
+ C1-1
+$endlist
+$component C24
+ SM*
+ C?
+ C1-1
+$endlist
+$component C25
+ CP*
+ SM*
+$endlist
+$component C27
+ SM*
+ C?
+ C1-1
+$endlist
+$component C28
+ SM*
+ C?
+ C1-1
+$endlist
+$component C29
+ SM*
+ C?
+ C1-1
+$endlist
+$component C30
+ CP*
+ SM*
+$endlist
+$component C31
+ SM*
+ C?
+ C1-1
+$endlist
+$component C32
+ SM*
+ C?
+ C1-1
+$endlist
+$component C33
+ SM*
+ C?
+ C1-1
+$endlist
+$component D1
+ D?
+ S*
+$endlist
+$component D2
+ D?
+ SO*
+ SM*
+$endlist
+$component R1
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R3
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R6
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R10
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R11
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R12
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R17
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R40
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R41
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R42
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R43
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R44
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R45
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R47
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R48
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R49
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R50
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R51
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$component R52
+ R?
+ SM0603
+ SM0805
+ R?-*
+$endlist
+$endfootprintlist
+}

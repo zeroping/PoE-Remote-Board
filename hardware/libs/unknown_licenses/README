@@ -1,0 +1,12 @@
+These libraries came from unknown sources. They're included ehre so that you can at least open the schematic and board layout, but they may fall under someone else's license. 
+
+If you are the owner of one of these, please email me to let me know what license it's under, and tell me to take it down if needed.
+
+-Scott
+
+Below are the notes of what I know about the libs:
+
+microchip-enc28j60 appears to be a converted eagle library.
+transistor appears to be a converted eagle library.
+
+

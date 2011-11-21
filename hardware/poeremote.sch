@@ -1,4 +1,4 @@
-EESchema Schematic File Version 2  date Thu 10 Nov 2011 02:35:53 PM EST
+EESchema Schematic File Version 2  date Mon 21 Nov 2011 01:19:21 AM EST
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -28,20 +28,12 @@ LIBS:opto
 LIBS:atmel
 LIBS:contrib
 LIBS:valves
-LIBS:tps2375pw
-LIBS:tps40061pwp
 LIBS:h2019
 LIBS:microchip-enc28j60
-LIBS:avr
-LIBS:ipc-7351-diode
-LIBS:lm2575
-LIBS:Atmega8
-LIBS:tps54160
 LIBS:si3402
 LIBS:amp-rjhs-508x
 LIBS:xmega-a4
 LIBS:transistor
-LIBS:poeremote-cache
 EELAYER 24  0
 EELAYER END
 $Descr A4 11700 8267

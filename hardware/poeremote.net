@@ -1,4 +1,4 @@
-# EESchema Netlist Version 1.1 created  Sun 25 Sep 2011 08:42:12 PM EDT
+# EESchema Netlist Version 1.1 created  Mon 21 Nov 2011 01:19:04 AM EST
 (
  ( /4E769BF2 SM1206 C4 100nF
   ( 1 +3.3V )
@@ -108,7 +108,7 @@
   ( 1 N-000065 )
   ( 2 +3.3V )
  )
- ( /4E7FBB3C -SOD123 D2 ZENER
+ ( /4E7FBB3C -SOD123 D2 5V
   ( 1 /Switched48 )
   ( 2 /PWM5V )
  )
@@ -261,7 +261,7 @@
   ( 1 /TCT )
   ( 2 /TX- )
  )
- ( /4E78979D SM0603 R51 1.3M
+ ( /4E78979D SM0603 R51 100K
   ( 1 N-000031 )
   ( 2 /PWM5V )
  )

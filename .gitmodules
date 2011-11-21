@@ -1,0 +1,3 @@
+[submodule "firmware/contiki-xmega"]
+	path = firmware/contiki-xmega
+	url = git://github.com/jmondi/contiki-xmega.git

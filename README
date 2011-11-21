@@ -1,1 +1,7 @@
 This design is for a power-over-ethernet powered development board with an Atmel atxmega32a4 on it. It's a work in progress.
+
+/hardware has the hardware files for the KiCad pcb design software.
+
+/firmware has the C code to run on the atxmega MCU.
+
+

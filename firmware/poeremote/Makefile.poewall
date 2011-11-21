@@ -1,0 +1,190 @@
+all: poewall xPLimpl
+
+
+#Define CONTIKI_NO_NET=1 for a passthrough ipv6/6lowpan interface using fakeuip.c
+#Define UIP_CONF_IPV6=1 to include the uip6 stack (for rpl, internal webserver)
+#Do make clean when switching to remove the duplicate library modules
+#CONTIKI_NO_NET=1
+
+
+MCU=atxmega32a4
+
+# WHOLE_OPTS = -std=gnu99 -W -Wall -pedantic -Wstrict-prototypes -Wundef -Werror \
+# -funsigned-char -funsigned-bitfields -ffunction-sections -fpack-struct -fshort-enums \
+# -ffreestanding -Os -g -gdwarf-2 \
+# --combine -fwhole-program \
+# -fno-inline-small-functions -fno-split-wide-types -fno-tree-scev-cprop \
+# -Wl,--relax,--gc-sections
+CFLAGS += -ffunction-sections -fno-inline-small-functions -fno-split-wide-types -fno-tree-scev-cprop -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
+LDFLAGS += -Wl,--gc-sections,--relax,--undefined=_reset_vector__,--undefined=InterruptVectors,--undefined=_copy_data_init__,--undefined=_clear_bss_init__,--undefined=_end_of_init__
+
+CONTIKI = ../contiki-xmega
+
+CFLAGS += -Werror=implicit
+
+CONTIKI_TARGET_SOURCEFILES += xPLimpl.c
+TARGET_LIBFILES+=-lm
+
+
+#CONTIKI = ../contiki-xmega
+#CONTIKI = ../contiki-2.5.rc1
+
+#CONTIKIPLAT=$(CONTIKI)/platform/avr-poe
+
+#include $(CONTIKIPLAT)/Makefile.avr-poe
+include $(CONTIKI)/Makefile.include
+
+
+WHOLE_C_FILES =  ../contiki-xmega/platform/avr-poe/contiki-conf.h \
+ ../contiki-xmega/core/dev/leds.c \
+ ../contiki-xmega/core/dev/nullradio.c \
+ ../contiki-xmega/core/dev/serial-line.c \
+ ../contiki-xmega/core/lib/checkpoint.c \
+ ../contiki-xmega/core/lib/crc16.c \
+ ../contiki-xmega/core/lib/ifft.c \
+ ../contiki-xmega/core/lib/list.c \
+ ../contiki-xmega/core/lib/memb.c \
+ ../contiki-xmega/core/lib/mmem.c \
+ ../contiki-xmega/core/lib/print-stats.c \
+ ../contiki-xmega/core/lib/random.c \
+ ../contiki-xmega/core/lib/ringbuf.c \
+ ../contiki-xmega/core/loader/elfloader.c \
+ ../contiki-xmega/core/net/mac/contikimac.c \
+ ../contiki-xmega/core/net/mac/csma.c \
+ ../contiki-xmega/core/net/mac/cxmac.c \
+ ../contiki-xmega/core/net/mac/frame802154.c \
+ ../contiki-xmega/core/net/mac/framer-802154.c \
+ ../contiki-xmega/core/net/mac/framer-nullmac.c \
+ ../contiki-xmega/core/net/mac/lpp.c \
+ ../contiki-xmega/core/net/mac/mac.c \
+ ../contiki-xmega/core/net/mac/nullmac.c \
+ ../contiki-xmega/core/net/mac/nullrdc.c \
+ ../contiki-xmega/core/net/mac/nullrdc-noframer.c \
+ ../contiki-xmega/core/net/mac/phase.c \
+ ../contiki-xmega/core/net/mac/sicslowmac.c \
+ ../contiki-xmega/core/net/mac/xmac.c \
+ ../contiki-xmega/core/net/rime/abc.c \
+ ../contiki-xmega/core/net/rime/announcement.c \
+ ../contiki-xmega/core/net/rime/broadcast-announcement.c \
+ ../contiki-xmega/core/net/rime/broadcast.c \
+ ../contiki-xmega/core/net/rime/chameleon-bitopt.c \
+ ../contiki-xmega/core/net/rime/chameleon.c \
+ ../contiki-xmega/core/net/rime/chameleon-raw.c \
+ ../contiki-xmega/core/net/rime/channel.c \
+ ../contiki-xmega/core/net/rime/collect.c \
+ ../contiki-xmega/core/net/rime/collect-link-estimate.c \
+ ../contiki-xmega/core/net/rime/collect-neighbor.c \
+ ../contiki-xmega/core/net/rime/ipolite.c \
+ ../contiki-xmega/core/net/rime/mesh.c \
+ ../contiki-xmega/core/net/rime/multihop.c \
+ ../contiki-xmega/core/net/rime/neighbor-discovery.c \
+ ../contiki-xmega/core/net/rime/netflood.c \
+ ../contiki-xmega/core/net/rime/polite-announcement.c \
+ ../contiki-xmega/core/net/rime/polite.c \
+ ../contiki-xmega/core/net/rime/rimeaddr.c \
+ ../contiki-xmega/core/net/rime/rime.c \
+ ../contiki-xmega/core/net/rime/rimestats.c \
+ ../contiki-xmega/core/net/rime/rmh.c \
+ ../contiki-xmega/core/net/rime/route.c \
+ ../contiki-xmega/core/net/rime/route-discovery.c \
+ ../contiki-xmega/core/net/rime/rucb.c \
+ ../contiki-xmega/core/net/rime/rudolph0.c \
+ ../contiki-xmega/core/net/rime/rudolph1.c \
+ ../contiki-xmega/core/net/rime/rudolph2.c \
+ ../contiki-xmega/core/net/rime/runicast.c \
+ ../contiki-xmega/core/net/rime/stbroadcast.c \
+ ../contiki-xmega/core/net/rime/stunicast.c \
+ ../contiki-xmega/core/net/rime/timesynch.c \
+ ../contiki-xmega/core/net/rime/trickle.c \
+ ../contiki-xmega/core/net/rime/unicast.c \
+ ../contiki-xmega/core/net/sicslowpan.c \
+ ../contiki-xmega/core/sys/autostart.c \
+ ../contiki-xmega/core/sys/compower.c \
+ ../contiki-xmega/core/sys/ctimer.c \
+ ../contiki-xmega/core/sys/energest.c \
+ ../contiki-xmega/core/sys/etimer.c \
+ ../contiki-xmega/core/sys/mt.c \
+ ../contiki-xmega/core/sys/process.c \
+ ../contiki-xmega/core/sys/procinit.c \
+ ../contiki-xmega/core/sys/profile.c \
+ ../contiki-xmega/core/sys/rtimer.c \
+ ../contiki-xmega/core/sys/stimer.c \
+ ../contiki-xmega/core/sys/timer.c \
+ ../contiki-xmega/core/sys/timetable-aggregate.c \
+ ../contiki-xmega/core/sys/timetable.c \
+ ../contiki-xmega/cpu/avr/dev/clock.c \
+ ../contiki-xmega/cpu/avr/dev/rs232.c \
+ ../contiki-xmega/cpu/avr/./interrupt.c \
+ ../contiki-xmega/cpu/avr/./leds-arch.c \
+ ../contiki-xmega/platform/avr-poe/./contiki-poe-main.c \
+ ../contiki-xmega/platform/avr-poe/dev/avr-poe-buttons/avr-poe-buttons.c \
+ ../contiki-xmega/platform/avr-poe/dev/lcd/lcd.c \
+ ../contiki-xmega/platform/avr-poe/dev/xmega-adc/xmega-adc.c \
+ ../contiki-xmega/platform/avr-poe/net/eth-enc28j60.c \
+ fakeuip.c \
+ poewall.c \
+ \
+ ../contiki-xmega/core/net/uip.c \
+ ../contiki-xmega/core/net/packetbuf.c\
+ ../contiki-xmega/core/net/tcpip.c \
+ ../contiki-xmega/core/net/uip_arp.c \
+ ../contiki-xmega/core/net/uip-split.c \
+ ../contiki-xmega/core/net/uip-packetqueue.c\
+ ../contiki-xmega/core/net/packetqueue.c\
+../contiki-xmega/core/net/queuebuf.c\
+../contiki-xmega/cpu/avr/rtimer-arch.c \
+ ../contiki-xmega/core/sys/procinit.h \
+                           ../contiki-xmega/platform/cooja/mtarch.c\
+ ../contiki-xmega/cpu/avr/watchdog.c \
+ ../contiki-xmega/core/loader/elfloader-stub.c\
+ ../contiki-xmega/core/loader/symtab.c\
+ ../contiki-xmega/tools/empty-symbols.c\
+ ../contiki-xmega/core/cfs/cfs-ram.c\
+  ../contiki-xmega/core/sys/autostart.h
+ 
+ 
+
+ 
+ 
+
+WHOLE_INCLUDES = -I. \
+-I../contiki-xmega/core \
+-I../contiki-xmega/core/. \
+-I../contiki-xmega/core/cfs \
+-I../contiki-xmega/core/ctk \
+-I../contiki-xmega/core/dev \
+-I../contiki-xmega/core/lib \
+-I../contiki-xmega/core/lib/ctk \
+-I../contiki-xmega/core/loader \
+-I../contiki-xmega/core/net \
+-I../contiki-xmega/core/net/mac \
+-I../contiki-xmega/core/net/rime \
+-I../contiki-xmega/core/net/rpl \
+-I../contiki-xmega/core/sys \
+-I../contiki-xmega/cpu/avr \
+-I../contiki-xmega/cpu/avr/. \
+-I../contiki-xmega/cpu/avr/dev \
+-I../contiki-xmega/platform/avr-poe \
+-I../contiki-xmega/platform/avr-poe/. \
+-I../contiki-xmega/platform/avr-poe/dev \
+-I../contiki-xmega/platform/avr-poe/dev/avr-poe-buttons \
+-I../contiki-xmega/platform/avr-poe/dev/lcd \
+-I../contiki-xmega/platform/avr-poe/dev/xmega-adc \
+-I../contiki-xmega/platform/avr-poe/net
+
+
+#egrep -o "[[:blank:]][^[:blank:]]+\.c" /tmp/comp  > /tmp/list
+#egrep -o "\-I[^[:blank:]]+" /tmp/comp | sort | uniq | sed 's/$/ \\/' > /tmp/slist2
+
+WHOLE_OPTS = -std=gnu99 -W -Wall -pedantic -Wstrict-prototypes -Wundef -Werror \
+-funsigned-char -funsigned-bitfields -ffunction-sections -fpack-struct -fshort-enums \
+-ffreestanding -Os -g -gdwarf-2 \
+--combine -fwhole-program \
+-fno-inline-small-functions -fno-split-wide-types -fno-tree-scev-cprop \
+-Wl,--relax,--gc-sections
+
+
+whole:
+	avr-gcc --combine -fwhole-program -O1 -Wl,--relax,--gc-sections -Wundef	 -Werror=implicit -DCONTIKI=1 -DCONTIKI_TARGET_AVR_POE=1 -Wall -mmcu=atxmega32a4 -gdwarf-2  $(WHOLE_INCLUDES) -MMD -o whole.elf $(WHOLE_C_FILES)
+	avr-objcopy -O ihex -R .signature -R .fuse -R .eeprom whole.elf poewall.hex
+	avr-size -C --mcu=atxmega32a4 poewall.elf

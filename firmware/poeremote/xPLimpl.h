@@ -9,9 +9,9 @@ PROCESS_NAME(xPL_process);
 
 #define XPL_PORT  3865
 
-#define XPLNAME "smgpoe-fan.1"
+#define XPLNAME "smgpoe-pwm.2"
 
-char xplname[] PROGMEM = XPLNAME;
+extern char xplname[] PROGMEM;
 
 #define XPL_HDR_HEAD "xpl-stat\n{\nhop=1\nsource="
 #define XPL_HDR_TAIL "\ntarget=*\n}\n"

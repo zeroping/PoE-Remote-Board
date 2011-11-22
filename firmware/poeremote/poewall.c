@@ -47,6 +47,7 @@
 #include <util/delay.h>
 #include "dev/lcd/lcd.h"
 #include "dev/xmega-adc/xmega-adc.h"
+#include <xmega-signatures.h>
 #include "dev/avr-poe-buttons/avr-poe-buttons.h"
 
 #include "net/eth-enc28j60.h"
@@ -286,8 +287,8 @@ PROCESS_THREAD(enc28j60_process, ev, data)
 
    //set the mac address to be our serial number
   uip_80211_addr tempMAC;
-  get_serial_number(uip_ethaddr.addr, sizeof(our_uip_ethaddr));
-  get_serial_number(&(tempMAC.addr[0]), 6);
+  get_serial_number((char*)(uip_ethaddr.addr), sizeof(our_uip_ethaddr));
+  get_serial_number((char*)(&(tempMAC.addr[0])), 6);
   uip_setethaddr(tempMAC);
 
   PRINTF("e MAC set to: ");
@@ -372,7 +373,7 @@ PROCESS_THREAD(my_dhcp_process, ev, data)
 
 //  static struct etimer timer;
 //  static struct uip_udp_conn *udpconn;
-  char* hostname = "poefan1";
+  char* hostname = "poepwm2";
   uint8_t i = 0;
   PROCESS_BEGIN();
 

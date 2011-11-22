@@ -1,0 +1,9 @@
+*.a
+*.d
+*.o
+*~
+*.elf
+*.hex
+*.map
+symbols.c
+symbols.h

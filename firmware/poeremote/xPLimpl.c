@@ -18,6 +18,8 @@
 #include <string.h>
 #include <util/delay.h>
 #include <math.h>
+#include <xmega-signatures.h>
+#include <xmega-adc.h>
 
 #define PRINTF(format, ...) { printf_P( PSTR(format), ##__VA_ARGS__);}
 
@@ -28,6 +30,7 @@
 #define HBEAT_INTERVAL (300 * CLOCK_SECOND)
 
 
+char xplname[] PROGMEM = XPLNAME;
 
 static struct uip_udp_conn *udpconn;
 static uint8_t udpdata[UDP_DATA_LEN] = "rx=";
@@ -105,7 +108,6 @@ static int handle_control() {
 static int handle_sensor() {
     char* message = (char*)uip_appdata;
     //PRINTF("msg: %s", message);
-    char* curs;
     if (strcasestr(message, "request=current") != NULL){
         if (strcasestr(message, "device=temp") != NULL){
             PRINTF("temp");
@@ -144,16 +146,17 @@ static void parse_incomming() {
     //PRINTF("Received from %u.%u.%u.%u:%u: '%s'\n", uip_ipaddr_to_quad(&UDP_HDR->srcipaddr), UIP_HTONS(UDP_HDR->srcport), (char*)uip_appdata);
 
     char* targetp = NULL;
-    char target_txt[] PROGMEM= "target=";
+    char* target_txt = "target=";
 
-    targetp = strcasestr(message, &target_txt);
+    targetp = strcasestr((const char*)message, target_txt);
     if (targetp != 0) {
         //so we have "target=" in the message
         //push this to the end of the string;
         targetp+= sizeof(target_txt) - 1;
         PRINTF("has target\n");
-        if(strcasestr_P(targetp, &xplname)
-            || strcasestr(targetp, "*")) {
+        if(strcasestr_P(targetp, &(xplname[0]))
+            || strcasestr(targetp, "*")
+            || 1) {
             //if we're called directly, or there's an asterisk
             //TODO: should we support something like "target=smgpoe-fan.*" ?
 
@@ -218,8 +221,6 @@ PROCESS(xPL_process, "xPL process");
  */
 PROCESS_THREAD(xPL_process, ev, data)
 {
-
-    uip_ipaddr_t ipaddr;
 
     PROCESS_BEGIN();
 

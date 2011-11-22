@@ -164,7 +164,7 @@ u8_t
 example_packet_driver_output_noarp(void)
 {
 
-  //PRINTF("packet to send, already with arp, len: %d\n", uip_len);
+  PRINTF("packet to send, already with arp, len: %d\n", uip_len);
   //print_packet();
   enc28j60PacketSend(uip_len, uip_buf);
   return 0;
@@ -422,6 +422,7 @@ dhcpc_configured(const struct dhcpc_state *s)
   
   PRINTF("Got IP address %d.%d.%d.%d\n", uip_ipaddr_to_quad(&s->ipaddr));
   PRINTF("Got netmask %d.%d.%d.%d\n",  uip_ipaddr_to_quad(&s->netmask));
+  
 
   if (!dhcpStarted) {
     dhcpStarted = 1;

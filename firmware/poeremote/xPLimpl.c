@@ -27,7 +27,7 @@
 #define UDP_HDR ((struct uip_udpip_hdr *)&uip_buf[UIP_LLH_LEN])
 
 //TODO this is doubled for some reason - probably means our clock is wrong
-#define HBEAT_INTERVAL (300 * CLOCK_SECOND)
+#define HBEAT_INTERVAL (150 * CLOCK_SECOND)
 
 
 char xplname[] PROGMEM = XPLNAME;
@@ -137,6 +137,7 @@ static int handle_sensor() {
 
 /* parses an incomming XPL packet */
 static void parse_incomming() {
+    printf("start\n");
     //start by writing an extra null at the end of the string
     char* endp = ((char*)uip_appdata + uip_datalen());
     *endp = '\0';
@@ -154,13 +155,15 @@ static void parse_incomming() {
         //push this to the end of the string;
         targetp+= sizeof(target_txt) - 1;
         PRINTF("has target\n");
+        printf("our name is: ");
+        printf_P(&(xplname[0]));
+        printf("\n");
         if(strcasestr_P(targetp, &(xplname[0]))
-            || strcasestr(targetp, "*")
-            || 1) {
+            || strcasestr(targetp, "*")) {
             //if we're called directly, or there's an asterisk
             //TODO: should we support something like "target=smgpoe-fan.*" ?
 
-            PRINTF("we're the target'\n");
+            PRINTF("we're the target\n");
             if (strcasestr(message, "control.basic") != NULL && handle_control()){
 
             } else if (strcasestr(message, "sensor.request") != NULL && handle_sensor()){
@@ -187,10 +190,10 @@ static void udphandler(const process_event_t ev, const process_data_t data)
     if (uip_poll()) {
         clock_time_t heartbeat_countdown = clock_time() - last_heartbeat;
         if(heartbeat_countdown > HBEAT_INTERVAL) {
-            //PRINTF("hbeat timer!\n");
+            PRINTF("hbeat timer!\n");
 
             memcpy_P(udpdata, hbeatmessage, sizeof(hbeatmessage));
-            uip_udp_packet_sendto(udpconn, udpdata,sizeof(hbeatmessage), &daddr, UIP_HTONS(3865));
+            uip_udp_packet_sendto(udpconn, udpdata,sizeof(hbeatmessage)-1, &daddr, UIP_HTONS(3865));
             last_heartbeat = clock_time();
             return;
         }
@@ -202,7 +205,7 @@ static void udphandler(const process_event_t ev, const process_data_t data)
         /* Set the last byte of the received data as 0 in order to print it. */
         int len = uip_datalen();
         ((char *)uip_appdata)[len] = 0;
-        //PRINTF("Received from %u.%u.%u.%u:%u: '%s'\n", uip_ipaddr_to_quad(&UDP_HDR->srcipaddr), UIP_HTONS(UDP_HDR->srcport), (char*)uip_appdata);
+        //PRINTF("RReceived from %u.%u.%u.%u:%u: '%s'\n", uip_ipaddr_to_quad(&UDP_HDR->srcipaddr), UIP_HTONS(UDP_HDR->srcport), (char*)uip_appdata);
 
         parse_incomming();
 
@@ -230,16 +233,19 @@ PROCESS_THREAD(xPL_process, ev, data)
 
 
     //do some legwork to figure out our local broadcast address
-    //TODO: this will fail if we have one of the fully subnets with a netmask that has a partial octect
+    //TODO: this will fail if we have one of the funny subnets with a netmask that has a partial octect
     static uip_ipaddr_t baddr;
     uip_getnetmask(&baddr);
     uip_gethostaddr(&daddr);
     int i = 0;
+    printf("dest addr: ");
     for (i=0; i<4; i++) {
-        printf("add: %d", baddr.u8[i]);
+        //printf("add: %d", baddr.u8[i]);
         if (baddr.u8[i] != 255)
             daddr.u8[i] = 255;
+        printf("%d.", daddr.u8[i]);
     }
+    printf("\n");
     
     //uip_ipaddr_copy(&daddr, &uip_broadcast_addr);
     //uip_ipaddr(&daddr, 192, 168, 1,255);
@@ -247,7 +253,7 @@ PROCESS_THREAD(xPL_process, ev, data)
     
     //uip_ipaddr_t addr;
     /* Create a UDP 'connection' for broadcast packets on port 3865 */
-    udpconn = udp_broadcast_new(UIP_HTONS(XPL_PORT), NULL);
+    udpconn = udp_broadcast_new(0, NULL);
 
     if (udpconn == NULL) {
         PRINTF("cannot alloc!\n");

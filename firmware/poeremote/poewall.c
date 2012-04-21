@@ -373,9 +373,11 @@ PROCESS_THREAD(my_dhcp_process, ev, data)
 
 //  static struct etimer timer;
 //  static struct uip_udp_conn *udpconn;
-  char* hostname = "poepwm2";
+  char* hostname = HOSTNAME;
   uint8_t i = 0;
   PROCESS_BEGIN();
+  PORTC.DIRSET = 0x03;
+  PORTC.OUTSET = 0x01;
 
 
 //   udpconn = udp_broadcast_new(UIP_HTONS(67), NULL);
@@ -383,7 +385,7 @@ PROCESS_THREAD(my_dhcp_process, ev, data)
   
   dhcpc_init(uip_ethaddr.addr, sizeof(uip_ethaddr.addr));
   dhcpc_set_hostname_p(hostname);
-  PRINTF("dhcp inited with MAC addr: ");
+  PRINTF("dhcp inited with MAC addr: "); 
   
   for (i=0; i<sizeof(uip_ethaddr.addr); i++){
     PRINTF("%2x ", uip_ethaddr.addr[i] );

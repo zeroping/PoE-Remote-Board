@@ -30,6 +30,32 @@
 #define HBEAT_INTERVAL (150 * CLOCK_SECOND)
 
 
+#define BUTTON_0_PORT PORTD
+#define BUTTON_0_BM (1<<3)
+
+
+#define BUTTON_1_PORT PORTR
+#define BUTTON_1_BM (1<<0)
+
+#if 0
+
+#define PWMPORT PORTC
+#define PWMBIT (1<<2)
+#define PWMTIMER TCC0
+#define PWMSUBTIMER TC0_CCCEN_bm
+#define PWMSUBCOUNTER CCC
+
+#elif 1
+
+#define PWMPORT PORTE
+#define PWMBIT (1<<1)
+#define PWMTIMER TCE0
+#define PWMSUBTIMER TC0_CCBEN_bm
+#define PWMSUBCOUNTER CCB
+#endif
+
+
+
 char xplname[] PROGMEM = XPLNAME;
 
 static struct uip_udp_conn *udpconn;
@@ -52,34 +78,52 @@ static uint8_t str_to_int(char* buf, uint8_t max){
     return out;
 };
 
+void initNL(void) {
+    TCC0.CTRLA = (TC0_CLKSEL_gm & TC_CLKSEL_DIV8_gc);
+    TCC0.CTRLB |= (TC0_WGMODE_gm & TC_WGMODE_SS_gc) | (TC0_CCAEN_bm)| (TC0_CCBEN_bm);
+    TCC0.PER = 256*64;
+
+
+}
+
+void setNL(uint8_t val) {
+    PRINTF("nlset\n");
+    TCC0.CCA = val*64;
+    TCC0.CCB = val*64;
+    
+}
+
+void initPWM(void) {
+    PWMTIMER.CTRLA = (TC0_CLKSEL_gm & TC_CLKSEL_DIV8_gc);
+    PWMTIMER.CTRLB |= (TC0_WGMODE_gm & TC_WGMODE_SS_gc);
+    PWMTIMER.PER = 256*64;
+}
+
 /* sets the PWM output on the assigned PWM pin */
 static void setPWM(uint8_t val) {
 
-    if (val > 130) {
-        val = 130;
-    }
+//     if (val > 130) {
+//         val = 130;
+//     }
     
-    val = 255-val;
+    //val = 255-val;
     PRINTF("pwmset\n");
     if (val == 255 ) {
-        TCC0.CTRLB &= ~(TC0_CCCEN_bm);
-        PORTC.DIRSET = 1<<2;
-        PORTC.OUTSET = 1<<2;
+        PWMTIMER.CTRLB &= ~(PWMSUBTIMER);
+        PWMPORT.DIRSET = PWMBIT;
+        PWMPORT.OUTSET = PWMBIT;
     } else if (val == 0) {
-        TCC0.CTRLB &= ~(TC0_CCCEN_bm);
-        PORTC.DIRSET = 1<<2;
-        PORTC.OUTCLR = 1<<2;
+        PWMTIMER.CTRLB &= ~(PWMSUBTIMER);
+        PWMPORT.DIRSET = PWMBIT;
+        PWMPORT.OUTCLR = PWMBIT;
     } else {
+        PWMPORT.OUTCLR = PWMBIT;
         PRINTF("here\n");
-        PORTC.DIRSET = 1<<2;
+        PWMPORT.DIRSET = PWMBIT;
 
-        TCC0.CTRLA = (TC0_CLKSEL_gm & TC_CLKSEL_DIV1_gc);
-
-        TCC0.CTRLB = (TC0_WGMODE_gm & TC_WGMODE_SS_gc) | (TC0_CCCEN_bm);
-        TCC0.PER = 256*2;
-        TCC0.PER = 256*32;
+        PWMTIMER.CTRLB |= (PWMSUBTIMER);
         
-        TCC0.CCC = val*32;
+        PWMTIMER.PWMSUBCOUNTER = val*64;
     }
 }
 
@@ -89,13 +133,13 @@ static int handle_control() {
     //PRINTF("msg: %s", message);
     char* curs;
     if (strcasestr(message, "device=pwm") != NULL){
-        PORTD.DIRSET = 1<<2;
         if (strcasestr(message, "type=variable") != NULL){
             curs = strcasestr(message, "current=");
             curs += 8;
             uint8_t val = str_to_int(curs, 3);
             PRINTF("got %u \n", val);
             setPWM(val);
+            setNL(val);
         } else return 0;
     } else {
         PRINTF("unknown control message\n");
@@ -152,12 +196,27 @@ static void parse_incomming() {
     targetp = strcasestr((const char*)message, target_txt);
     if (targetp != 0) {
         //so we have "target=" in the message
-        //push this to the end of the string;
-        targetp+= sizeof(target_txt) - 1;
+        //targetp+= sizeof(target_txt) - 1;
         PRINTF("has target\n");
-        printf("our name is: ");
+        //push this to the end of the string;
+        targetp= strchr(targetp, '=');
+        if(targetp==NULL) {
+            PRINTF("No = in target line?");
+            return;
+        }
+        targetp+=1;
+        
+        PRINTF("our name is: ");
         printf_P(&(xplname[0]));
-        printf("\n");
+        PRINTF(", message is for: ");
+        char buf[20];
+        uint8_t namechrs = strchrnul(targetp, '\n') - targetp ;
+        if(namechrs > 19) namechrs = 19;
+        memcpy(buf,targetp,namechrs);
+        buf[namechrs] = '\0';
+        printf(buf);
+        PRINTF("\n");
+        
         if(strcasestr_P(targetp, &(xplname[0]))
             || strcasestr(targetp, "*")) {
             //if we're called directly, or there's an asterisk
@@ -177,6 +236,15 @@ static void parse_incomming() {
         PRINTF("XPL message with no target= line\n");
     }
 
+}
+/*
+void initButtons(void) {
+    //make the button lines inputs
+}*/
+
+uint8_t pollButtons(void) {
+
+    return 0;
 }
 
 /*to be called when there's a tcpip event, be it a packet of a poll */
@@ -226,7 +294,10 @@ PROCESS_THREAD(xPL_process, ev, data)
 {
 
     PROCESS_BEGIN();
-
+    initNL();
+    setNL(1);
+    initPWM();
+    setPWM(1);
     PRINTF("xPL listener\n");
 
     last_heartbeat = clock_time() - HBEAT_INTERVAL;

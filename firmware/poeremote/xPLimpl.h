@@ -11,7 +11,8 @@ PROCESS_NAME(xPL_process);
 
 #define XPL_PORT  3865
 
-#define XPLNAME "smgpoe-pwm.2"
+#define XPLNAME "smgpoe-lamp.2"
+#define HOSTNAME "poelamp2"
 
 extern char xplname[] PROGMEM;
 

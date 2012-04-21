@@ -1,4 +1,4 @@
-update=Sun 29 Jan 2012 01:16:10 PM EST
+update=Sat 14 Apr 2012 01:49:38 AM EDT
 last_client=eeschema
 [general]
 version=1
@@ -10,8 +10,8 @@ EquName1=devcms
 [pcbnew]
 version=1
 PadDrlX=0
-PadDimH=236
-PadDimV=236
+PadDimH=354
+PadDimV=551
 BoardThickness=630
 SgPcb45=1
 TxtPcbV=800
@@ -49,6 +49,10 @@ LibName19=101-0624-EV
 LibName20=term-block
 LibName21=mounting hardware
 LibName22=sharp-GA1A1S
+LibName23=Coilcraft_POE60F
+LibName24=SWAA05
+LibName25=qrcode
+LibName26=/home/scott/projects/poelight/hardware/poeremote/libs/sglogo
 [eeschema]
 version=1
 LibDir=libs;libs/unknown_licenses
@@ -79,11 +83,7 @@ offY_E=0
 RptD_X=0
 RptD_Y=100
 RptLab=1
-SimCmd=
-UseNetN=0
 LabSize=60
-PrintMonochrome=0
-ShowSheetReferenceAndTitleBlock=0
 [eeschema/libraries]
 LibName1=power
 LibName2=device
@@ -119,7 +119,6 @@ LibName31=microchip-enc28j60
 LibName32=si3402
 LibName33=amp-rjhs-508x
 LibName34=xmega-a4
-LibName35=transistor
-LibName36=pirmotion
-LibName37=relay
-LibName38=ga1a1s
+LibName35=pirmotion
+LibName36=ga1a1s
+LibName37=coilcraft

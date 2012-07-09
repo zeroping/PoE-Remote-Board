@@ -376,8 +376,8 @@ PROCESS_THREAD(my_dhcp_process, ev, data)
   char* hostname = HOSTNAME;
   uint8_t i = 0;
   PROCESS_BEGIN();
-  PORTC.DIRSET = 0x03;
-  PORTC.OUTSET = 0x01;
+  //PORTC.DIRSET = 0x03;
+  //PORTC.OUTSET = 0x01;
 
 
 //   udpconn = udp_broadcast_new(UIP_HTONS(67), NULL);
@@ -431,6 +431,8 @@ dhcpc_configured(const struct dhcpc_state *s)
     process_start(&xPL_process, "xpl process");
     
   }
+  
+
   
 }
 /*---------------------------------------------------------------------------*/

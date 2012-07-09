@@ -14,6 +14,7 @@
 #include "dev/leds.h"
 #include "dev/lcd/lcd.h"
 #include <avr/pgmspace.h>
+#include <avr/interrupt.h>
 #include <stdio.h>
 #include <string.h>
 #include <util/delay.h>
@@ -30,12 +31,7 @@
 #define HBEAT_INTERVAL (150 * CLOCK_SECOND)
 
 
-#define BUTTON_0_PORT PORTD
-#define BUTTON_0_BM (1<<3)
 
-
-#define BUTTON_1_PORT PORTR
-#define BUTTON_1_BM (1<<0)
 
 #if 0
 
@@ -47,14 +43,28 @@
 
 #elif 1
 
+//new wall switch board
+
 #define PWMPORT PORTE
 #define PWMBIT (1<<1)
 #define PWMTIMER TCE0
 #define PWMSUBTIMER TC0_CCBEN_bm
 #define PWMSUBCOUNTER CCB
+
+#define BUTTON_0_PORT PORTD
+#define BUTTON_0_BM (1<<3)
+#define BUTTON_0_VECT PORTD_INT0_vect_num
+#define BUTTON_0_PINCTRL PORTD.PIN3CTRL
+
+#define BUTTON_1_PORT PORTR
+#define BUTTON_1_BM (1<<0)
+#define BUTTON_1_VECT PORTR_INT0_vect_num
+#define BUTTON_1_PINCTRL PORTR.PIN0CTRL
+
 #endif
 
-
+uint8_t buttonsLast = 0;
+uint8_t buttonval = 0;
 
 char xplname[] PROGMEM = XPLNAME;
 
@@ -79,6 +89,8 @@ static uint8_t str_to_int(char* buf, uint8_t max){
 };
 
 void initNL(void) {
+    PORTC.DIR |= 0x03;
+    
     TCC0.CTRLA = (TC0_CLKSEL_gm & TC_CLKSEL_DIV8_gc);
     TCC0.CTRLB |= (TC0_WGMODE_gm & TC_WGMODE_SS_gc) | (TC0_CCAEN_bm)| (TC0_CCBEN_bm);
     TCC0.PER = 256*64;
@@ -106,7 +118,7 @@ static void setPWM(uint8_t val) {
 //         val = 130;
 //     }
     
-    //val = 255-val;
+    val = 255-val;
     PRINTF("pwmset\n");
     if (val == 255 ) {
         PWMTIMER.CTRLB &= ~(PWMSUBTIMER);
@@ -237,13 +249,89 @@ static void parse_incomming() {
     }
 
 }
-/*
-void initButtons(void) {
-    //make the button lines inputs
-}*/
 
-uint8_t pollButtons(void) {
+//sets up the buttons for pin change interrupts
+void buttonsInit(void) {
+    //set up pin change interrupts
+    //turn on PC int 0
+    PRINTF("initing pins\n");
+    BUTTON_0_PORT.INTCTRL |= (PMIC_LOLVLEX_bm << PORT_INT0LVL0_bp);
+    //set pin for interrupt 0
+    BUTTON_0_PORT.INT0MASK |= BUTTON_0_BM;
+    //make the pin a wired-and
+    BUTTON_0_PINCTRL |= (0b111) << 3;
 
+    BUTTON_1_PORT.INTCTRL |= (PMIC_LOLVLEX_bm << PORT_INT0LVL0_bp);
+    BUTTON_1_PORT.INT0MASK |= BUTTON_1_BM;
+    //make the pin a wired-and
+    BUTTON_1_PINCTRL |= (0b111) << 3;
+    
+    sei();
+    adc_init();
+
+    
+    
+}
+
+
+
+ISR(PORTR_INT0_vect) {
+    PRINTF("button changed %d %d\n",BUTTON_0_PORT.IN & BUTTON_0_BM, BUTTON_1_PORT.IN & BUTTON_1_BM);
+    //PRINTF("sw: %d %d %d\n", BUTTON_0_PORT.IN & BUTTON_0_BM, BUTTON_1_PORT.IN & BUTTON_1_BM, adc_sample_channel(4));
+    uint8_t toset = 0;
+    if (!(BUTTON_0_PORT.IN & BUTTON_0_BM)) {
+        toset |= 1<<0;
+    } else if (!(BUTTON_1_PORT.IN & BUTTON_1_BM)) {
+        toset |= 1<<1;
+    } 
+     buttonval = toset;
+    PRINTF("IR: %d %d\n", buttonval, buttonsLast);
+    
+    
+}
+
+ISR(PORTD_INT0_vect, ISR_ALIASOF(PORTR_INT0_vect));
+
+//checks the button input lines, and returns 1 if something has changed.
+uint8_t buttonsPoll(void) {
+    //if (BUTTON_1_PORT.PIN & BUTTON_1_BM != buttonsLast & BUTTON_1_BM) {
+        if (buttonval != buttonsLast) {
+            PRINTF("sw: %d %d\n", buttonval, buttonsLast);
+            //memcpy_P(udpdata, hbeatmessage, sizeof(hbeatmessage));
+            uint16_t mylen = 0;
+            if(buttonval & ~buttonsLast & 0x01) {
+                mylen = sprintf_P(udpdata, buttonformat, "button1","input","HIGH");
+                buttonsLast |= 0x01;
+            } else if(buttonval & ~buttonsLast & 0x02) {
+                mylen = sprintf_P(udpdata, buttonformat, "button2","input","HIGH");
+                buttonsLast |= 0x02;
+            } else if(~buttonval & buttonsLast & 0x01) {
+                mylen = sprintf_P(udpdata, buttonformat, "button1","input","LOW");
+                buttonsLast &= ~0x01;
+            } else if(~buttonval & buttonsLast & 0x02) {
+                mylen = sprintf_P(udpdata, buttonformat, "button2","input","LOW");
+                buttonsLast &= ~0x02;
+            } 
+            
+//             else if
+//             if (buttonval == 1){
+//                 mylen = sprintf_P(udpdata, sensorformat, "button1","input","HIGH");  
+//             } else if (buttonval == 2){
+//                 mylen = sprintf_P(udpdata, sensorformat, "button2","input","HIGH");
+//             } else if ((buttonval == 0) && (buttonsLast == 1)){
+//                 mylen = sprintf_P(udpdata, sensorformat, "button1","input","LOW");
+//             } else if ((buttonval == 0) && (buttonsLast == 2)){
+//                 mylen = sprintf_P(udpdata, sensorformat, "button2","input","LOW");
+//             } 
+            
+            uip_udp_packet_sendto(udpconn, udpdata, mylen, &daddr, UIP_HTONS(3865));
+            last_heartbeat = clock_time();
+       
+            
+            
+        }
+        
+    //}
     return 0;
 }
 
@@ -257,6 +345,11 @@ static void udphandler(const process_event_t ev, const process_data_t data)
 
     if (uip_poll()) {
         clock_time_t heartbeat_countdown = clock_time() - last_heartbeat;
+//         if (pollButtons()) {
+//             buttonsSend();
+//         }
+//         
+        
         if(heartbeat_countdown > HBEAT_INTERVAL) {
             PRINTF("hbeat timer!\n");
 
@@ -264,9 +357,15 @@ static void udphandler(const process_event_t ev, const process_data_t data)
             uip_udp_packet_sendto(udpconn, udpdata,sizeof(hbeatmessage)-1, &daddr, UIP_HTONS(3865));
             last_heartbeat = clock_time();
             return;
+        } else {
+            
+            buttonsPoll();
+            
         }
         
+        
     }
+
     
     if (uip_newdata())
     {
@@ -295,9 +394,11 @@ PROCESS_THREAD(xPL_process, ev, data)
 
     PROCESS_BEGIN();
     initNL();
-    setNL(1);
+    setNL(128);
     initPWM();
     setPWM(1);
+    buttonsInit();
+    
     PRINTF("xPL listener\n");
 
     last_heartbeat = clock_time() - HBEAT_INTERVAL;
@@ -342,6 +443,7 @@ PROCESS_THREAD(xPL_process, ev, data)
         /* Handle it */
         udphandler(ev, data);
     }
+     
 
     PROCESS_END();
 }

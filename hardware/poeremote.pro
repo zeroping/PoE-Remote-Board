@@ -1,12 +1,7 @@
-update=Sat 14 Apr 2012 01:49:38 AM EDT
-last_client=eeschema
+update=Sun 08 Jul 2012 09:35:38 PM EDT
+last_client=cvpcb
 [general]
 version=1
-[cvpcb]
-version=1
-NetIExt=net
-[cvpcb/libraries]
-EquName1=devcms
 [pcbnew]
 version=1
 PadDrlX=0
@@ -26,7 +21,6 @@ TxtLar=120
 MSegLar=40
 LastNetListRead=poeremote.net
 [pcbnew/libraries]
-LibDir=libs;libs/unknown_licenses
 LibName1=sockets
 LibName2=connect
 LibName3=discret
@@ -53,6 +47,9 @@ LibName23=Coilcraft_POE60F
 LibName24=SWAA05
 LibName25=qrcode
 LibName26=/home/scott/projects/poelight/hardware/poeremote/libs/sglogo
+LibName27=DIODE_SMB_CUST
+LibName28=SDR0805
+LibDir=libs;libs/unknown_licenses
 [eeschema]
 version=1
 LibDir=libs;libs/unknown_licenses
@@ -122,3 +119,8 @@ LibName34=xmega-a4
 LibName35=pirmotion
 LibName36=ga1a1s
 LibName37=coilcraft
+[cvpcb]
+version=1
+NetIExt=net
+[cvpcb/libraries]
+EquName1=devcms

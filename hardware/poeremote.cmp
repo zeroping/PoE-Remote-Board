@@ -1,4 +1,25 @@
-Cmp-Mod V01 Created by CvPCB (2010-00-09 BZR 23xx)-stable date = Wed 07 Mar 2012 12:10:11 AM EST
+Cmp-Mod V01 Created by CvPcb (2012-01-19 BZR 3256)-stable date = Sun 08 Jul 2012 09:35:44 PM EDT
+
+BeginCmp
+TimeStamp = /4F210E9D;
+Reference = C1;
+ValeurCmp = 10uf;
+IdModule  = SM0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FF52DF5;
+Reference = C2;
+ValeurCmp = 100uF;
+IdModule  = SM0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FF52E6A;
+Reference = C3;
+ValeurCmp = 10uf;
+IdModule  = SM0603;
+EndCmp
 
 BeginCmp
 TimeStamp = /4E769BF2;
@@ -22,6 +43,13 @@ IdModule  = SM0603;
 EndCmp
 
 BeginCmp
+TimeStamp = /4FF52EA6;
+Reference = C7;
+ValeurCmp = 10nF;
+IdModule  = SM0603;
+EndCmp
+
+BeginCmp
 TimeStamp = /4E76968D;
 Reference = C8;
 ValeurCmp = 150pF;
@@ -40,6 +68,13 @@ TimeStamp = /4F131437;
 Reference = C10;
 ValeurCmp = 15uF;
 IdModule  = SMDCAP_8x10;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FF52E59;
+Reference = C11;
+ValeurCmp = 10uf;
+IdModule  = SM0603;
 EndCmp
 
 BeginCmp
@@ -141,6 +176,13 @@ IdModule  = SMDCAP_8x10;
 EndCmp
 
 BeginCmp
+TimeStamp = /4FF52F92;
+Reference = C26;
+ValeurCmp = 10nF;
+IdModule  = SM0603;
+EndCmp
+
+BeginCmp
 TimeStamp = /4E7814EC;
 Reference = C27;
 ValeurCmp = .1uF;
@@ -190,17 +232,24 @@ IdModule  = SM0603;
 EndCmp
 
 BeginCmp
-TimeStamp = /4F210E9D;
-Reference = C34;
-ValeurCmp = 1uf;
-IdModule  = SM0603;
-EndCmp
-
-BeginCmp
 TimeStamp = /4F258E96;
 Reference = C35;
 ValeurCmp = 0.1uF;
 IdModule  = SM0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FFA344C;
+Reference = C54;
+ValeurCmp = 560uF;
+IdModule  = SMDCAP_8x10;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FFA3480;
+Reference = C55;
+ValeurCmp = 15uF;
+IdModule  = SMDCAP_8x10;
 EndCmp
 
 BeginCmp
@@ -229,6 +278,13 @@ TimeStamp = /4F56EAA8;
 Reference = D4;
 ValeurCmp = LED;
 IdModule  = SWAA05;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FFA1C5D;
+Reference = D5;
+ValeurCmp = DIODESCH;
+IdModule  = DIODE_SMB_CUST;
 EndCmp
 
 BeginCmp
@@ -309,6 +365,13 @@ IdModule  = SM0805;
 EndCmp
 
 BeginCmp
+TimeStamp = /4FFA1C56;
+Reference = L4;
+ValeurCmp = 33uH;
+IdModule  = SDR0805;
+EndCmp
+
+BeginCmp
 TimeStamp = /4F24EA24;
 Reference = P1;
 ValeurCmp = CONN_2;
@@ -320,6 +383,13 @@ TimeStamp = /4F24EAE3;
 Reference = P2;
 ValeurCmp = CONN_10;
 IdModule  = SIL-10;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FFA19F5;
+Reference = P3;
+ValeurCmp = 48PWM;
+IdModule  = SIL-2;
 EndCmp
 
 BeginCmp
@@ -337,6 +407,13 @@ IdModule  = transistor-SOT23-BEC;
 EndCmp
 
 BeginCmp
+TimeStamp = /4FFA19BE;
+Reference = Q3;
+ValeurCmp = MOSFET_N;
+IdModule  = SOT23GDS;
+EndCmp
+
+BeginCmp
 TimeStamp = /4E769CBB;
 Reference = R1;
 ValeurCmp = 10K;
@@ -344,9 +421,30 @@ IdModule  = SM0603;
 EndCmp
 
 BeginCmp
+TimeStamp = /4F21108B;
+Reference = R2;
+ValeurCmp = 47k;
+IdModule  = SM0603;
+EndCmp
+
+BeginCmp
 TimeStamp = /4E7697ED;
 Reference = R3;
-ValeurCmp = 9.424K;
+ValeurCmp = 5.6K;
+IdModule  = SM0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FF52E06;
+Reference = R4;
+ValeurCmp = 10k;
+IdModule  = SM0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FF52E68;
+Reference = R5;
+ValeurCmp = 10k;
 IdModule  = SM0603;
 EndCmp
 
@@ -354,6 +452,27 @@ BeginCmp
 TimeStamp = /4E769C63;
 Reference = R6;
 ValeurCmp = 25.5K;
+IdModule  = SM0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FF52EB4;
+Reference = R7;
+ValeurCmp = 1M;
+IdModule  = SM0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FF52F0C;
+Reference = R8;
+ValeurCmp = 10k;
+IdModule  = SM0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FF52F11;
+Reference = R9;
+ValeurCmp = 10k;
 IdModule  = SM0603;
 EndCmp
 
@@ -379,9 +498,30 @@ IdModule  = SM0603;
 EndCmp
 
 BeginCmp
+TimeStamp = /4FF52F52;
+Reference = R13;
+ValeurCmp = 100k;
+IdModule  = SM0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FF52F4D;
+Reference = R14;
+ValeurCmp = 100k;
+IdModule  = SM0603;
+EndCmp
+
+BeginCmp
+TimeStamp = /4FF52F8E;
+Reference = R15;
+ValeurCmp = 1M;
+IdModule  = SM0603;
+EndCmp
+
+BeginCmp
 TimeStamp = /4E7697F0;
 Reference = R17;
-ValeurCmp = 5.6K;
+ValeurCmp = 9.424K;
 IdModule  = SM0603;
 EndCmp
 
@@ -409,7 +549,7 @@ EndCmp
 BeginCmp
 TimeStamp = /4E7814FC;
 Reference = R45;
-ValeurCmp = 270;
+ValeurCmp = 220;
 IdModule  = SM0603;
 EndCmp
 
@@ -444,35 +584,28 @@ EndCmp
 BeginCmp
 TimeStamp = /4E78979D;
 Reference = R51;
-ValeurCmp = 100K;
+ValeurCmp = 25.5k;
 IdModule  = SM0603;
 EndCmp
 
 BeginCmp
 TimeStamp = /4E78992C;
 Reference = R52;
-ValeurCmp = 50K;
+ValeurCmp = 25.5k;
 IdModule  = SM0603;
 EndCmp
 
 BeginCmp
-TimeStamp = /4F211172;
+TimeStamp = /4FFA1C42;
 Reference = R53;
-ValeurCmp = 47k;
-IdModule  = SM0603;
-EndCmp
-
-BeginCmp
-TimeStamp = /4F21108B;
-Reference = R54;
-ValeurCmp = 47k;
+ValeurCmp = 25.5k;
 IdModule  = SM0603;
 EndCmp
 
 BeginCmp
 TimeStamp = /4F258D3E;
 Reference = R55;
-ValeurCmp = 60K;
+ValeurCmp = 47k;
 IdModule  = SM0603;
 EndCmp
 
@@ -512,6 +645,13 @@ IdModule  = T1;
 EndCmp
 
 BeginCmp
+TimeStamp = /4FF52DC8;
+Reference = U1;
+ValeurCmp = LM358;
+IdModule  = SO8N;
+EndCmp
+
+BeginCmp
 TimeStamp = /4E769FB7;
 Reference = U3;
 ValeurCmp = SI3402;
@@ -526,9 +666,9 @@ IdModule  = microchip-enc28j60-SSOP28;
 EndCmp
 
 BeginCmp
-TimeStamp = /4E7814E0;
+TimeStamp = /4F89104A;
 Reference = U5;
-ValeurCmp = XMEGA_A4;
+ValeurCmp = XMEGA-A4;
 IdModule  = TQFP44;
 EndCmp
 
@@ -537,13 +677,6 @@ TimeStamp = /4F17C6CC;
 Reference = U6;
 ValeurCmp = RE200B;
 IdModule  = RE200B;
-EndCmp
-
-BeginCmp
-TimeStamp = /4F17C6D2;
-Reference = U7;
-ValeurCmp = ZEPIR0AAS02MOD;
-IdModule  = SO8N;
 EndCmp
 
 BeginCmp

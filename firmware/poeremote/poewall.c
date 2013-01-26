@@ -31,6 +31,8 @@
  */
 
 /*---------------------------------------------------------------------------*/
+#include <stdlib.h>
+
 //#include "mac_event.h"
 #include "uip.h"
 
@@ -66,41 +68,6 @@
 PROCESS(my_dhcp_process, "DHCP");
 uint8_t dhcpStarted = 0;
 
-/*---------------------------------------------------------------------------*/
-PROCESS(clock_tick_process, "clock tick");
-
-/*---------------------------------------------------------------------------*/
-PROCESS_THREAD(clock_tick_process, ev, data)
-{
-    static struct etimer timer;
-    static uint8_t cnt = 0;
-
-//    uint16_t i;
-PROCESS_BEGIN();
-
-    adc_init();
-
-    while (0) {
-        // wait here for the timer to expire
-        
-
-        //PRINTF("Clock Tick %d, temp: %f, vcc: %f\n",cnt, adc_sample_temperature(), adc_sample_vcc());
-
-        PRINTF("temp: %u\n",adc_sample_temperature () );
-//         char serial[6];
-//         get_serial_number(serial, sizeof(serial));
-//         for (i=0; i<sizeof(serial); i++) {
-//             PRINTF("%x ", serial[i]);
-//         }
-        cnt += 1;
-        etimer_set(&timer, CLOCK_CONF_SECOND * 8);
-        PROCESS_WAIT_EVENT_UNTIL(ev == PROCESS_EVENT_TIMER);
-
-    }
-
-    PROCESS_END();
-}
-/*---------------------------------------------------------------------------*/
 
 
 
@@ -133,10 +100,10 @@ PROCESS(enc28j60_process, "enc28j60 driver");
  * packet is in the uip_len variable.
  */
 u8_t
-example_packet_driver_output(void)
+enc28j60_driver_output(void)
 {
 
-  //PRINTF("in example_packet_driver_output, len is %d\n ",uip_len);
+  //PRINTF("in enc28j60_driver_output, len is %d\n ",uip_len);
     
     //TODO: it looksm like uip_arp_out expect an ethernet-header-sized hole before the IP packet! (see uip_arp.c))
     //TODO what about uip_len?
@@ -148,7 +115,7 @@ example_packet_driver_output(void)
   //print_packet();
   
   uip_arp_out();
-  //PRINTF("in example_packet_driver_output, post arp, len is %d\n ",uip_len);
+  //PRINTF("in enc28j60_driver_output, post arp, len is %d\n ",uip_len);
 
   //print_packet();
 
@@ -161,7 +128,7 @@ example_packet_driver_output(void)
 
 /* another version, but doesn't do ARP*/
 u8_t
-example_packet_driver_output_noarp(void)
+enc28j60_driver_output_noarp(void)
 {
 
   PRINTF("packet to send, already with arp, len: %d\n", uip_len);
@@ -183,7 +150,7 @@ pollhandler(void)
             uip_len is set to a value > 0. */
          if(uip_len > 0) {
             PRINTF("con caused send\n");
-            example_packet_driver_output();
+            enc28j60_driver_output();
          }
        }
 
@@ -195,7 +162,7 @@ pollhandler(void)
             uip_len is set to a value > 0. */
         if(uip_len > 0) {
             PRINTF("UDP con caused send\n");
-            example_packet_driver_output();
+            enc28j60_driver_output();
          }
        }
 
@@ -241,7 +208,7 @@ pollhandler(void)
       if (uip_len > 0) {
           //PRINTF("RX of ARP packet causes more send\n");
           //enc28j60PacketSend(uip_len, uip_buf);
-          example_packet_driver_output_noarp();
+          enc28j60_driver_output_noarp();
       }
     }
   }
@@ -256,6 +223,10 @@ pollhandler(void)
 PROCESS_THREAD(enc28j60_process, ev, data)
 {
 
+
+    
+    
+    
   PROCESS_POLLHANDLER(pollhandler());
 
   /*
@@ -282,7 +253,7 @@ PROCESS_THREAD(enc28j60_process, ev, data)
 //   
 
   uip_arp_init();
-  tcpip_set_outputfunc(example_packet_driver_output);
+  tcpip_set_outputfunc(enc28j60_driver_output);
 
 
    //set the mac address to be our serial number
@@ -292,6 +263,7 @@ PROCESS_THREAD(enc28j60_process, ev, data)
   uip_setethaddr(tempMAC);
 
   PRINTF("e MAC set to: ");
+  
   uint8_t i = 0;
   for (i=0; i<sizeof(uip_ethaddr.addr); i++){
     PRINTF("%2x ", uip_ethaddr.addr[i] );
@@ -299,10 +271,9 @@ PROCESS_THREAD(enc28j60_process, ev, data)
   PRINTF("\n");
 
 
-
+  PRINTF("do Init\n");
   enc28j60Init(&uip_ethaddr);
   //PRINTF("e enc28j40 inited, rev %d\n", enc28j60getrev());
-
 
   
   
@@ -371,10 +342,14 @@ PROCESS_THREAD(enc28j60_process, ev, data)
 PROCESS_THREAD(my_dhcp_process, ev, data)
 {
 
+    //turn lights off first!
+
+    
 //  static struct etimer timer;
 //  static struct uip_udp_conn *udpconn;
   char* hostname = HOSTNAME;
   uint8_t i = 0;
+  
   PROCESS_BEGIN();
   //PORTC.DIRSET = 0x03;
   //PORTC.OUTSET = 0x01;

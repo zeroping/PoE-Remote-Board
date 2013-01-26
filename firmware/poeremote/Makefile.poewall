@@ -16,7 +16,7 @@ MCU=atxmega32a4
 # -fno-inline-small-functions -fno-split-wide-types -fno-tree-scev-cprop \
 # -Wl,--relax,--gc-sections
 CFLAGS += -ffunction-sections -fno-inline-small-functions -fno-split-wide-types -fno-tree-scev-cprop -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
-LDFLAGS += -Wl,--gc-sections,--relax,--undefined=_reset_vector__,--undefined=InterruptVectors,--undefined=_copy_data_init__,--undefined=_clear_bss_init__,--undefined=_end_of_init__
+LDFLAGS += -Wl,--gc-sections,--relax,--undefined=_reset_vector__,--undefined=InterruptVectors,--undefined=_copy_data_init__,--undefined=_clear_bss_init__,--undefined=_end_of_init__,-u,vfprintf -lprintf_flt
 
 CONTIKI = ../contiki-xmega
 

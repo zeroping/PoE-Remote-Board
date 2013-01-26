@@ -21,7 +21,7 @@ all:
 # 		rm symbols.c symbols.h poewall.elf poewall.hex
 
 install: all
-	avrdude -P usb -c avrispmkII -p x32a4 -U flash:w:poewall.hex
+	kdesudo "avrdude -v -v -P usb -c avrispmkII -p x32a4 -U flash:w:poewall.hex"
 
 
 clean:

@@ -29,6 +29,11 @@
 #define ENC28J60_CONTROL_INT     4
 
 
+
+static spi_xmega_slave_t enc28j60_spi[1] = {{&PORTD,&SPID.DATA, &SPID.CTRL, &SPID.STATUS, &PORTD, (1<<2), SPI_CLK2X_bm,0}};
+    
+
+
 #endif
 
 #define SPIPORT SPID

@@ -12,13 +12,14 @@
 #include "contiki-net.h"
 
 #include "dev/leds.h"
-#include "dev/lcd/lcd.h"
+#include "dev/light/light.h"
+#include "dev/buttons/buttons.h"
 #include <avr/pgmspace.h>
 #include <avr/interrupt.h>
 #include <stdio.h>
 #include <string.h>
 #include <util/delay.h>
-#include <math.h>
+
 #include <xmega-signatures.h>
 #include <xmega-adc.h>
 
@@ -51,25 +52,15 @@
 #define PWMSUBTIMER TC0_CCBEN_bm
 #define PWMSUBCOUNTER CCB
 
-#define BUTTON_0_PORT PORTD
-#define BUTTON_0_BM (1<<3)
-#define BUTTON_0_VECT PORTD_INT0_vect_num
-#define BUTTON_0_PINCTRL PORTD.PIN3CTRL
-
-#define BUTTON_1_PORT PORTR
-#define BUTTON_1_BM (1<<0)
-#define BUTTON_1_VECT PORTR_INT0_vect_num
-#define BUTTON_1_PINCTRL PORTR.PIN0CTRL
 
 #endif
 
-uint8_t buttonsLast = 0;
-uint8_t buttonval = 0;
+uint8_t buttonsLast= 0;
+
 
 uint8_t motionLast = 0;
 uint8_t motionval = 0;
 
-static uint8_t motiontime = 0;
 
 char const xplname[] PROGMEM = XPLNAME;
 
@@ -244,28 +235,9 @@ static int handle_sensor()
             return 1;
         } else if ( strcasestr ( message, "device=light" ) != NULL )
         {
-            PRINTF ( "temp" );
-            uint32_t t = 0;
-            uint16_t i;
-            for ( i=0; i<100; i++ )
-            {
-                t += adc_sample_channel(4);
-                //_delay_us(100);
-            }
-            //t=t;
-            PRINTF("l: %lu\r\n",t);
-            //convert from that value to lux
-            float lux = pow(10,(t * 0.00001070063164893617));
-            uint32_t luxdec = lux;
-            
-            
-            uip_len = sprintf_P ( message, sensorformatlong, "light","light",lux,"lux" );
-             //-Wl,-u,vfprintf -lprintf_flt -lm
-            //             uip_ipaddr_t addr;
-            //             uip_ipaddr(&addr, 192,168,1,255);
+
+            uip_len = sprintf_P ( message, sensorformatlong, "light","light",lightSample(),"lux" );
             uip_udp_packet_sendto ( uip_udp_conn,uip_appdata,uip_len,&daddr,UIP_HTONS ( 3865 ) );
-            //uip_udp_send(uip_len);
-            PRINTF ( ".\n" );
             return 1;
         }
         
@@ -282,11 +254,13 @@ static int handle_sensor()
 /* parses an incomming XPL packet */
 static void parse_incomming()
 {
-    printf ( "start\n" );
     //start by writing an extra null at the end of the string
+    if (uip_datalen() == UIP_BUFSIZE) {
+        //we need to add a /0 to the end, but we can't, so we give up
+        return;
+    }
     char* endp = ( ( char* ) uip_appdata + uip_datalen() );
     *endp = '\0';
-    //TODO what if this is past the end of the buffer?
 
     char* message = ( char* ) uip_appdata;
     //PRINTF("Received from %u.%u.%u.%u:%u: '%s'\n", uip_ipaddr_to_quad(&UDP_HDR->srcipaddr), UIP_HTONS(UDP_HDR->srcport), (char*)uip_appdata);
@@ -298,8 +272,6 @@ static void parse_incomming()
     if ( targetp != 0 )
     {
         //so we have "target=" in the message
-        //targetp+= sizeof(target_txt) - 1;
-        PRINTF ( "has target\n" );
         //push this to the end of the string;
         targetp= strchr ( targetp, '=' );
         if ( targetp==NULL )
@@ -309,16 +281,16 @@ static void parse_incomming()
         }
         targetp+=1;
 
-        PRINTF ( "our name is: " );
-        printf_P ( & ( xplname[0] ) );
-        PRINTF ( ", message is for: " );
+//         PRINTF ( "our name is: " );
+//         printf_P ( & ( xplname[0] ) );
+//         PRINTF ( ", message is for: " );
         char buf[20];
         uint8_t namechrs = strchrnul ( targetp, '\n' ) - targetp ;
         if ( namechrs > 19 ) namechrs = 19;
         memcpy ( buf,targetp,namechrs );
         buf[namechrs] = '\0';
         printf ( buf );
-        PRINTF ( "\n" );
+//         PRINTF ( "\n" );
 
         if ( strcasestr_P ( targetp, & ( xplname[0] ) )
                 || strcasestr ( targetp, "*" ) )
@@ -326,7 +298,7 @@ static void parse_incomming()
             //if we're called directly, or there's an asterisk
             //TODO: should we support something like "target=smgpoe-fan.*" ?
 
-            PRINTF ( "we're the target\n" );
+            PRINTF ( "xPL: message for us\n" );
             if ( strcasestr ( message, "control.basic" ) != NULL && handle_control() )
             {
 
@@ -337,7 +309,7 @@ static void parse_incomming()
             }
             else
             {
-                PRINTF ( "unknown XPL message, ignoring.\n" );
+                //PRINTF ( "xPL unknown XPL message, ignoring.\n" );
             }
         }
 
@@ -347,104 +319,6 @@ static void parse_incomming()
         PRINTF ( "XPL message with no target= line\n" );
     }
 
-}
-
-//sets up the buttons for pin change interrupts
-void buttonsInit ( void )
-{
-    //set up pin change interrupts
-    //turn on PC int 0
-    PRINTF ( "initing pins\n" );
-    BUTTON_0_PORT.INTCTRL |= ( PMIC_LOLVLEX_bm << PORT_INT0LVL0_bp );
-    //set pin for interrupt 0
-    BUTTON_0_PORT.INT0MASK |= BUTTON_0_BM;
-    //make the pin a wired-and
-    BUTTON_0_PINCTRL |= ( 0b111 ) << 3;
-
-    BUTTON_1_PORT.INTCTRL |= ( PMIC_LOLVLEX_bm << PORT_INT0LVL0_bp );
-    BUTTON_1_PORT.INT0MASK |= BUTTON_1_BM;
-    //make the pin a wired-and
-    BUTTON_1_PINCTRL |= ( 0b111 ) << 3;
-
-    sei();
-    adc_init();
-
-
-
-}
-
-
-
-ISR ( PORTR_INT0_vect )
-{
-    PRINTF ( "button changed %d %d\n",BUTTON_0_PORT.IN & BUTTON_0_BM, BUTTON_1_PORT.IN & BUTTON_1_BM );
-    //PRINTF("sw: %d %d %d\n", BUTTON_0_PORT.IN & BUTTON_0_BM, BUTTON_1_PORT.IN & BUTTON_1_BM, adc_sample_channel(4));
-    uint8_t toset = 0;
-    if ( ! ( BUTTON_0_PORT.IN & BUTTON_0_BM ) )
-    {
-        toset |= 1<<0;
-    }
-    else if ( ! ( BUTTON_1_PORT.IN & BUTTON_1_BM ) )
-    {
-        toset |= 1<<1;
-    }
-    buttonval = toset;
-    PRINTF ( "IR: %d %d\n", buttonval, buttonsLast );
-
-
-}
-
-ISR ( PORTD_INT0_vect, ISR_ALIASOF ( PORTR_INT0_vect ) );
-
-//checks the button input lines, and returns 1 if something has changed.
-uint8_t buttonsPoll ( void )
-{
-    //if (BUTTON_1_PORT.PIN & BUTTON_1_BM != buttonsLast & BUTTON_1_BM) {
-    if ( buttonval != buttonsLast )
-    {
-        PRINTF ( "sw: %d %d\n", buttonval, buttonsLast );
-        //memcpy_P(udpdata, hbeatmessage, sizeof(hbeatmessage));
-        uint16_t mylen = 0;
-        if ( buttonval & ~buttonsLast & 0x01 )
-        {
-            mylen = sprintf_P ( udpdata, buttonformat, "button1","input","HIGH" );
-            buttonsLast |= 0x01;
-        }
-        else if ( buttonval & ~buttonsLast & 0x02 )
-        {
-            mylen = sprintf_P ( udpdata, buttonformat, "button2","input","HIGH" );
-            buttonsLast |= 0x02;
-        }
-        else if ( ~buttonval & buttonsLast & 0x01 )
-        {
-            mylen = sprintf_P ( udpdata, buttonformat, "button1","input","LOW" );
-            buttonsLast &= ~0x01;
-        }
-        else if ( ~buttonval & buttonsLast & 0x02 )
-        {
-            mylen = sprintf_P ( udpdata, buttonformat, "button2","input","LOW" );
-            buttonsLast &= ~0x02;
-        }
-
-//             else if
-//             if (buttonval == 1){
-//                 mylen = sprintf_P(udpdata, sensorformat, "button1","input","HIGH");
-//             } else if (buttonval == 2){
-//                 mylen = sprintf_P(udpdata, sensorformat, "button2","input","HIGH");
-//             } else if ((buttonval == 0) && (buttonsLast == 1)){
-//                 mylen = sprintf_P(udpdata, sensorformat, "button1","input","LOW");
-//             } else if ((buttonval == 0) && (buttonsLast == 2)){
-//                 mylen = sprintf_P(udpdata, sensorformat, "button2","input","LOW");
-//             }
-
-        uip_udp_packet_sendto ( udpconn, udpdata, mylen, &daddr, UIP_HTONS ( 3865 ) );
-        return 1;
-
-
-    }
-
-    //}
-    return 0;
 }
 
 uint8_t motionPoll ( void )
@@ -457,11 +331,11 @@ uint8_t motionPoll ( void )
         uint16_t mylen = 0;
         if ( motionval)
         {
-            mylen = sprintf_P ( udpdata, motionformat, "motion","input","HIGH" );
+            mylen = sprintf_P ( (char*)udpdata, motionformat, "motion","input","HIGH" );
         }
         else
         {
-            mylen = sprintf_P ( udpdata, motionformat, "motion","input","LOW" );
+            mylen = sprintf_P ( (char*)udpdata, motionformat, "motion","input","LOW" );
         }
 
         uip_udp_packet_sendto ( udpconn, udpdata, mylen, &daddr, UIP_HTONS ( 3865 ) );
@@ -470,7 +344,40 @@ uint8_t motionPoll ( void )
     return 0;
 }
 
-
+//checks the button input lines, and returns 1 if something has changed.
+uint8_t pollButtons ( void )
+{
+    uint8_t curr = buttonsRead();
+    if ( curr != buttonsLast )
+    {
+        PRINTF ( "sw: %d %d\n", curr, buttonsLast );
+        //memcpy_P(udpdata, hbeatmessage, sizeof(hbeatmessage));
+        uint16_t mylen = 0;
+        if ( curr & ~buttonsLast & 0x01 )
+        {
+            mylen = sprintf_P ( (char*)udpdata, buttonformat, "button1","input","HIGH" );
+            buttonsLast |= 0x01;
+        }
+        else if ( curr & ~buttonsLast & 0x02 )
+        {
+            mylen = sprintf_P ( (char*)udpdata, buttonformat, "button2","input","HIGH" );
+            buttonsLast |= 0x02;
+        }
+        else if ( ~curr & buttonsLast & 0x01 )
+        {
+            mylen = sprintf_P ( (char*)udpdata, buttonformat, "button1","input","LOW" );
+            buttonsLast &= ~0x01;
+        }
+        else if ( ~curr & buttonsLast & 0x02 )
+        {
+            mylen = sprintf_P ( (char*)udpdata, buttonformat, "button2","input","LOW" );
+            buttonsLast &= ~0x02;
+        }
+        uip_udp_packet_sendto ( udpconn, udpdata, mylen, &daddr, UIP_HTONS ( 3865 ) );
+        return 1;
+    }
+    return 0;
+}
 
 
 /*to be called when there's a tcpip event, be it a packet of a poll */
@@ -499,7 +406,7 @@ static void udphandler ( const process_event_t ev, const process_data_t data )
             last_heartbeat = clock_time();
             return;
         }
-        else  if ( buttonsPoll() )
+        else  if ( pollButtons() )
         {
             return;
         }
@@ -609,7 +516,6 @@ PROCESS ( clock_tick_process, "clock tick" );
 PROCESS_THREAD ( clock_tick_process, ev, data )
 {
     static struct etimer timer;
-    static uint8_t cnt = 0;
 
     //    uint16_t i;
     PROCESS_BEGIN();

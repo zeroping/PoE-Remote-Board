@@ -74,228 +74,6 @@ uint8_t dhcpStarted = 0;
 
 
 
-#define BUF ((struct uip_eth_hdr *)&uip_buf[0])
-
-//prints whatever is in the uip_buf
-void print_packet(void) {
-  uint16_t i = 0;
-  PRINTF("packet: ");
-  for (i=0;i <uip_len; i++) {
-    PRINTF("%x ",uip_buf[i]);
-  }
-  PRINTF("\n");
-}
-
-/*---------------------------------------------------------------------------*/
-/*
- * We declare the process that we use to register with the TCP/IP stack,
- * and to check for incoming packets.
- */
-PROCESS(enc28j60_process, "enc28j60 driver");
-/*---------------------------------------------------------------------------*/
-/*
- * Next, we define the function that transmits packets. This function
- * is called from the TCP/IP stack when a packet is to be transmitted.
- * The packet is located in the uip_buf[] buffer, and the length of the
- * packet is in the uip_len variable.
- */
-u8_t
-enc28j60_driver_output(void)
-{
-
-  //PRINTF("in enc28j60_driver_output, len is %d\n ",uip_len);
-    
-    //TODO: it looksm like uip_arp_out expect an ethernet-header-sized hole before the IP packet! (see uip_arp.c))
-    //TODO what about uip_len?
-  memmove((((void*)&uip_buf)) + 14, (&uip_buf), uip_len);
-
-  
-  //let_the_hardware_send_the_packet(uip_buf, uip_len);
-  //PRINTF("packet to send, len: %d\n", uip_len);
-  //print_packet();
-  
-  uip_arp_out();
-  //PRINTF("in enc28j60_driver_output, post arp, len is %d\n ",uip_len);
-
-  //print_packet();
-
-  enc28j60PacketSend(uip_len, uip_buf);
-  /*
-   * A network device driver returns always zero.
-   */
-  return 0;
-}
-
-/* another version, but doesn't do ARP*/
-u8_t
-enc28j60_driver_output_noarp(void)
-{
-
-  PRINTF("packet to send, already with arp, len: %d\n", uip_len);
-  //print_packet();
-  enc28j60PacketSend(uip_len, uip_buf);
-  return 0;
-}
-
-static void
-pollhandler(void)
-{
-
-    uint8_t i;
-      for(i = 0; i < UIP_CONNS; i++) {
-         //PRINTF("poll UIP %d\n", i);
-         uip_periodic(i);
-         /* If the above function invocation resulted in data that
-            should be sent out on the network, the global variable
-            uip_len is set to a value > 0. */
-         if(uip_len > 0) {
-            PRINTF("con caused send\n");
-            enc28j60_driver_output();
-         }
-       }
-
-
-       for(i = 0; i < UIP_UDP_CONNS; i++) {
-         uip_udp_periodic(i);
-         /* If the above function invocation resulted in data that
-            should be sent out on the network, the global variable
-            uip_len is set to a value > 0. */
-        if(uip_len > 0) {
-            PRINTF("UDP con caused send\n");
-            enc28j60_driver_output();
-         }
-       }
-
-
-
-
-
-  //TODO: is that really the right max packet length?
-  uip_len = enc28j60PacketReceive(1500, uip_buf);//check_and_copy_packet();
-
-  if(uip_len > 0) {
-    
-    //print_packet();
-    if(BUF->type == uip_htons(UIP_ETHTYPE_IP)) {
-        //PRINTF("RXed an IP packet, len: %d\n", uip_len);
-
-        uip_arp_ipin();
-        //PRINTF("RXed an IP packet, post ARP, len: %d, seq %lx\n", uip_len, uip_htonl(*(uint32_t*)(uip_buf + 38)));
-        //print_packet();
-
-        //tcpip_input will expect an IP packet, not an ethernet frame
-
-        memmove((&uip_buf), ((void*)&uip_buf) + 14, uip_len);
-        uip_len -= 14;
-        //PRINTF("RX an IP packet START\n");
-        tcpip_input();
-        //PRINTF("RX an IP packet STOP\n");
-        //uip_input();
-/*        if(uip_len > 0) {
-            uip_arp_out();
-        }*/
-//       uip_arp_ipin()
-//       uip_len -= sizeof(struct uip_eth_hdr);
-//       tcpip_input();
-    } else if(BUF->type == uip_htons(UIP_ETHTYPE_ARP)) {
-      //PRINTF("RXed an ARP packet, len: %d\n", uip_len);
-      //print_packet();
-      uip_arp_arpin();
-      //PRINTF("RXed an ARP packet\n");
-      /* If the above function invocation resulted in data that
-         should be sent out on the network, the global variable
-         uip_len is set to a value > 0. */
-      if (uip_len > 0) {
-          //PRINTF("RX of ARP packet causes more send\n");
-          //enc28j60PacketSend(uip_len, uip_buf);
-          enc28j60_driver_output_noarp();
-      }
-    }
-  }
-
-
-  process_poll(&enc28j60_process);
-}
-/*---------------------------------------------------------------------------*/
-/*
- * Finally, we define the process that does the work.
- */
-PROCESS_THREAD(enc28j60_process, ev, data)
-{
-
-
-    
-    
-    
-  PROCESS_POLLHANDLER(pollhandler());
-
-  /*
-   * This process has an exit handler, so we declare it here. Note that
-   * the PROCESS_EXITHANDLER() macro must come before the PROCESS_BEGIN()
-   * macro.
-   */
-  //PROCESS_EXITHANDLER(exithandler());
-
-  uip_eth_addr our_uip_ethaddr;
-//  uip_ipaddr_t addr;
-  PROCESS_BEGIN();
-
-
-
-  uip_init();
- 
-
-//   uip_setethaddr(our_uip_ethaddr);
-//   uip_ipaddr(&addr, 192,168,1,223);
-//   uip_sethostaddr(&addr);
-//   uip_ipaddr(&addr, 255,255,255,0);
-//   uip_setnetmask(&addr);
-//   
-
-  uip_arp_init();
-  tcpip_set_outputfunc(enc28j60_driver_output);
-
-
-   //set the mac address to be our serial number
-  uip_80211_addr tempMAC;
-  get_serial_number((char*)(uip_ethaddr.addr), sizeof(our_uip_ethaddr));
-  get_serial_number((char*)(&(tempMAC.addr[0])), 6);
-  uip_setethaddr(tempMAC);
-
-  PRINTF("e MAC set to: ");
-  
-  uint8_t i = 0;
-  for (i=0; i<sizeof(uip_ethaddr.addr); i++){
-    PRINTF("%2x ", uip_ethaddr.addr[i] );
-  }
-  PRINTF("\n");
-
-
-  PRINTF("do Init\n");
-  enc28j60Init(&uip_ethaddr);
-  //PRINTF("e enc28j40 inited, rev %d\n", enc28j60getrev());
-
-  
-  
-  process_poll(&enc28j60_process);
-  //PRINTF("e eth starts with %x\n", uip_ethaddr.addr[0]);
-  printf("network now initialized\n");
-  //process_start(&my_dhcp_process, "dhcp_now");
-  
-  
-  PROCESS_WAIT_EVENT_UNTIL(ev == PROCESS_EVENT_EXIT);
-
-  //shutdown_the_hardware();
-  PRINTF("shut down ethernet hardware.\n");
-
-  PROCESS_END();
-}
-/*---------------------------------------------------------------------------*/
-
-
-
-
-
 
 
 
@@ -360,17 +138,17 @@ PROCESS_THREAD(my_dhcp_process, ev, data)
   
   dhcpc_init(uip_ethaddr.addr, sizeof(uip_ethaddr.addr));
   dhcpc_set_hostname_p(hostname);
-  PRINTF("dhcp inited with MAC addr: "); 
+  PRINTF("dhcp started with MAC: "); 
   
   for (i=0; i<sizeof(uip_ethaddr.addr); i++){
-    PRINTF("%2x ", uip_ethaddr.addr[i] );
+    PRINTF("%02X ", uip_ethaddr.addr[i] );
   }
   PRINTF("\n");
 
   //etimer_set(&timer, CLOCK_CONF_SECOND*10);
 
-//   dhcpc_request();
-//   PRINTF("dhcp Requesting...\n");
+//    dhcpc_request();
+//    PRINTF("dhcp Requesting...\n");
 
 
   while(1) {
@@ -378,7 +156,7 @@ PROCESS_THREAD(my_dhcp_process, ev, data)
 
     if(ev == tcpip_event) {
         if (uip_newdata())
-            PRINTF("calling with incomming packet\n");
+      PRINTF("calling with incomming packet\n");
         dhcpc_appcall(ev, data);
     } else if(ev == PROCESS_EVENT_EXIT) {
         process_exit(&my_dhcp_process);
@@ -434,24 +212,3 @@ AUTOSTART_PROCESSES(&clock_tick_process,  &enc28j60_process, &tcpip_process, &my
 //AUTOSTART_PROCESSES(&clock_tick_process,  &enc28j60_process, &tcpip_process, &xPL_process );
 //, &pixel_client,
 
-#if 0
-CLIF struct process * const autostart_processes[] = {&clock_tick_process, &lcd_test_process, &enc28j60_process,  &tcpip_process, &test_listener, &dhcper};
-
-void
-checkpoint_arch_init(void)
-{
-
-}
-void
-checkpoint_arch_checkpoint(void)
-{
-
-}
-void
-checkpoint_arch_rollback(void)
-{
-
-}
-
-const struct process *procinit[1];
-#endif

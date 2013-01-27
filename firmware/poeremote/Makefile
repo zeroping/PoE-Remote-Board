@@ -29,7 +29,7 @@ clean:
 	rm -rf ./obj_avr-poe/*
 	rm -rf ./*.elf
 
-include $(CONTIKIAVR)/Makefile.avr_scott
+include $(CONTIKIAVR)/Makefile.avr_poe
 #include $(CONTIKIAVR)/Makefile.avr
 #include $(CONTIKI)/Makefile.include
 

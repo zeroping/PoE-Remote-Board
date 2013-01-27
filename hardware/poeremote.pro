@@ -1,4 +1,4 @@
-update=Sun 08 Jul 2012 09:35:38 PM EDT
+update=Wed 11 Jul 2012 12:28:45 AM EDT
 last_client=cvpcb
 [general]
 version=1
@@ -49,6 +49,7 @@ LibName25=qrcode
 LibName26=/home/scott/projects/poelight/hardware/poeremote/libs/sglogo
 LibName27=DIODE_SMB_CUST
 LibName28=SDR0805
+LibName29=ref-packages
 LibDir=libs;libs/unknown_licenses
 [eeschema]
 version=1

@@ -12,7 +12,10 @@ PROCESS_NAME(clock_tick_process);
 
 #define XPL_PORT  3865
 
-#define XPLNAME "smgpoe-lamp.5"
+//#define XPLNAME "smgpoe-lamp.5"
+//dynamic now, need to include in the printf
+#define XPLNAME "%s"
+#define XPLNAMESTART "smgpoe-lamp."
 #define HOSTNAME "poelamp5"
 
 extern const char xplname[] PROGMEM;
@@ -55,8 +58,9 @@ static const char configlistformat [] PROGMEM = XPL_STAT_HDR_HEAD XPLNAME XPL_HD
 static const char configcurrentformat [] PROGMEM = XPL_STAT_HDR_HEAD XPLNAME XPL_HDR_TAIL CONFIGCURRENT_MESSAGE;
 
 struct persistentconfig{
-    uint16_t motionsens;
-    uint16_t motiontime;
+    uint8_t magic; //used to tell if the thing in memory is valid. bump this if the format changes.
+    uint16_t motionsens; // motion sensitivty
+    uint16_t motiontime; // motion 'on' time, also used to smooth incomming values.
     char instanceid[32];
 } ;
 

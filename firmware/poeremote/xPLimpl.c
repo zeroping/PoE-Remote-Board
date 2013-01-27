@@ -11,10 +11,12 @@
 #include "contiki.h"
 #include "contiki-net.h"
 
+#include <stddef.h>
 #include "dev/leds.h"
 #include "dev/light/light.h"
 #include "dev/buttons/buttons.h"
 #include <avr/pgmspace.h>
+#include <avr/eeprom.h>
 #include <avr/interrupt.h>
 #include <stdio.h>
 #include <string.h>
@@ -72,7 +74,7 @@ uint8_t motionLast = 0;
 uint8_t motionval = 0;
 uint8_t motiontime = 0;
 
-struct persistentconfig perconf = {100,200,{5,'\0'}};
+struct persistentconfig perconf = {0x13,900,1000,"smgpoe-lamp.5"};
 
 char const xplname[] PROGMEM = XPLNAME;
 
@@ -181,6 +183,25 @@ void setPWM ( uint8_t val )
     }
 }
 
+
+
+/**
+ * @brief Reads the persistent storage data into memory if it's valid
+ **/
+void persistent_init( void )
+{
+    if(eeprom_read_byte(offsetof(struct persistentconfig, magic)) == perconf.magic) {
+        PRINTF("perconf is valid\n");
+        eeprom_read_block(&perconf, 0, sizeof(perconf));
+    } else {
+        PRINTF("perconf is invalid\n");
+    }
+    PRINTF("Our instance ID is \"%s\"\n", perconf.instanceid);
+}
+
+
+
+
 /* handles an XPL control.basic message */
 static int handle_control()
 {
@@ -249,7 +270,7 @@ static int handle_sensor()
                 //_delay_us(100);
             }
 
-            uip_len = sprintf_P ( message, sensorformat, "temperature","temp",t,"custom" );
+            uip_len = sprintf_P ( message, sensorformat, perconf.instanceid, "temperature","temp",t,"custom" );
 
             uip_udp_packet_sendto ( uip_udp_conn,uip_appdata,uip_len,&daddr,UIP_HTONS ( 3865 ) );
             //uip_udp_send(uip_len);
@@ -275,10 +296,12 @@ static int handle_sensor()
 
 void commit_persist ( void ) {
     PRINTF("persistent config\n");
-    PRINTF("instanceid = %s\n",perconf.instanceid);
+    PRINTF("instanceid = %s\n",(perconf.instanceid)+ strlen_P(XPLNAMESTART));
     PRINTF("motiontime = %u\n",perconf.motiontime);
     PRINTF("motionsens = %u\n",perconf.motionsens);
     //TODO actually commit this
+    
+    eeprom_update_block(&perconf, 0, sizeof(perconf));
 }
     
     
@@ -325,8 +348,8 @@ uint8_t config_response() {
         curs += 8;
         char* end = strchrnul ( curs, '\n' );
         uint8_t namelen = end-curs;
-        memcpy(perconf.instanceid, curs, namelen);
-        perconf.instanceid[namelen] = '\0';
+        memcpy(perconf.instanceid + strlen_P(XPLNAMESTART), curs, namelen);
+        perconf.instanceid[namelen + strlen_P(XPLNAMESTART) ] = '\0';
     }
     commit_persist();
     return 1;
@@ -343,7 +366,7 @@ uint8_t config_current() {
         printf("req current");
         char* message = ( char* ) uip_appdata;
 
-        uip_len = sprintf_P ( message, configcurrentformat, perconf.instanceid, perconf.motionsens, perconf.motiontime );
+        uip_len = sprintf_P ( message, configcurrentformat, perconf.instanceid, perconf.instanceid, perconf.motionsens, perconf.motiontime );
         uip_udp_packet_sendto ( uip_udp_conn,uip_appdata,uip_len,&daddr,UIP_HTONS ( 3865 ) );
         return 1;
     }
@@ -390,10 +413,10 @@ static void parse_incomming()
         if ( namechrs > 19 ) namechrs = 19;
         memcpy ( buf,targetp,namechrs );
         buf[namechrs] = '\0';
-        printf ( buf );
+//         printf ( buf );
 //         PRINTF ( "\n" );
 
-        if ( strcasestr_P ( targetp, & ( xplname[0] ) )
+        if ( strcasestr ( targetp, perconf.instanceid )
                 || strcasestr ( targetp, "*" ) )
         {
             //if we're called directly, or there's an asterisk
@@ -404,10 +427,10 @@ static void parse_incomming()
             {
 
             }
-            else if ( strcasestr ( message, "sensor.request" ) != NULL && handle_sensor() )
-            {
-                
-            }
+//             else if ( strcasestr ( message, "sensor.request" ) != NULL && handle_sensor() )
+//             {
+//                 
+//             }
             else if ( strcasestr ( message, "config.list" ) != NULL && config_list() ) { }
             else if ( strcasestr ( message, "config.response" ) != NULL && config_response() ) { }
             else if ( strcasestr ( message, "config.current" ) != NULL && config_current() ) { }
@@ -436,11 +459,11 @@ uint8_t motionPoll ( void )
         uint16_t mylen = 0;
         if ( motionval)
         {
-            mylen = sprintf_P ( (char*)udpdata, motionformat, "motion","input","HIGH" );
+            mylen = sprintf_P ( (char*)udpdata, motionformat, perconf.instanceid, "motion","input","HIGH" );
         }
         else
         {
-            mylen = sprintf_P ( (char*)udpdata, motionformat, "motion","input","LOW" );
+            mylen = sprintf_P ( (char*)udpdata, motionformat, perconf.instanceid, "motion","input","LOW" );
         }
 
         uip_udp_packet_sendto ( udpconn, udpdata, mylen, &daddr, UIP_HTONS ( 3865 ) );
@@ -460,22 +483,22 @@ uint8_t pollButtons ( void )
         uint16_t mylen = 0;
         if ( curr & ~buttonsLast & 0x01 )
         {
-            mylen = sprintf_P ( (char*)udpdata, buttonformat, "button1","input","HIGH" );
+            mylen = sprintf_P ( (char*)udpdata, buttonformat, perconf.instanceid, "button1","input","HIGH" );
             buttonsLast |= 0x01;
         }
         else if ( curr & ~buttonsLast & 0x02 )
         {
-            mylen = sprintf_P ( (char*)udpdata, buttonformat, "button2","input","HIGH" );
+            mylen = sprintf_P ( (char*)udpdata, buttonformat, perconf.instanceid, "button2","input","HIGH" );
             buttonsLast |= 0x02;
         }
         else if ( ~curr & buttonsLast & 0x01 )
         {
-            mylen = sprintf_P ( (char*)udpdata, buttonformat, "button1","input","LOW" );
+            mylen = sprintf_P ( (char*)udpdata, buttonformat, perconf.instanceid, "button1","input","LOW" );
             buttonsLast &= ~0x01;
         }
         else if ( ~curr & buttonsLast & 0x02 )
         {
-            mylen = sprintf_P ( (char*)udpdata, buttonformat, "button2","input","LOW" );
+            mylen = sprintf_P ( (char*)udpdata, buttonformat, perconf.instanceid, "button2","input","LOW" );
             buttonsLast &= ~0x02;
         }
         uip_udp_packet_sendto ( udpconn, udpdata, mylen, &daddr, UIP_HTONS ( 3865 ) );
@@ -555,6 +578,7 @@ PROCESS_THREAD ( xPL_process, ev, data )
     initPWM();
     setPWM ( 0 );
     buttonsInit();
+    persistent_init();
 
     PRINTF ( "xPL listener\n" );
 
@@ -634,13 +658,13 @@ PROCESS_THREAD ( clock_tick_process, ev, data )
 
         int16_t sample = adc_sample_differential ( 0 );
 
-        uint8_t motionmax = 25;
+        uint8_t motionmax = perconf.motiontime/100;
         uint8_t motionrat = 10;
 
-        if ( ( abs ( sample ) >500 ) && ( motiontime < motionmax ) )
+        if ( ( abs ( sample ) >perconf.motionsens ) && ( motiontime < motionmax ) )
         {
             motiontime += motionrat;
-            if(motiontime>25)
+            if(motiontime>perconf.motiontime/100)
                 motionval = 1;
         }
         else if ( motiontime > 0 )

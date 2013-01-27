@@ -215,7 +215,6 @@ static int handle_sensor()
     {
         if ( strcasestr ( message, "device=temp" ) != NULL )
         {
-            PRINTF ( "temp" );
             uint32_t t = 0;
             uint16_t i;
             for ( i=0; i<100; i++ )
@@ -223,12 +222,9 @@ static int handle_sensor()
                 t += adc_sample_temperature();
                 //_delay_us(100);
             }
-            //t=t;
 
             uip_len = sprintf_P ( message, sensorformat, "temperature","temp",t,"custom" );
 
-//             uip_ipaddr_t addr;
-//             uip_ipaddr(&addr, 192,168,1,255);
             uip_udp_packet_sendto ( uip_udp_conn,uip_appdata,uip_len,&daddr,UIP_HTONS ( 3865 ) );
             //uip_udp_send(uip_len);
             PRINTF ( ".\n" );

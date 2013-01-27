@@ -69,50 +69,6 @@ PROCESS(my_dhcp_process, "DHCP");
 uint8_t dhcpStarted = 0;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //AUTOSTART_PROCESSES(&dhcp_process);
 
 
@@ -184,8 +140,6 @@ dhcpc_configured(const struct dhcpc_state *s)
     process_start(&xPL_process, "xpl process");
     
   }
-  
-
   
 }
 /*---------------------------------------------------------------------------*/

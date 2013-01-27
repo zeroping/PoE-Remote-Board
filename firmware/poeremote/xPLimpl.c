@@ -19,7 +19,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <util/delay.h>
-
+#include <math.h>
 #include <xmega-signatures.h>
 #include <xmega-adc.h>
 
@@ -52,15 +52,27 @@
 #define PWMSUBTIMER TC0_CCBEN_bm
 #define PWMSUBCOUNTER CCB
 
+//used to divide the PWM frequency an arbitrary amount
+#define PWMDIVISOR 32 
+//used to extend the PWM period to cut down the maximum power. 256 = no change, 512 = 50% max
+#define PWMEXTEND 340
+
 
 #endif
+
+
+#define MIN(a,b)      ((a<b)?(a):(b)) 
+#define MAX(a,b)      ((a>b)?(a):(b)) 
+#define ABS(x)        ((x>0)?(x):(-x)) 
 
 uint8_t buttonsLast= 0;
 
 
 uint8_t motionLast = 0;
 uint8_t motionval = 0;
+uint8_t motiontime = 0;
 
+struct persistentconfig perconf = {100,200,{5,'\0'}};
 
 char const xplname[] PROGMEM = XPLNAME;
 
@@ -91,20 +103,37 @@ static uint8_t str_to_int ( char* buf, uint8_t max )
     return out;
 };
 
+static uint16_t str_to_int_16 ( char* buf, uint16_t max )
+{
+    uint16_t out = 0;
+    while ( max )
+    {
+        if ( ( *buf >= '0' ) && ( *buf<='9' ) )
+        {
+            out  = ( out * 10 ) + ( *buf - '0' );
+        }
+        else
+        {
+            return out;
+        }
+        
+        buf+=1;
+        max--;
+    }
+    return out;
+};
+
 void initNL ( void )
 {
     PORTC.DIR |= 0x03;
-
     TCC0.CTRLA = ( TC0_CLKSEL_gm & TC_CLKSEL_DIV8_gc );
     TCC0.CTRLB |= ( TC0_WGMODE_gm & TC_WGMODE_SS_gc ) | ( TC0_CCAEN_bm ) | ( TC0_CCBEN_bm );
     TCC0.PER = 256*32;
-
-
 }
 
 void setNL ( uint8_t val )
 {
-    val=0;
+    val = MIN(255,val);
     PRINTF ( "nlset\n" );
     TCC0.CCA = val*32;
     TCC0.CCB = val*32;
@@ -116,43 +145,39 @@ void initPWM ( void )
     PWMTIMER.CTRLA = ( TC0_CLKSEL_gm & TC_CLKSEL_DIV8_gc );
     //PWMTIMER.CTRLA = ( TC0_CLKSEL_gm & TC_CLKSEL_DIV1_gc );
     PWMTIMER.CTRLB |= ( TC0_WGMODE_gm & TC_WGMODE_SS_gc );
-    //PWMTIMER.PER = 256*4;
-    PWMTIMER.PER = 350*4;
+//    PWMTIMER.PER = 256*4;
+    //if we want to ensure that we never run at full power, we can do this to make max power 256/340 = 75%
+    PWMTIMER.PER = PWMEXTEND*PWMDIVISOR;
 }
 
 /* sets the PWM output on the assigned PWM pin */
 void setPWM ( uint8_t val )
 {
-//     setNL(val);
-    if (val > 130) {
-        val = 130;
-    }
-
-    val = 255-val;
-  
-        
-    PRINTF ( "pwmset\n" );
-    if ( val == 255 )
+    val = MIN(255,val);
+    PRINTF ( "pwmset %u \n", val );
+    if ( val == 0 )
     {
+        PRINTF ( "pwm off\n");
         PWMTIMER.CTRLB &= ~ ( PWMSUBTIMER );
         PWMPORT.DIRSET = PWMBIT;
         PWMPORT.OUTSET = PWMBIT;
     }
-//     else if ( val == 0 )
+//     else if ( val == 255 )
 //     {
+//         PRINTF ( "pwm on\n");
 //         PWMTIMER.CTRLB &= ~ ( PWMSUBTIMER );
 //         PWMPORT.DIRSET = PWMBIT;
 //         PWMPORT.OUTCLR = PWMBIT;
 //     }
     else
     {
+        PRINTF ( "pwm var\n");
         PWMPORT.OUTCLR = PWMBIT;
         PWMPORT.DIRSET = PWMBIT;
 
         PWMTIMER.CTRLB |= ( PWMSUBTIMER );
 
-        PWMTIMER.PWMSUBCOUNTER = val*4;
-        //PWMTIMER.PWMSUBCOUNTER = val;
+        PWMTIMER.PWMSUBCOUNTER = (PWMEXTEND-val)*PWMDIVISOR;
     }
 }
 
@@ -169,7 +194,7 @@ static int handle_control()
             curs = strcasestr ( message, "current=" );
             curs += 8;
             uint8_t val = str_to_int ( curs, 3 );
-            PRINTF ( "got %u \n", val );
+          
             setPWM ( val );
         }
         else return 0;
@@ -193,6 +218,7 @@ static int handle_control()
             curs = strcasestr ( message, "current=" );
             curs += 8;
             uint8_t val = str_to_int ( curs, 3 );
+            val = MIN(255,val);
             PRINTF ( "got %u \n", val );
             setNL ( val );
         }
@@ -246,6 +272,85 @@ static int handle_sensor()
     }
     return 1;
 }
+
+void commit_persist ( void ) {
+    PRINTF("persistent config\n");
+    PRINTF("instanceid = %s\n",perconf.instanceid);
+    PRINTF("motiontime = %u\n",perconf.motiontime);
+    PRINTF("motionsens = %u\n",perconf.motionsens);
+    //TODO actually commit this
+}
+    
+    
+
+
+uint8_t config_list() {
+    char* message = ( char* ) uip_appdata;
+    if ( strncasecmp( message, XPL_CMND_STR, strlen(XPL_CMND_STR)) != 0 ) {
+        printf("not a cmnd\n");
+        return 0;
+    }
+    if ( strcasestr ( message, "command=request" ) != NULL )
+    {
+        printf("a request");
+        char* message = ( char* ) uip_appdata;
+        uip_len = sprintf_P ( message, configlistformat );
+        uip_udp_packet_sendto ( uip_udp_conn,uip_appdata,uip_len,&daddr,UIP_HTONS ( 3865 ) );
+        return 1;
+    }
+    return 0;
+}
+
+uint8_t config_response() {
+    char* message = ( char* ) uip_appdata;
+    if ( strncasecmp( message, XPL_CMND_STR, strlen(XPL_CMND_STR)) != 0 ) {
+        printf("not a cmnd\n");
+        return 0;
+    }
+    printf("a response\n");
+    char* curs = strcasestr ( message, "motiontime=" );
+    if(curs != NULL) {
+        curs += 11;
+        uint16_t val = str_to_int_16 ( curs, 5 );
+        perconf.motiontime=val;
+    }
+    curs = strcasestr ( message, "motionsens=" );
+    if(curs != NULL) {
+        curs += 11;
+        uint16_t val = str_to_int_16 ( curs, 5 );
+        perconf.motionsens=val;
+    }
+    curs = strcasestr ( message, "newconf=" );
+    if(curs != NULL) {
+        curs += 8;
+        char* end = strchrnul ( curs, '\n' );
+        uint8_t namelen = end-curs;
+        memcpy(perconf.instanceid, curs, namelen);
+        perconf.instanceid[namelen] = '\0';
+    }
+    commit_persist();
+    return 1;
+}
+
+uint8_t config_current() {
+    char* message = ( char* ) uip_appdata;
+    if ( strncasecmp( message, XPL_CMND_STR, strlen(XPL_CMND_STR)) != 0 ) {
+        printf("not a cmnd\n");
+        return 0;
+    }
+    if ( strcasestr ( message, "command=request" ) != NULL )
+    {
+        printf("req current");
+        char* message = ( char* ) uip_appdata;
+
+        uip_len = sprintf_P ( message, configcurrentformat, perconf.instanceid, perconf.motionsens, perconf.motiontime );
+        uip_udp_packet_sendto ( uip_udp_conn,uip_appdata,uip_len,&daddr,UIP_HTONS ( 3865 ) );
+        return 1;
+    }
+    return 0;
+}
+
+
 
 /* parses an incomming XPL packet */
 static void parse_incomming()
@@ -301,8 +406,12 @@ static void parse_incomming()
             }
             else if ( strcasestr ( message, "sensor.request" ) != NULL && handle_sensor() )
             {
-
+                
             }
+            else if ( strcasestr ( message, "config.list" ) != NULL && config_list() ) { }
+            else if ( strcasestr ( message, "config.response" ) != NULL && config_response() ) { }
+            else if ( strcasestr ( message, "config.current" ) != NULL && config_current() ) { }
+
             else
             {
                 //PRINTF ( "xPL unknown XPL message, ignoring.\n" );
@@ -442,7 +551,7 @@ PROCESS_THREAD ( xPL_process, ev, data )
 
     PROCESS_BEGIN();
     initNL();
-    setNL ( 128 );
+    setNL ( 1 );
     initPWM();
     setPWM ( 0 );
     buttonsInit();
@@ -521,41 +630,27 @@ PROCESS_THREAD ( clock_tick_process, ev, data )
 
     while ( 1 )
     {
-        // wait here for the timer to expire
-//         PORTA.PIN4CTRL = PORT_OPC1_bm; //set to pull down.
-//         PORTA.PIN3CTRL = PORT_OPC1_bm; //set to pull down.
-//         PORTA.OUTCLR = 0xFF;
+        //wait here for the timer to expire
 
-//        PRINTF("Clock Tick %d, temp: %f, vcc: %f\n",cnt, adc_sample_temperature(), adc_sample_vcc());
+        int16_t sample = adc_sample_differential ( 0 );
 
-        //         PRINTF("temp: %u\n",adc_sample_temperature () );
-        //PRINTF("samples: \t%u\t%u\t%u\n", adc_sample_channel(4), adc_sample_channel(4), adc_sample_channel(3));
+        uint8_t motionmax = 25;
+        uint8_t motionrat = 10;
 
-//         uint16_t value = 0;
-//          for(uint8_t i=0;i<16; i++) {
-//              value += adc_sample_channel(4)
-//          }
-//          PRINTF("val: %u\n",value );
-//         motionval = value;
-//         int16_t sample = adc_sample_differential ( 0 );
-
-//         uint8_t motionmax = 25;
-//         uint8_t motionrat = 10;
-// 
-//         if ( ( abs ( sample ) >500 ) && ( motiontime < motionmax ) )
-//         {
-//             motiontime += motionrat;
-//             if(motiontime>25)
-//                 motionval = 1;
-//         }
-//         else if ( motiontime > 0 )
-//         {
-//             motiontime -= 1;
-//         }
-//         else if (motiontime == 0) {
-//             motionval = 0;
-//         }
-//          printf("motiontime %d\t sample: %d\n",  motiontime, abs(sample));
+        if ( ( abs ( sample ) >500 ) && ( motiontime < motionmax ) )
+        {
+            motiontime += motionrat;
+            if(motiontime>25)
+                motionval = 1;
+        }
+        else if ( motiontime > 0 )
+        {
+            motiontime -= 1;
+        }
+        else if (motiontime == 0) {
+            motionval = 0;
+        }
+//          printf("motiontime %d\t sample: %d\n",  motiontime, sample);
         etimer_set ( &timer, CLOCK_CONF_SECOND/10 );
         PROCESS_WAIT_EVENT_UNTIL ( ev == PROCESS_EVENT_TIMER );
 

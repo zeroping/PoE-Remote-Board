@@ -9,6 +9,7 @@
 
 PROCESS_NAME(xPL_process);
 PROCESS_NAME(clock_tick_process);
+PROCESS_NAME(fade_process);
 
 #define XPL_PORT  3865
 
@@ -16,7 +17,7 @@ PROCESS_NAME(clock_tick_process);
 //dynamic now, need to include in the printf
 #define XPLNAME "%s"
 #define XPLNAMESTART "smgpoe-lamp."
-#define HOSTNAME "poelamp5"
+#define HOSTNAME "poelamp4"
 
 extern const char xplname[] PROGMEM;
 
@@ -49,16 +50,17 @@ static const char buttonformat [] PROGMEM = XPL_TRIG_HDR_HEAD XPLNAME XPL_HDR_TA
 
 static const char motionformat [] PROGMEM = XPL_TRIG_HDR_HEAD XPLNAME XPL_HDR_TAIL MOTION_MESSAGE;
 
-#define CONFIGLIST_MESSAGE "config.list\n{\nreconf=newconf\nreconf=motionsens\nreconf=motiontime\n}\n"
+#define CONFIGLIST_MESSAGE "config.list\n{\nreconf=newconf\noptional=motionsens\noptional=motiontime\noptional=fade-rate\n}\n"
 
 static const char configlistformat [] PROGMEM = XPL_STAT_HDR_HEAD XPLNAME XPL_HDR_TAIL CONFIGLIST_MESSAGE;
 
-#define CONFIGCURRENT_MESSAGE "config.list\n{\nnewconf=%s\nmotionsens=%u\nmotiontime=%u\n}\n"
+#define CONFIGCURRENT_MESSAGE "config.list\n{\nnewconf=%s\nmotionsens=%u\nmotiontime=%u\nfade-rate=%u\n}\n"
 
 static const char configcurrentformat [] PROGMEM = XPL_STAT_HDR_HEAD XPLNAME XPL_HDR_TAIL CONFIGCURRENT_MESSAGE;
 
 struct persistentconfig{
     uint8_t magic; //used to tell if the thing in memory is valid. bump this if the format changes.
+    uint16_t fadetime;
     uint16_t motionsens; // motion sensitivty
     uint16_t motiontime; // motion 'on' time, also used to smooth incomming values.
     char instanceid[32];

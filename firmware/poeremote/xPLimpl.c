@@ -55,7 +55,7 @@
 #define PWMSUBCOUNTER CCB
 
 //used to divide the PWM frequency an arbitrary amount
-#define PWMDIVISOR 32 
+#define PWMDIVISOR 1
 //used to extend the PWM period to cut down the maximum power. 256 = no change, 512 = 50% max
 #define PWMEXTEND 340
 
@@ -74,7 +74,16 @@ uint8_t motionLast = 0;
 uint8_t motionval = 0;
 uint8_t motiontime = 0;
 
-struct persistentconfig perconf = {0x13,900,1000,"smgpoe-lamp.5"};
+
+volatile uint8_t nlstartval = 0;
+volatile uint8_t nlendval = 0;
+volatile uint16_t nlsteps = 0;
+
+volatile uint8_t pmstartval = 0;
+volatile uint8_t pmendval = 0;
+volatile uint16_t pmsteps = 0;
+
+struct persistentconfig perconf = {0x14,1000,900,1000,"smgpoe-lamp.4"};
 
 char const xplname[] PROGMEM = XPLNAME;
 
@@ -136,15 +145,23 @@ void initNL ( void )
 void setNL ( uint8_t val )
 {
     val = MIN(255,val);
-    PRINTF ( "nlset\n" );
     TCC0.CCA = val*32;
     TCC0.CCB = val*32;
+}
 
+void gotoNL(uint8_t val) {
+    if(perconf.fadetime <10){
+        setNL(val);
+    } else {
+        nlstartval = (nlendval) + (((int16_t)((int16_t)nlstartval-(int16_t)nlendval) * (int16_t)nlsteps)/(perconf.fadetime / 10) ) ;
+        nlendval = val;
+        nlsteps = perconf.fadetime / 10;
+    }
 }
 
 void initPWM ( void )
 {
-    PWMTIMER.CTRLA = ( TC0_CLKSEL_gm & TC_CLKSEL_DIV8_gc );
+    PWMTIMER.CTRLA = ( TC0_CLKSEL_gm & TC_CLKSEL_DIV2_gc );
     //PWMTIMER.CTRLA = ( TC0_CLKSEL_gm & TC_CLKSEL_DIV1_gc );
     PWMTIMER.CTRLB |= ( TC0_WGMODE_gm & TC_WGMODE_SS_gc );
 //    PWMTIMER.PER = 256*4;
@@ -152,14 +169,15 @@ void initPWM ( void )
     PWMTIMER.PER = PWMEXTEND*PWMDIVISOR;
 }
 
+
 /* sets the PWM output on the assigned PWM pin */
 void setPWM ( uint8_t val )
 {
     val = MIN(255,val);
-    PRINTF ( "pwmset %u \n", val );
+//     PRINTF ( "pwmset %u \n", val );
     if ( val == 0 )
     {
-        PRINTF ( "pwm off\n");
+//         PRINTF ( "pwm off\n");
         PWMTIMER.CTRLB &= ~ ( PWMSUBTIMER );
         PWMPORT.DIRSET = PWMBIT;
         PWMPORT.OUTSET = PWMBIT;
@@ -173,7 +191,7 @@ void setPWM ( uint8_t val )
 //     }
     else
     {
-        PRINTF ( "pwm var\n");
+//         PRINTF ( "pwm var\n");
         PWMPORT.OUTCLR = PWMBIT;
         PWMPORT.DIRSET = PWMBIT;
 
@@ -183,6 +201,17 @@ void setPWM ( uint8_t val )
     }
 }
 
+void gotoPWM(uint8_t val) {
+    if(perconf.fadetime <10){
+        setPWM(val);
+    } else {
+        pmstartval = (pmendval) + (((int16_t)((int16_t)pmstartval-(int16_t)pmendval) * (int16_t)pmsteps)/(perconf.fadetime / 10) ) ;
+        pmendval = val;
+        pmsteps = perconf.fadetime / 10;
+    }
+}
+
+
 
 
 /**
@@ -190,11 +219,11 @@ void setPWM ( uint8_t val )
  **/
 void persistent_init( void )
 {
-    if(eeprom_read_byte(offsetof(struct persistentconfig, magic)) == perconf.magic) {
+    if(eeprom_read_byte(0) == perconf.magic) {
         PRINTF("perconf is valid\n");
         eeprom_read_block(&perconf, 0, sizeof(perconf));
     } else {
-        PRINTF("perconf is invalid\n");
+        PRINTF("perconf is invalid: %x\n", eeprom_read_byte(0));
     }
     PRINTF("Our instance ID is \"%s\"\n", perconf.instanceid);
 }
@@ -216,7 +245,7 @@ static int handle_control()
             curs += 8;
             uint8_t val = str_to_int ( curs, 3 );
           
-            setPWM ( val );
+            gotoPWM ( val );
         }
         else return 0;
     }
@@ -228,7 +257,7 @@ static int handle_control()
             curs += 8;
             uint8_t val = str_to_int ( curs, 3 );
             PRINTF ( "got %u \n", val );
-            setPWM ( val );
+            gotoPWM ( val );
         }
         else return 0;
     }
@@ -241,7 +270,8 @@ static int handle_control()
             uint8_t val = str_to_int ( curs, 3 );
             val = MIN(255,val);
             PRINTF ( "got %u \n", val );
-            setNL ( val );
+//             setNL ( val );
+            gotoNL(val);
         }
         else return 0;
     }
@@ -299,7 +329,7 @@ void commit_persist ( void ) {
     PRINTF("instanceid = %s\n",(perconf.instanceid)+ strlen_P(XPLNAMESTART));
     PRINTF("motiontime = %u\n",perconf.motiontime);
     PRINTF("motionsens = %u\n",perconf.motionsens);
-    //TODO actually commit this
+    PRINTF("fade-rate = %u\n",perconf.fadetime);
     
     eeprom_update_block(&perconf, 0, sizeof(perconf));
 }
@@ -331,7 +361,13 @@ uint8_t config_response() {
         return 0;
     }
     printf("a response\n");
-    char* curs = strcasestr ( message, "motiontime=" );
+    char* curs = strcasestr ( message, "fade-rate=" );
+    if(curs != NULL) {
+        curs += 10;
+        uint16_t val = str_to_int_16 ( curs, 5 );
+        perconf.fadetime=val;
+    }
+    curs = strcasestr ( message, "motiontime=" );
     if(curs != NULL) {
         curs += 11;
         uint16_t val = str_to_int_16 ( curs, 5 );
@@ -366,7 +402,7 @@ uint8_t config_current() {
         printf("req current");
         char* message = ( char* ) uip_appdata;
 
-        uip_len = sprintf_P ( message, configcurrentformat, perconf.instanceid, perconf.instanceid, perconf.motionsens, perconf.motiontime );
+        uip_len = sprintf_P ( message, configcurrentformat, perconf.instanceid, perconf.instanceid, perconf.motionsens, perconf.motiontime, perconf.fadetime);
         uip_udp_packet_sendto ( uip_udp_conn,uip_appdata,uip_len,&daddr,UIP_HTONS ( 3865 ) );
         return 1;
     }
@@ -682,6 +718,41 @@ PROCESS_THREAD ( clock_tick_process, ev, data )
 
     PROCESS_END();
 }
+
+PROCESS ( fade_process, "fade" );
+PROCESS_THREAD ( fade_process, ev, data )
+{
+    static struct etimer timer2;
+    
+    PROCESS_BEGIN();
+    while ( 1 )
+    {
+        if(nlsteps > 0) {
+            nlsteps -= 1;
+            
+            //as nlsteps goes from perconf.fadetime to 0
+            // we'll take set from old val (nlcurval?) to nlval
+            int16_t totalsteps = perconf.fadetime/10;
+            uint8_t toval = (nlendval) + (((int16_t)((int16_t)nlstartval-(int16_t)nlendval) * (int16_t)nlsteps)/(totalsteps) ) ;
+            //             printf("s:%u e:%u s=%u/%u to%u\n", nlstartval, nlendval, nlsteps, totalsteps,toval);
+            setNL(toval);
+        }
+        if(pmsteps > 0) {
+            pmsteps -= 1;
+            
+            //as nlsteps goes from perconf.fadetime to 0
+            // we'll take set from old val (nlcurval?) to nlval
+            int16_t totalsteps = perconf.fadetime/10;
+            uint8_t toval = (pmendval) + (((int16_t)((int16_t)pmstartval-(int16_t)pmendval) * (int16_t)pmsteps)/(totalsteps) ) ;
+            //             printf("s:%u e:%u s=%u/%u to%u\n", nlstartval, nlendval, nlsteps, totalsteps,toval);
+            setPWM(toval);
+        }
+        etimer_set ( &timer2, CLOCK_CONF_SECOND/100 );
+        PROCESS_WAIT_EVENT_UNTIL ( ev == PROCESS_EVENT_TIMER );
+    }
+    PROCESS_END();
+}
+
 /*---------------------------------------------------------------------------*/
 
 

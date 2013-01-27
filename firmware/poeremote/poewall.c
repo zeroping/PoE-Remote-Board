@@ -162,7 +162,7 @@ dhcpc_unconfigured(const struct dhcpc_state *s)
 
 
 //AUTOSTART_PROCESSES(&clock_tick_process,  &enc28j60_process, &tcpip_process, &pixel_client, &xPL_process, &lcd_test_process);
-AUTOSTART_PROCESSES(&clock_tick_process,  &enc28j60_process, &tcpip_process, &my_dhcp_process);//&my_dhcp_process, &xPL_process );
+AUTOSTART_PROCESSES(&clock_tick_process, &fade_process,  &enc28j60_process, &tcpip_process, &my_dhcp_process);//&my_dhcp_process, &xPL_process );
 //AUTOSTART_PROCESSES(&clock_tick_process,  &enc28j60_process, &tcpip_process, &xPL_process );
 //, &pixel_client,
 

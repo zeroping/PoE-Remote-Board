@@ -1,968 +1,1761 @@
-# EESchema Netlist Version 1.1 created  Sun 08 Jul 2012 09:35:44 PM EDT
-(
- ( /4F210E9D SM0603 C1 10uf
-  ( 1 N-000041 )
-  ( 2 GND )
- )
- ( /4FF52DF5 SM0603 C2 100uF
-  ( 1 +3.3V )
-  ( 2 GND )
- )
- ( /4FF52E6A SM0603 C3 10uf
-  ( 1 N-000095 )
-  ( 2 GND )
- )
- ( /4E769BF2 SM1206 C4 100nF
-  ( 1 +3.3V )
-  ( 2 /VNEG )
- )
- ( /4E769612 SM1206 C5 100nF
-  ( 1 +3.3V )
-  ( 2 /Switched48 )
- )
- ( /4E769700 SM0603 C6 100nF
-  ( 1 N-000057 )
-  ( 2 N-000051 )
- )
- ( /4FF52EA6 SM0603 C7 10nF
-  ( 1 N-000092 )
-  ( 2 N-000094 )
- )
- ( /4E76968D SM0603 C8 150pF
-  ( 1 N-000103 )
-  ( 2 N-000058 )
- )
- ( /4E7699FF SM1206 C9 100nF
-  ( 1 +3.3V )
-  ( 2 N-000048 )
- )
- ( /4F131437 SMDCAP_8x10 C10 15uF
-  ( 1 +3.3V )
-  ( 2 N-000048 )
- )
- ( /4FF52E59 SM0603 C11 10uf
-  ( 1 N-000091 )
-  ( 2 N-000093 )
- )
- ( /4E769318 SM0603 C12 1nF
-  ( 1 /SPARE45 )
-  ( 2 +3.3V )
- )
- ( /4E76934C SM0603 C13 1nF
-  ( 1 /SPARE45 )
-  ( 2 /VNEG )
- )
- ( /4E769333 SM0603 C14 1nF
-  ( 1 /SPARE78 )
-  ( 2 +3.3V )
- )
- ( /4E76934B SM0603 C15 1nF
-  ( 1 /SPARE78 )
-  ( 2 /VNEG )
- )
- ( /4E769335 SM0603 C16 1nF
-  ( 1 /TXCT )
-  ( 2 +3.3V )
- )
- ( /4E76934A SM0603 C17 1nF
-  ( 1 /TXCT )
-  ( 2 /VNEG )
- )
- ( /4E769338 SM0603 C18 1nF
-  ( 1 /RXCT )
-  ( 2 +3.3V )
- )
- ( /4E769349 SM0603 C19 1nF
-  ( 1 /RXCT )
-  ( 2 /VNEG )
- )
- ( /4E769D06 SM0805 C20 1nF
-  ( 1 /Switched48 )
-  ( 2 N-000087 )
- )
- ( /4E769BA6 SM0805 C21 22uF
-  ( 1 +3.3V )
-  ( 2 GND )
- )
- ( /4E76968C SM0603 C22 3.3nF
-  ( 1 N-000058 )
-  ( 2 N-000057 )
- )
- ( /4E769813 SM0603 C23 3.3nF
-  ( 1 N-000050 )
-  ( 2 GND )
- )
- ( /4E769883 SM0603 C24 0.33uF
-  ( 1 +3.3V )
-  ( 2 N-000049 )
- )
- ( /4E769B8A SMDCAP_8x10 C25 560uF
-  ( 1 +3.3V )
-  ( 2 N-000056 )
- )
- ( /4FF52F92 SM0603 C26 10nF
-  ( 1 N-000091 )
-  ( 2 /MOT_POS )
- )
- ( /4E7814EC SM0603 C27 .1uF
-  ( 1 +3.3V )
-  ( 2 GND )
- )
- ( /4E781509 SM0603 C28 10-100nF
-  ( 1 N-000061 )
-  ( 2 GND )
- )
- ( /4E78150E SM0603 C29 10-100nF
-  ( 1 /TCT )
-  ( 2 GND )
- )
- ( /4E7814F8 SM0603 C30 10uF
-  ( 1 N-000078 )
-  ( 2 GND )
- )
- ( /4E781500 SM0603 C31 18pF
-  ( 1 N-000063 )
-  ( 2 GND )
- )
- ( /4E7814FF SM0603 C32 18pF
-  ( 1 N-000064 )
-  ( 2 GND )
- )
- ( /4E7F62EB SM0603 C33 .1uF
-  ( 1 +3.3V )
-  ( 2 GND )
- )
- ( /4F258E96 SM0603 C35 0.1uF
-  ( 1 /LIGHT_V )
-  ( 2 GND )
- )
- ( /4FFA344C SMDCAP_8x10 C54 560uF
-  ( 1 +3.3V )
-  ( 2 N-000084 )
- )
- ( /4FFA3480 SMDCAP_8x10 C55 15uF
-  ( 1 +3.3V )
-  ( 2 /Switched48 )
- )
- ( /4E76D52A DIODE_SMB_CUST D1 DIODESCH
-  ( 1 N-000071 )
-  ( 2 +3.3V )
- )
- ( /4E7FBB3C -SOD123 D2 5V
-  ( 1 /Switched48 )
-  ( 2 /PWM5V )
- )
- ( /4F56EAA6 SWAA05 D3 LED
-  ( 1 N-000020 )
-  ( 2 GND )
- )
- ( /4F56EAA8 SWAA05 D4 LED
-  ( 1 N-000019 )
-  ( 2 GND )
- )
- ( /4FFA1C5D DIODE_SMB_CUST D5 DIODESCH
-  ( 1 N-000085 )
-  ( 2 +3.3V )
- )
- ( /4E769257 PIN_ARRAY_2X1 J1 3.3VDC
-  ( 1 GND )
-  ( 2 +3.3V )
- )
- ( /4E769266 PIN_ARRAY_2X1 J2 48VDC
-  ( 1 /Switched48 )
-  ( 2 +3.3V )
- )
- ( /4E76B14A RJHS-308x J3 RJ45
-  ( 1 N-000055 )
-  ( 2 N-000072 )
-  ( 3 N-000054 )
-  ( 4 /SPARE45 )
-  ( 5 /SPARE45 )
-  ( 6 N-000073 )
-  ( 7 /SPARE78 )
-  ( 8 /SPARE78 )
-  ( 9 /LED2 )
-  ( 10 +3.3V )
-  ( 11 /LED1 )
-  ( 12 +3.3V )
- )
- ( /4E789A05 SIL-6 J4 SERIAL
-  ( 1 GND )
-  ( 2 /SER_DTR )
-  ( 3 +3.3V )
-  ( 4 /SER_RX )
-  ( 5 /SER_TX )
-  ( 6 /SER_CTS )
- )
- ( /4E781651 pin_array_3x2 J5 ISP
-  ( 1 +3.3V )
-  ( 2 /PDI_DATA )
-  ( 3 ? )
-  ( 4 ? )
-  ( 5 GND )
-  ( 6 /PDI_CLK )
- )
- ( /4CCE4599 SIL-3 J7 LAMP
-  ( 1 /Switched48 )
-  ( 2 /PWM5V )
-  ( 3 +3.3V )
- )
- ( /4F17C7B2 relay-RT-C/O16A5 K1 RT314024
-  ( 11A N-000089 )
-  ( 11B N-000089 )
-  ( 12A N-000090 )
-  ( 12B N-000090 )
-  ( 14A ? )
-  ( 14B ? )
-  ( A1 ? )
-  ( A2 ? )
- )
- ( /4F210047 term-block-5.08-3 K2 CONN_3
-  ( 1 N-000090 )
-  ( 2 N-000089 )
-  ( 3 ? )
- )
- ( /4E76979A SM0805 L1 30ohmFB
-  ( 1 GND )
-  ( 2 N-000056 )
- )
- ( /4E769777 SDR0805 L2 33uH
-  ( 1 N-000056 )
-  ( 2 N-000071 )
- )
- ( /4E78150F SM0805 L3 FB
-  ( 1 +3.3V )
-  ( 2 /TCT )
- )
- ( /4FFA1C56 SDR0805 L4 33uH
-  ( 1 N-000084 )
-  ( 2 N-000085 )
- )
- ( /4F24EA24 SIL-2 P1 CONN_2
-  ( 1 /EXT_PA2 )
-  ( 2 /EXT_PA3 )
- )
- ( /4F24EAE3 SIL-10 P2 CONN_10
-  ( 1 /EXT_PD2 )
-  ( 2 /EXT_PD1 )
-  ( 3 /EXT_PD0 )
-  ( 4 /EXT_PC7 )
-  ( 5 /EXT_PC6 )
-  ( 6 /EXT_PC5 )
-  ( 7 /EXT_PC4 )
-  ( 8 /EXT_PC3 )
-  ( 9 /EXT_PC2 )
-  ( 10 /EXT_PB3 )
- )
- ( /4FFA19F5 SIL-2 P3 48PWM
-  ( 1 +3.3V )
-  ( 2 N-000084 )
- )
- ( /4E796B7A transistor-SOT23-BEC Q1 SOT23-BEC
-  ( B N-000087 )
-  ( C N-000103 )
-  ( E /Switched48 )
- )
- ( /4E796A98 transistor-SOT23-BEC Q2 PNP
-  ( B N-000013 )
-  ( C N-000014 )
-  ( E +3.3V )
- )
- ( /4FFA19BE SOT23GDS Q3 MOSFET_N
-  ( D N-000085 )
-  ( G /PWM5V )
-  ( S /Switched48 )
- )
- ( /4E769CBB SM0603 R1 10K
-  ( 1 N-000048 )
-  ( 2 N-000087 )
- )
- ( /4F21108B SM0603 R2 47k
-  ( 1 N-000040 )
-  ( 2 GND )
- )
- ( /4E7697ED SM0603 R3 5.6K
-  ( 1 +3.3V )
-  ( 2 N-000050 )
- )
- ( /4FF52E06 SM0603 R4 10k
-  ( 1 N-000041 )
-  ( 2 +3.3V )
- )
- ( /4FF52E68 SM0603 R5 10k
-  ( 1 N-000092 )
-  ( 2 N-000095 )
- )
- ( /4E769C63 SM0603 R6 25.5K
-  ( 1 +3.3V )
-  ( 2 N-000046 )
- )
- ( /4FF52EB4 SM0603 R7 1M
-  ( 1 N-000092 )
-  ( 2 N-000094 )
- )
- ( /4FF52F0C SM0603 R8 10k
-  ( 1 N-000094 )
-  ( 2 N-000093 )
- )
- ( /4FF52F11 SM0603 R9 10k
-  ( 1 N-000093 )
-  ( 2 GND )
- )
- ( /4E769691 SM0603 R10 30.1k
-  ( 1 N-000103 )
-  ( 2 N-000058 )
- )
- ( /4E7693F8 SM0603 R11 45.3R
-  ( 1 N-000059 )
-  ( 2 /VNEG )
- )
- ( /4E76957E SM0603 R12 5.1R
-  ( 1 N-000048 )
-  ( 2 /Switched48 )
- )
- ( /4FF52F52 SM0603 R13 100k
-  ( 1 +3.3V )
-  ( 2 /MOT_NEG )
- )
- ( /4FF52F4D SM0603 R14 100k
-  ( 1 /MOT_NEG )
-  ( 2 GND )
- )
- ( /4FF52F8E SM0603 R15 1M
-  ( 1 N-000091 )
-  ( 2 /MOT_POS )
- )
- ( /4E7697F0 SM0603 R17 9.424K
-  ( 1 N-000050 )
-  ( 2 GND )
- )
- ( /4E781505 SM0603 R40 2.32K_1%
-  ( 1 GND )
-  ( 2 N-000069 )
- )
- ( /4E7814EF SM0603 R41 220
-  ( 1 N-000079 )
-  ( 2 /LED1 )
- )
- ( /4E7814EE SM0603 R42 220
-  ( 1 N-000081 )
-  ( 2 /LED2 )
- )
- ( /4E7814FC SM0603 R45 220
-  ( 1 N-000076 )
-  ( 2 +3.3V )
- )
- ( /4E78150B SM0603 R47 50
-  ( 1 N-000061 )
-  ( 2 /RX- )
- )
- ( /4E78150A SM0603 R48 50
-  ( 1 N-000061 )
-  ( 2 /RX+ )
- )
- ( /4E78150D SM0603 R49 50
-  ( 1 /TCT )
-  ( 2 /TX+ )
- )
- ( /4E78150C SM0603 R50 50
-  ( 1 /TCT )
-  ( 2 /TX- )
- )
- ( /4E78979D SM0603 R51 25.5k
-  ( 1 /PWM5V )
-  ( 2 N-000014 )
- )
- ( /4E78992C SM0603 R52 25.5k
-  ( 1 N-000013 )
-  ( 2 /LAMPPWM )
- )
- ( /4FFA1C42 SM0603 R53 25.5k
-  ( 1 /Switched48 )
-  ( 2 /PWM5V )
- )
- ( /4F258D3E SM0603 R55 47k
-  ( 1 /LIGHT_V )
-  ( 2 GND )
- )
- ( /4F56EAAC SM0603 R56 10
-  ( 1 N-000020 )
-  ( 2 /SLED1 )
- )
- ( /4F56EAB1 SM0603 R57 10
-  ( 1 N-000019 )
-  ( 2 /SLED2 )
- )
- ( /4F17C682 101-0624-EV Sw1 SPST-D
-  ( 1 /sw_top )
-  ( 2 /sw_top )
-  ( 3 GND )
-  ( 4 GND )
- )
- ( /4F17C687 101-0624-EV Sw2 SPST-D
-  ( 1 /sw_bottom )
-  ( 2 /sw_bottom )
-  ( 3 GND )
-  ( 4 GND )
- )
- ( /4C9D7452 T1 T1 H2019
-  ( 1 /TX+ )
-  ( 2 /TCT )
-  ( 3 /TX- )
-  ( 6 /RX+ )
-  ( 7 ? )
-  ( 8 /RX- )
-  ( 9 N-000073 )
-  ( 10 /RXCT )
-  ( 11 N-000054 )
-  ( 14 N-000072 )
-  ( 15 /TXCT )
-  ( 16 N-000055 )
- )
- ( /4FF52DC8 SO8N U1 LM358
-  ( 1 N-000094 )
-  ( 2 N-000092 )
-  ( 3 N-000040 )
-  ( 4 GND )
-  ( 5 /MOT_NEG )
-  ( 6 N-000091 )
-  ( 7 /MOT_POS )
-  ( 8 +3.3V )
- )
- ( /4E769FB7 QFN20-rect U3 SI3402
-  ( 1 N-000103 )
-  ( 2 N-000049 )
-  ( 3 N-000051 )
-  ( 4 N-000051 )
-  ( 5 ? )
-  ( 6 N-000046 )
-  ( 7 /Switched48 )
-  ( 8 N-000059 )
-  ( 9 /VNEG )
-  ( 10 /SPARE45 )
-  ( 11 /SPARE78 )
-  ( 12 +3.3V )
-  ( 13 /TXCT )
-  ( 14 /RXCT )
-  ( 15 N-000057 )
-  ( 16 +3.3V )
-  ( 17 N-000048 )
-  ( 18 N-000071 )
-  ( 19 N-000048 )
-  ( 20 N-000050 )
-  ( 21 /VNEG )
- )
- ( /4E781510 microchip-enc28j60-SSOP28 U4 ENC28J60-SSOP
-  ( 1 N-000078 )
-  ( 2 GND )
-  ( 3 /CLKOUT )
-  ( 4 /ETHINT )
-  ( 5 ? )
-  ( 6 /MISO )
-  ( 7 /MOSI )
-  ( 8 /SCK )
-  ( 9 N-000076 )
-  ( 10 /ETHRST )
-  ( 11 GND )
-  ( 12 /RX- )
-  ( 13 /RX+ )
-  ( 14 N-000069 )
-  ( 15 +3.3V )
-  ( 16 /TX- )
-  ( 17 /TX+ )
-  ( 18 GND )
-  ( 19 +3.3V )
-  ( 20 +3.3V )
-  ( 21 GND )
-  ( 22 GND )
-  ( 23 N-000063 )
-  ( 24 N-000064 )
-  ( 25 +3.3V )
-  ( 26 N-000081 )
-  ( 27 N-000079 )
-  ( 28 +3.3V )
- )
- ( /4F89104A TQFP44 U5 XMEGA-A4
-  ( 1 ? )
-  ( 2 /MOT_POS )
-  ( 3 /MOT_NEG )
-  ( 4 ? )
-  ( 5 ? )
-  ( 6 ? )
-  ( 7 /EXT_PB3 )
-  ( 8 GND )
-  ( 9 +3.3V )
-  ( 10 /SLED2 )
-  ( 11 /SLED1 )
-  ( 12 /EXT_PC2 )
-  ( 13 /EXT_PC3 )
-  ( 14 /EXT_PC4 )
-  ( 15 /EXT_PC5 )
-  ( 16 /EXT_PC6 )
-  ( 17 /EXT_PC7 )
-  ( 18 GND )
-  ( 19 +3.3V )
-  ( 20 /EXT_PD0 )
-  ( 21 /EXT_PD1 )
-  ( 22 /EXT_PD2 )
-  ( 23 /sw_bottom )
-  ( 24 /ETHINT )
-  ( 25 /MOSI )
-  ( 26 /MISO )
-  ( 27 /SCK )
-  ( 28 /ETHRST )
-  ( 29 /LAMPPWM )
-  ( 30 GND )
-  ( 31 +3.3V )
-  ( 32 /SER_TX )
-  ( 33 /SER_RX )
-  ( 34 /PDI_DATA )
-  ( 35 /PDI_CLK )
-  ( 36 /sw_top )
-  ( 37 /CLKOUT )
-  ( 38 GND )
-  ( 39 +3.3V )
-  ( 40 /SER_CTS )
-  ( 41 /SER_DTR )
-  ( 42 /EXT_PA2 )
-  ( 43 /EXT_PA3 )
-  ( 44 /LIGHT_V )
- )
- ( /4F17C6CC RE200B U6 RE200B
-  ( 1 N-000041 )
-  ( 2 N-000040 )
-  ( 3 GND )
- )
- ( /4F258CF0 sharp-GA1A1S U8 GA1A1S
-  ( 1 GND )
-  ( 2 GND )
-  ( 3 /LIGHT_V )
-  ( 4 +3.3V )
- )
- ( /4E781501 crystal-ABM3C X1 15MHz
-  ( 1 N-000063 )
-  ( 2 N-000064 )
- )
-)
-*
-{ Allowed footprints by component:
-$component C1
- SM*
- C?
- C1-1
-$endlist
-$component C2
- SM*
- C?
- C1-1
-$endlist
-$component C3
- SM*
- C?
- C1-1
-$endlist
-$component C4
- SM*
- C?
- C1-1
-$endlist
-$component C5
- SM*
- C?
- C1-1
-$endlist
-$component C6
- SM*
- C?
- C1-1
-$endlist
-$component C7
- SM*
- C?
- C1-1
-$endlist
-$component C8
- SM*
- C?
- C1-1
-$endlist
-$component C9
- SM*
- C?
- C1-1
-$endlist
-$component C10
- SM*
- C?
- C1-1
-$endlist
-$component C11
- SM*
- C?
- C1-1
-$endlist
-$component C12
- SM*
- C?
- C1-1
-$endlist
-$component C13
- SM*
- C?
- C1-1
-$endlist
-$component C14
- SM*
- C?
- C1-1
-$endlist
-$component C15
- SM*
- C?
- C1-1
-$endlist
-$component C16
- SM*
- C?
- C1-1
-$endlist
-$component C17
- SM*
- C?
- C1-1
-$endlist
-$component C18
- SM*
- C?
- C1-1
-$endlist
-$component C19
- SM*
- C?
- C1-1
-$endlist
-$component C20
- SM*
- C?
- C1-1
-$endlist
-$component C21
- SM*
- C?
- C1-1
-$endlist
-$component C22
- SM*
- C?
- C1-1
-$endlist
-$component C23
- SM*
- C?
- C1-1
-$endlist
-$component C24
- SM*
- C?
- C1-1
-$endlist
-$component C25
- CP*
- SM*
-$endlist
-$component C26
- SM*
- C?
- C1-1
-$endlist
-$component C27
- SM*
- C?
- C1-1
-$endlist
-$component C28
- SM*
- C?
- C1-1
-$endlist
-$component C29
- SM*
- C?
- C1-1
-$endlist
-$component C30
- CP*
- SM*
-$endlist
-$component C31
- SM*
- C?
- C1-1
-$endlist
-$component C32
- SM*
- C?
- C1-1
-$endlist
-$component C33
- SM*
- C?
- C1-1
-$endlist
-$component C35
- SM*
- C?
- C1-1
-$endlist
-$component C54
- CP*
- SM*
-$endlist
-$component C55
- SM*
- C?
- C1-1
-$endlist
-$component D1
- D?
- S*
-$endlist
-$component D2
- D?
- SO*
- SM*
-$endlist
-$component D3
- LED-3MM
- LED-5MM
- LED-10MM
- LED-0603
- LED-0805
- LED-1206
- LEDV
-$endlist
-$component D4
- LED-3MM
- LED-5MM
- LED-10MM
- LED-0603
- LED-0805
- LED-1206
- LEDV
-$endlist
-$component D5
- D?
- S*
-$endlist
-$component R1
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R2
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R3
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R4
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R5
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R6
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R7
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R8
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R9
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R10
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R11
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R12
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R13
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R14
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R15
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R17
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R40
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R41
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R42
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R45
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R47
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R48
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R49
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R50
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R51
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R52
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R53
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R55
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R56
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$component R57
- R?
- SM0603
- SM0805
- R?-*
- SM1206
-$endlist
-$endfootprintlist
-}
+(export (version D)
+  (design
+    (source /home/scott/projects/PoE-Remote-Board/hardware/poeremote.sch)
+    (date "Mon 18 Feb 2013 01:28:25 AM EST")
+    (tool "eeschema (2012-nov-02)-testing"))
+  (components
+    (comp (ref R53)
+      (value 25.5k)
+      (fields
+        (field (name "Mouser Part Number") 667-ERJ-3EKF2552V)
+        (field (name MPN) ERJ-3EKF2552V)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4FFA1C42))
+    (comp (ref C26)
+      (value 10nF)
+      (fields
+        (field (name "Mouser Part Number") GRM188R71H103JA01D)
+        (field (name MPN) C0603C103M5RAC7411)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4FF52F92))
+    (comp (ref R15)
+      (value 1M)
+      (fields
+        (field (name "Mouser Part Number") 603-AC0603JR-071ML)
+        (field (name MPN) CRCW06031M00JNEA)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4FF52F8E))
+    (comp (ref R13)
+      (value 100k)
+      (fields
+        (field (name "Mouser Part Number") 603-AC0603JR-07100KL)
+        (field (name MPN) RC1608F1003CS)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4FF52F52))
+    (comp (ref R14)
+      (value 100k)
+      (fields
+        (field (name "Mouser Part Number") 603-AC0603JR-07100KL)
+        (field (name MPN) RC1608F1003CS)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4FF52F4D))
+    (comp (ref R9)
+      (value 10k)
+      (fields
+        (field (name "Mouser Part Number") 667-ERJ-3EKF1002V)
+        (field (name MPN) RC1608F1002CS)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4FF52F11))
+    (comp (ref R8)
+      (value 10k)
+      (fields
+        (field (name "Mouser Part Number") 667-ERJ-3EKF1002V)
+        (field (name MPN) RC1608F1002CS)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4FF52F0C))
+    (comp (ref R7)
+      (value 1M)
+      (fields
+        (field (name "Mouser Part Number") 603-AC0603JR-071ML)
+        (field (name MPN) CRCW06031M00JNEA)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4FF52EB4))
+    (comp (ref C7)
+      (value 10nF)
+      (fields
+        (field (name "Mouser Part Number") GRM188R71H103JA01D)
+        (field (name MPN) C0603C103M5RAC7411)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4FF52EA6))
+    (comp (ref C3)
+      (value 10uf)
+      (fields
+        (field (name "Mouser Part Number") 603-CC603MRX5R5BB106)
+        (field (name MPN) C0805C106M9PACTU)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4FF52E6A))
+    (comp (ref R5)
+      (value 10k)
+      (fields
+        (field (name "Mouser Part Number") 667-ERJ-3EKF1002V)
+        (field (name MPN) RC1608F1002CS)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4FF52E68))
+    (comp (ref C11)
+      (value 10uf)
+      (fields
+        (field (name "Mouser Part Number") 603-CC603MRX5R5BB106)
+        (field (name MPN) C0805C106M9PACTU)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4FF52E59))
+    (comp (ref R4)
+      (value 10k)
+      (fields
+        (field (name "Mouser Part Number") 667-ERJ-3EKF1002V)
+        (field (name MPN) RC1608F1002CS)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4FF52E06))
+    (comp (ref C2)
+      (value 22uF)
+      (fields
+        (field (name "Mouser Part Number") 810-C1608X5R0J226M))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4FF52DF5))
+    (comp (ref U1)
+      (value LM358)
+      (libsource (lib linear) (part LM358))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4FF52DC8))
+    (comp (ref U5)
+      (value XMEGA-A4)
+      (fields
+        (field (name MPN) ATXMEGA32A4U-AU)
+        (field (name Supplier) Avnet))
+      (libsource (lib xmega-a4) (part XMEGA-A4))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4F89104A))
+    (comp (ref R57)
+      (value 10)
+      (fields
+        (field (name "Mouser Part Number") 603-AC0603FR-0710RL)
+        (field (name MPN) CRCW060310R0JNEA)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4F56EAB1))
+    (comp (ref R56)
+      (value 10)
+      (fields
+        (field (name "Mouser Part Number") 603-AC0603FR-0710RL)
+        (field (name MPN) CRCW060310R0JNEA)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4F56EAAC))
+    (comp (ref D4)
+      (value LED)
+      (fields
+        (field (name "Mouser Part Number") 889-SWAA05))
+      (libsource (lib device) (part LED))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4F56EAA8))
+    (comp (ref D3)
+      (value LED)
+      (fields
+        (field (name "Mouser Part Number") 889-SWAA05))
+      (libsource (lib device) (part LED))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4F56EAA6))
+    (comp (ref C35)
+      (value 0.1uF)
+      (fields
+        (field (name "Mouser Part Number") 581-060316C104K)
+        (field (name MPN) 12061C104KAT2A)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4F258E96))
+    (comp (ref R55)
+      (value 47k)
+      (fields
+        (field (name "Mouser Part Number") 667-ERJ-3GEYJ473V)
+        (field (name MPN) CRCW060347K0JNEA)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4F258D3E))
+    (comp (ref U8)
+      (value GA1A1S)
+      (fields
+        (field (name "Mouser Part Number") 852-GA1A1S202WP))
+      (libsource (lib ga1a1s) (part GA1A1S))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4F258CF0))
+    (comp (ref P2)
+      (value CONN_10)
+      (libsource (lib conn) (part CONN_10))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4F24EAE3))
+    (comp (ref R2)
+      (value 47k)
+      (fields
+        (field (name "Mouser Part Number") 667-ERJ-3GEYJ473V)
+        (field (name MPN) CRCW060347K0JNEA)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4F21108B))
+    (comp (ref C1)
+      (value 10uf)
+      (fields
+        (field (name "Mouser Part Number") 603-CC603MRX5R5BB106)
+        (field (name MPN) C0805C106M9PACTU)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4F210E9D))
+    (comp (ref U6)
+      (value RE200B)
+      (fields
+        (field (name "Mouser Part Number") -))
+      (libsource (lib pirmotion) (part RE200B))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4F17C6CC))
+    (comp (ref Sw2)
+      (value SPST-D)
+      (fields
+        (field (name "Mouser Part Number") 101-0624-EV)
+        (field (name MPN) 101-0624-EV)
+        (field (name Supplier) Mouser))
+      (libsource (lib microchip-enc28j60) (part SPST-D))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4F17C687))
+    (comp (ref Sw1)
+      (value SPST-D)
+      (fields
+        (field (name "Mouser Part Number") 101-0624-EV)
+        (field (name MPN) 101-0624-EV)
+        (field (name Supplier) Mouser))
+      (libsource (lib microchip-enc28j60) (part SPST-D))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4F17C682))
+    (comp (ref C10)
+      (value 15uF)
+      (fields
+        (field (name "Mouser Part Number") 647-UUR2A220MNL1GS)
+        (field (name Voltage) 100V)
+        (field (name MPN) EEE-TG2A220UP)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4F131437))
+    (comp (ref D2)
+      (value 5V)
+      (fields
+        (field (name "Mouser Part Number") 625-BZT52C5V1-V)
+        (field (name MPN) BZT52C5V1-7-F)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part ZENER))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E7FBB3C))
+    (comp (ref C33)
+      (value .1uF)
+      (fields
+        (field (name "Mouser Part Number") 581-060316C104K)
+        (field (name MPN) C0603C104K3RAC7411)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E7F62EB))
+    (comp (ref Q1)
+      (value SOT23-BEC)
+      (footprint transistor-SOT23-BEC)
+      (fields
+        (field (name "Mouser Part Number") 512-MMBT3904)
+        (field (name MPN) MMBT3904)
+        (field (name Supplier) Avnet))
+      (libsource (lib poeremote-cache) (part BC808-NPN-SOT23-BEC))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E796B7A))
+    (comp (ref Q2)
+      (value PNP)
+      (footprint transistor-SOT23-BEC)
+      (fields
+        (field (name "Mouser Part Number") 771-BCW89215)
+        (field (name MPN) BCW89,215)
+        (field (name Supplier) Avnet))
+      (libsource (lib poeremote-cache) (part BF823-PNP-SOT23-BEC))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E796A98))
+    (comp (ref J4)
+      (value SERIAL)
+      (libsource (lib conn) (part CONN_6))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E789A05))
+    (comp (ref R52)
+      (value 25.5k)
+      (fields
+        (field (name "Mouser Part Number") 667-ERJ-3EKF2552V)
+        (field (name MPN) ERJ-3EKF2552V)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E78992C))
+    (comp (ref R51)
+      (value 25.5k)
+      (fields
+        (field (name "Mouser Part Number") 667-ERJ-3EKF2552V)
+        (field (name MPN) ERJ-3EKF2552V)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E78979D))
+    (comp (ref J5)
+      (value ISP)
+      (fields
+        (field (name "Mouser Part Number") 649-78548-406HLF)
+        (field (name MPN) 78548-406HLF)
+        (field (name Supplier) Avnet))
+      (libsource (lib conn) (part CONN_3X2))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E781651))
+    (comp (ref L3)
+      (value FB)
+      (fields
+        (field (name "Mouser Part Number") 81-BLM21P300S)
+        (field (name MPN) BLM21PG300SN1D)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part INDUCTOR))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E78150F))
+    (comp (ref U4)
+      (value ENC28J60-SSOP)
+      (footprint microchip-enc28j60-SSOP28)
+      (fields
+        (field (name "Mouser Part Number") 579-ENC28J60-I/SS)
+        (field (name MPN) ENC28J60/SS)
+        (field (name Supplier) Avnet))
+      (libsource (lib microchip-enc28j60) (part ENC28J60-SSOP))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E781510))
+    (comp (ref C29)
+      (value 10-100nF)
+      (fields
+        (field (name "Mouser Part Number") 581-060316C104K)
+        (field (name MPN) 12061C104KAT2A)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E78150E))
+    (comp (ref R49)
+      (value 50)
+      (fields
+        (field (name "Mouser Part Number") 301-51-RC)
+        (field (name MPN) "ERJ-3EKF51R0V ")
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E78150D))
+    (comp (ref R50)
+      (value 50)
+      (fields
+        (field (name "Mouser Part Number") 301-51-RC)
+        (field (name MPN) "ERJ-3EKF51R0V ")
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E78150C))
+    (comp (ref R47)
+      (value 50)
+      (fields
+        (field (name "Mouser Part Number") 301-51-RC)
+        (field (name MPN) "ERJ-3EKF51R0V ")
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E78150B))
+    (comp (ref R48)
+      (value 50)
+      (fields
+        (field (name "Mouser Part Number") 301-51-RC)
+        (field (name MPN) "ERJ-3EKF51R0V ")
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E78150A))
+    (comp (ref C28)
+      (value 10-100nF)
+      (fields
+        (field (name "Mouser Part Number") 581-060316C104K)
+        (field (name MPN) 12061C104KAT2A)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E781509))
+    (comp (ref R40)
+      (value "2.32K 1%")
+      (fields
+        (field (name "Mouser Part Number") 302-2.32K-RC)
+        (field (name MPN) CRCW06032K32FKEA)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E781505))
+    (comp (ref X1)
+      (value 15MHz)
+      (fields
+        (field (name "Mouser Part Number") 815-ABM3C-25-D4YT)
+        (field (name MPN) FQ5032B-25.000)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part CRYSTAL))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E781501))
+    (comp (ref C31)
+      (value 18pF)
+      (fields
+        (field (name "Mouser Part Number") 810-C1608C0G1H180J)
+        (field (name MPN) VJ0603A180JXACW1BC)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E781500))
+    (comp (ref C32)
+      (value 18pF)
+      (fields
+        (field (name "Mouser Part Number") 810-C1608C0G1H180J)
+        (field (name MPN) VJ0603A180JXACW1BC)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E7814FF))
+    (comp (ref C30)
+      (value 10uF)
+      (fields
+        (field (name "Mouser Part Number") 603-CC603MRX5R5BB106)
+        (field (name MPN) C0805C106M9PACTU)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part CP1))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E7814F8))
+    (comp (ref R41)
+      (value 220)
+      (fields
+        (field (name "Mouser Part Number") 301-220-RC)
+        (field (name MPN) ERJ-3GEYJ224V)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E7814EF))
+    (comp (ref R42)
+      (value 220)
+      (fields
+        (field (name "Mouser Part Number") 301-220-RC)
+        (field (name MPN) ERJ-3GEYJ224V)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E7814EE))
+    (comp (ref C27)
+      (value .1uF)
+      (fields
+        (field (name "Mouser Part Number") 581-060316C104K)
+        (field (name MPN) 12061C104KAT2A)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E7814EC))
+    (comp (ref D1)
+      (value DIODESCH)
+      (fields
+        (field (name "Mouser Part Number") 863-MBRS1100T3G)
+        (field (name MPN) MBRS1100T3G)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part DIODESCH))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E76D52A))
+    (comp (ref J3)
+      (value RJ45)
+      (fields
+        (field (name "Mouser Part Number") H1197NL)
+        (field (name MPN) RJHSE3381)
+        (field (name Supplier) Avnet))
+      (libsource (lib amp-rjhs-508x) (part AMP-RJHS-508X))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E76B14A))
+    (comp (ref J7)
+      (value LAMP)
+      (libsource (lib conn) (part CONN_3))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4CCE4599))
+    (comp (ref U3)
+      (value SI3402)
+      (fields
+        (field (name "Mouser Part Number") 634-SI3402-A-GM)
+        (field (name MPN) SI3402-A-GM)
+        (field (name Supplier) Avnet))
+      (libsource (lib si3402) (part SI3402))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769FB7))
+    (comp (ref C20)
+      (value 1nF)
+      (fields
+        (field (name "Mouser Part Number") 581-06031C102K)
+        (field (name MPN) C0603C102K1RACTU)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769D06))
+    (comp (ref R1)
+      (value 10k)
+      (fields
+        (field (name "Mouser Part Number") 667-ERJ-3EKF1002V)
+        (field (name MPN) RC1608F1002CS)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769CBB))
+    (comp (ref R6)
+      (value 25.5k)
+      (fields
+        (field (name "Mouser Part Number") 667-ERJ-3EKF2552V)
+        (field (name MPN) ERJ-3EKF2552V)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769C63))
+    (comp (ref C4)
+      (value 100nF)
+      (fields
+        (field (name "Mouser Part Number") 603-CC206KKX7R0BB104)
+        (field (name Voltage) 100V)
+        (field (name MPN) 12061C104KAT2A)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769BF2))
+    (comp (ref C21)
+      (value 22uF)
+      (fields
+        (field (name "Mouser Part Number") 603-CC805MKX5R5BB226)
+        (field (name Voltage) 6.3V)
+        (field (name MPN) "CE JMK212 BJ226MG-T")
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769BA6))
+    (comp (ref C25)
+      (value 560uF)
+      (fields
+        (field (name "Mouser Part Number") 647-UCD0J102MNL1GS)
+        (field (name Voltage) 6.3V)
+        (field (name MPN) EEE-FK1A681AP)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part CP1))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769B8A))
+    (comp (ref C9)
+      (value 100nF)
+      (fields
+        (field (name "Mouser Part Number") 603-CC206KKX7R0BB104)
+        (field (name Voltage) 100V)
+        (field (name MPN) "CG HMK212 B7104KG-T")
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E7699FF))
+    (comp (ref C24)
+      (value 0.33uF)
+      (fields
+        (field (name "Mouser Part Number") 810-C1608X5R1C334K)
+        (field (name Voltage) 16V)
+        (field (name MPN) GRM188R71C334KA01D)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769883))
+    (comp (ref C23)
+      (value 3.3nF)
+      (fields
+        (field (name "Mouser Part Number") 77-VJ0603Y332KXACBC)
+        (field (name Voltage) 16V)
+        (field (name MPN) C0603C332K5RACTU)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769813))
+    (comp (ref R16)
+      (value 3.327K)
+      (fields
+        (field (name "Mouser Part Number") 667-ERJ-3EKF9531V)
+        (field (name MPN) CRCW06033K32FKEA)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E7697F0))
+    (comp (ref R3)
+      (value 5.6K)
+      (fields
+        (field (name "Mouser Part Number") 279-CFR25J5K6)
+        (field (name MPN) ERJ-3EKF5601V)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E7697ED))
+    (comp (ref L1)
+      (value 30ohmFB)
+      (fields
+        (field (name "Mouser Part Number") 81-BLM21P300S)
+        (field (name MPN) BLM21PG300SN1D)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part INDUCTOR))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E76979A))
+    (comp (ref L2)
+      (value 33uH)
+      (fields
+        (field (name "Mouser Part Number") 652-SDR0805-330KL)
+        (field (name MPN) SDR0805-330KL)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part INDUCTOR))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769777))
+    (comp (ref C6)
+      (value 100nF)
+      (fields
+        (field (name "Mouser Part Number") 77-VJ0603V104ZXAPBC)
+        (field (name Voltage) 16V)
+        (field (name MPN) C0603C104K3RAC7411)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769700))
+    (comp (ref R10)
+      (value 30.1k)
+      (fields
+        (field (name "Mouser Part Number") 667-ERJ-3EKF3012V)
+        (field (name MPN) CRCW060330K1FKEA)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769691))
+    (comp (ref C8)
+      (value 150pF)
+      (fields
+        (field (name "Mouser Part Number") 77-VJ0603Y151KXACBC)
+        (field (name Voltage) 16V)
+        (field (name MPN) C0603C151J5GACTU)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E76968D))
+    (comp (ref C22)
+      (value 3.3nF)
+      (fields
+        (field (name "Mouser Part Number") 77-VJ0603Y332KXACBC)
+        (field (name Voltage) 16)
+        (field (name MPN) C0603C332K5RACTU)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E76968C))
+    (comp (ref C5)
+      (value 100nF)
+      (fields
+        (field (name "Mouser Part Number") 603-CC206KKX7R0BB104)
+        (field (name Voltage) 100V)
+        (field (name MPN) "CG HMK212 B7104KG-T")
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769612))
+    (comp (ref R12)
+      (value 5.1R)
+      (fields
+        (field (name "Mouser Part Number") 301-5.1-RC)
+        (field (name MPN) CRCW06035R10JNEA)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E76957E))
+    (comp (ref R11)
+      (value 45.3R)
+      (fields
+        (field (name "Mouser Part Number") 302-45.3-RC)
+        (field (name MPN) ERJ-3EKF45R3V)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E7693F8))
+    (comp (ref C13)
+      (value 1nF)
+      (fields
+        (field (name "Mouser Part Number") 581-06031C102K)
+        (field (name MPN) C0603C102K1RACTU)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E76934C))
+    (comp (ref C15)
+      (value 1nF)
+      (fields
+        (field (name "Mouser Part Number") 581-06031C102K)
+        (field (name MPN) C0603C102K1RACTU)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E76934B))
+    (comp (ref C17)
+      (value 1nF)
+      (fields
+        (field (name "Mouser Part Number") 581-06031C102K)
+        (field (name MPN) C0603C102K1RACTU)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E76934A))
+    (comp (ref C19)
+      (value 1nF)
+      (fields
+        (field (name "Mouser Part Number") 581-06031C102K)
+        (field (name MPN) C0603C102K1RACTU)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769349))
+    (comp (ref C18)
+      (value 1nF)
+      (fields
+        (field (name "Mouser Part Number") 581-06031C102K)
+        (field (name MPN) C0603C102K1RACTU)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769338))
+    (comp (ref C16)
+      (value 1nF)
+      (fields
+        (field (name "Mouser Part Number") 581-06031C102K)
+        (field (name MPN) C0603C102K1RACTU)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769335))
+    (comp (ref C14)
+      (value 1nF)
+      (fields
+        (field (name "Mouser Part Number") 581-06031C102K)
+        (field (name MPN) C0603C102K1RACTU)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769333))
+    (comp (ref C12)
+      (value 1nF)
+      (footprint SM0603)
+      (fields
+        (field (name "Mouser Part Number") 581-06031C102K)
+        (field (name Voltage) 100)
+        (field (name Supplier) Avnet))
+      (libsource (lib device) (part C))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769318))
+    (comp (ref J1)
+      (value 3.3VDC)
+      (libsource (lib conn) (part CONN_2))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4E769257))
+    (comp (ref T1)
+      (value H2019)
+      (fields
+        (field (name "Mouser Part Number") 871-B78476A8248A3)
+        (field (name MPN) H2019NL)
+        (field (name Supplier) Avnet))
+      (libsource (lib h2019) (part H2019))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 4C9D7452))
+    (comp (ref AFF1)
+      (value DC08-11)
+      (fields
+        (field (name Supplier) Mouser)
+        (field (name MPN) DC04-11EWA))
+      (libsource (lib Vocanson_display) (part DC08-11))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121A226))
+    (comp (ref P1)
+      (value CONN_5)
+      (libsource (lib conn) (part CONN_5))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121B9F7))
+    (comp (ref R25)
+      (value 50)
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121BEC1))
+    (comp (ref R26)
+      (value 50)
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121BEFD))
+    (comp (ref R27)
+      (value 50)
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121BF03))
+    (comp (ref R28)
+      (value 50)
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121BF09))
+    (comp (ref R29)
+      (value 50)
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121BF0F))
+    (comp (ref R30)
+      (value 50)
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121BF15))
+    (comp (ref R31)
+      (value 50)
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121BF1B))
+    (comp (ref R32)
+      (value 50)
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121BF21))
+    (comp (ref R17)
+      (value 50)
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121BF27))
+    (comp (ref R18)
+      (value 50)
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121BF2D))
+    (comp (ref R19)
+      (value 50)
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121BF33))
+    (comp (ref R20)
+      (value 50)
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121BF39))
+    (comp (ref R21)
+      (value 50)
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121BF3F))
+    (comp (ref R22)
+      (value 50)
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121BF45))
+    (comp (ref R23)
+      (value 50)
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121BF4B))
+    (comp (ref R24)
+      (value 50)
+      (libsource (lib device) (part R))
+      (sheetpath (names /) (tstamps /))
+      (tstamp 5121BF51)))
+  (libparts
+    (libpart (lib device) (part C)
+      (description "Condensateur non polarise")
+      (footprints
+        (fp SM*)
+        (fp C?)
+        (fp C1-1))
+      (fields
+        (field (name Reference) C)
+        (field (name Value) C))
+      (pins
+        (pin (num 1) (name ~) (type passive))
+        (pin (num 2) (name ~) (type passive))))
+    (libpart (lib device) (part CP1)
+      (description "Condensateur polarise")
+      (footprints
+        (fp CP*)
+        (fp SM*))
+      (fields
+        (field (name Reference) C)
+        (field (name Value) CP1))
+      (pins
+        (pin (num 1) (name ~) (type passive))
+        (pin (num 2) (name ~) (type passive))))
+    (libpart (lib device) (part CRYSTAL)
+      (fields
+        (field (name Reference) X)
+        (field (name Value) CRYSTAL))
+      (pins
+        (pin (num 1) (name 1) (type passive))
+        (pin (num 2) (name 2) (type passive))))
+    (libpart (lib device) (part DIODESCH)
+      (description "Diode schottky")
+      (footprints
+        (fp D?)
+        (fp S*))
+      (fields
+        (field (name Reference) D)
+        (field (name Value) DIODESCH))
+      (pins
+        (pin (num 1) (name A) (type passive))
+        (pin (num 2) (name K) (type passive))))
+    (libpart (lib device) (part INDUCTOR)
+      (fields
+        (field (name Reference) L)
+        (field (name Value) INDUCTOR))
+      (pins
+        (pin (num 1) (name 1) (type passive))
+        (pin (num 2) (name 2) (type passive))))
+    (libpart (lib device) (part LED)
+      (footprints
+        (fp LED-3MM)
+        (fp LED-5MM)
+        (fp LED-10MM)
+        (fp LED-0603)
+        (fp LED-0805)
+        (fp LED-1206)
+        (fp LEDV))
+      (fields
+        (field (name Reference) D)
+        (field (name Value) LED))
+      (pins
+        (pin (num 1) (name A) (type passive))
+        (pin (num 2) (name K) (type passive))))
+    (libpart (lib device) (part R)
+      (description Resistance)
+      (footprints
+        (fp R?)
+        (fp SM0603)
+        (fp SM0805)
+        (fp R?-*)
+        (fp SM1206))
+      (fields
+        (field (name Reference) R)
+        (field (name Value) R))
+      (pins
+        (pin (num 1) (name ~) (type passive))
+        (pin (num 2) (name ~) (type passive))))
+    (libpart (lib device) (part ZENER)
+      (description "Diode zener")
+      (footprints
+        (fp D?)
+        (fp SO*)
+        (fp SM*))
+      (fields
+        (field (name Reference) D)
+        (field (name Value) ZENER))
+      (pins
+        (pin (num 1) (name A) (type passive))
+        (pin (num 2) (name K) (type passive))))
+    (libpart (lib conn) (part CONN_10)
+      (description "Symbole general de connecteur")
+      (fields
+        (field (name Reference) P)
+        (field (name Value) CONN_10))
+      (pins
+        (pin (num 1) (name P1) (type passive))
+        (pin (num 2) (name P2) (type passive))
+        (pin (num 3) (name P3) (type passive))
+        (pin (num 4) (name P4) (type passive))
+        (pin (num 5) (name P5) (type passive))
+        (pin (num 6) (name P6) (type passive))
+        (pin (num 7) (name P7) (type passive))
+        (pin (num 8) (name P8) (type passive))
+        (pin (num 9) (name P9) (type passive))
+        (pin (num 10) (name P10) (type passive))))
+    (libpart (lib conn) (part CONN_2)
+      (description "Symbole general de connecteur")
+      (fields
+        (field (name Reference) P)
+        (field (name Value) CONN_2))
+      (pins
+        (pin (num 1) (name P1) (type passive))
+        (pin (num 2) (name PM) (type passive))))
+    (libpart (lib conn) (part CONN_3)
+      (description "Symbole general de connecteur")
+      (fields
+        (field (name Reference) K)
+        (field (name Value) CONN_3))
+      (pins
+        (pin (num 1) (name P1) (type passive))
+        (pin (num 2) (name PM) (type passive))
+        (pin (num 3) (name P3) (type passive))))
+    (libpart (lib conn) (part CONN_3X2)
+      (description "Symbole general de connecteur")
+      (fields
+        (field (name Reference) P)
+        (field (name Value) CONN_3X2))
+      (pins
+        (pin (num 1) (name 1) (type passive))
+        (pin (num 2) (name 2) (type passive))
+        (pin (num 3) (name 3) (type passive))
+        (pin (num 4) (name 4) (type passive))
+        (pin (num 5) (name 5) (type passive))
+        (pin (num 6) (name 6) (type passive))))
+    (libpart (lib conn) (part CONN_5)
+      (description "Symbole general de connecteur")
+      (fields
+        (field (name Reference) P)
+        (field (name Value) CONN_5))
+      (pins
+        (pin (num 1) (name ~) (type passive))
+        (pin (num 2) (name ~) (type passive))
+        (pin (num 3) (name ~) (type passive))
+        (pin (num 4) (name ~) (type passive))
+        (pin (num 5) (name ~) (type passive))))
+    (libpart (lib conn) (part CONN_6)
+      (description "ymbole general de connecteur")
+      (fields
+        (field (name Reference) P)
+        (field (name Value) CONN_6))
+      (pins
+        (pin (num 1) (name 1) (type passive))
+        (pin (num 2) (name 2) (type passive))
+        (pin (num 3) (name 3) (type passive))
+        (pin (num 4) (name 4) (type passive))
+        (pin (num 5) (name 5) (type passive))
+        (pin (num 6) (name 6) (type passive))))
+    (libpart (lib linear) (part LM358)
+      (description "Dual Op amp (low power)")
+      (docs ns/lm158.pdf)
+      (fields
+        (field (name Reference) U)
+        (field (name Value) LM358))
+      (pins
+        (pin (num 1) (name ~) (type output))
+        (pin (num 2) (name -) (type input))
+        (pin (num 3) (name +) (type input))
+        (pin (num 4) (name V-) (type power_in))
+        (pin (num 5) (name +) (type input))
+        (pin (num 6) (name -) (type input))
+        (pin (num 7) (name ~) (type output))
+        (pin (num 8) (name V+) (type power_in))))
+    (libpart (lib h2019) (part H2019)
+      (fields
+        (field (name Reference) T)
+        (field (name Value) H2019))
+      (pins
+        (pin (num 1) (name TD+) (type unspc))
+        (pin (num 2) (name TCT) (type unspc))
+        (pin (num 3) (name TD-) (type unspc))
+        (pin (num 6) (name RD+) (type unspc))
+        (pin (num 7) (name RCT) (type unspc))
+        (pin (num 8) (name RD-) (type unspc))
+        (pin (num 9) (name RX1-) (type unspc))
+        (pin (num 10) (name RXCT) (type unspc))
+        (pin (num 11) (name RX1+) (type unspc))
+        (pin (num 14) (name TX1-) (type unspc))
+        (pin (num 15) (name TXCT) (type unspc))
+        (pin (num 16) (name TX1+) (type unspc))))
+    (libpart (lib amp-rjhs-508x) (part AMP-RJHS-508X)
+      (fields
+        (field (name Reference) CONN)
+        (field (name Value) AMP-RJHS-508X))
+      (pins
+        (pin (num 1) (name 1) (type input))
+        (pin (num 2) (name 2) (type input))
+        (pin (num 3) (name 3) (type input))
+        (pin (num 4) (name 4) (type input))
+        (pin (num 5) (name 5) (type input))
+        (pin (num 6) (name 6) (type input))
+        (pin (num 7) (name 7) (type input))
+        (pin (num 8) (name 8) (type input))
+        (pin (num 9) (name LED1-) (type input))
+        (pin (num 10) (name LED1+) (type input))
+        (pin (num 11) (name LED2-) (type input))
+        (pin (num 12) (name LED2+) (type input))))
+    (libpart (lib si3402) (part SI3402)
+      (fields
+        (field (name Reference) U)
+        (field (name Value) SI3402))
+      (pins
+        (pin (num 1) (name EROUT) (type input))
+        (pin (num 2) (name SSFT) (type input))
+        (pin (num 3) (name VDD) (type input))
+        (pin (num 4) (name ISOSSFT) (type input))
+        (pin (num 5) (name PLOSS) (type input))
+        (pin (num 6) (name RDET) (type input))
+        (pin (num 7) (name HSO) (type output))
+        (pin (num 8) (name RCL) (type input))
+        (pin (num 9) (name VNEG) (type input))
+        (pin (num 10) (name SP2) (type input))
+        (pin (num 11) (name SP1) (type input))
+        (pin (num 12) (name VPOSF) (type input))
+        (pin (num 13) (name CT2) (type input))
+        (pin (num 14) (name CT1) (type input))
+        (pin (num 15) (name VSSA) (type input))
+        (pin (num 16) (name VPOSS) (type input))
+        (pin (num 17) (name VSS1) (type input))
+        (pin (num 18) (name SWO) (type input))
+        (pin (num 19) (name VSS2) (type input))
+        (pin (num 20) (name FB) (type input))
+        (pin (num 21) (name VNEGP) (type input))))
+    (libpart (lib microchip-enc28j60) (part ENC28J60-SSOP)
+      (fields
+        (field (name Reference) U)
+        (field (name Value) ENC28J60-SSOP)
+        (field (name Footprint) microchip-enc28j60-SSOP28))
+      (pins
+        (pin (num 1) (name VCAP) (type power_in))
+        (pin (num 2) (name VSS) (type power_in))
+        (pin (num 3) (name CLKOUT) (type output))
+        (pin (num 4) (name INT) (type output))
+        (pin (num 5) (name WOL) (type output))
+        (pin (num 6) (name SO) (type output))
+        (pin (num 7) (name SI) (type input))
+        (pin (num 8) (name SCK) (type input))
+        (pin (num 9) (name CS) (type input))
+        (pin (num 10) (name RESET) (type input))
+        (pin (num 11) (name VSSRX) (type power_in))
+        (pin (num 12) (name TPIN-) (type input))
+        (pin (num 13) (name TPIN+) (type input))
+        (pin (num 14) (name RBIAS) (type passive))
+        (pin (num 15) (name VDDTX) (type power_in))
+        (pin (num 16) (name TPOUT-) (type output))
+        (pin (num 17) (name TPOUT+) (type output))
+        (pin (num 18) (name VSSTX) (type power_in))
+        (pin (num 19) (name VDDRX) (type power_in))
+        (pin (num 20) (name VDDPLL) (type power_in))
+        (pin (num 21) (name VSSPLL) (type power_in))
+        (pin (num 22) (name VSSOSC) (type power_in))
+        (pin (num 23) (name OSC1) (type input))
+        (pin (num 24) (name OSC2) (type output))
+        (pin (num 25) (name VDDOSC) (type power_in))
+        (pin (num 26) (name LEDB) (type output))
+        (pin (num 27) (name LEDA) (type output))
+        (pin (num 28) (name VDD) (type power_in))))
+    (libpart (lib microchip-enc28j60) (part SPST-D)
+      (fields
+        (field (name Reference) Sw)
+        (field (name Value) SPST-D))
+      (pins
+        (pin (num 1) (name 1) (type input))
+        (pin (num 2) (name 2) (type input))
+        (pin (num 3) (name 3) (type input))
+        (pin (num 4) (name 3) (type input))))
+    (libpart (lib xmega-a4) (part "XMEGA A4")
+      (fields
+        (field (name Reference) U)
+        (field (name Value) "XMEGA A4"))
+      (pins
+        (pin (num 1) (name ADC5/PA5) (type input))
+        (pin (num 2) (name ADC6/PA6) (type input))
+        (pin (num 3) (name ADC7/PA7) (type input))
+        (pin (num 4) (name AREF/ADC8/PB0) (type input))
+        (pin (num 5) (name ADC9/PB1) (type input))
+        (pin (num 6) (name DAC0/ADC10/PB2) (type input))
+        (pin (num 7) (name DAC1/ADC11/PB3) (type input))
+        (pin (num 8) (name GND) (type power_out))
+        (pin (num 9) (name VCC) (type power_in))
+        (pin (num 10) (name SDA/OC0A/PC0) (type input))
+        (pin (num 11) (name XCK0/SCL/OC0B/PC1) (type input))
+        (pin (num 12) (name RXD0/OC0C/PC2) (type input))
+        (pin (num 13) (name TXD0/OC0D/PC3) (type input))
+        (pin (num 14) (name SS/OC1A/PC4) (type input))
+        (pin (num 15) (name MOSI/XCK1/OC1B/PC5) (type input))
+        (pin (num 16) (name MISO/RXD1/PC6) (type input))
+        (pin (num 17) (name SCK/TXD1/CLKOUT/PC7) (type input))
+        (pin (num 18) (name GND) (type power_out))
+        (pin (num 19) (name VCC) (type power_in))
+        (pin (num 20) (name OC0A/PD0) (type input))
+        (pin (num 21) (name XCK0/OC0B/PD1) (type input))
+        (pin (num 22) (name RXD0/OC0C/PD2) (type input))
+        (pin (num 23) (name TXD0/OC0D/PD3) (type input))
+        (pin (num 24) (name SS/OC1A/PD4) (type input))
+        (pin (num 25) (name MOSI/XCK1/OC1B/PD5) (type input))
+        (pin (num 26) (name MISO/RXD1/PD6) (type input))
+        (pin (num 27) (name SCK/CLKOUT/TXD1/PD7) (type input))
+        (pin (num 28) (name SDA//OC0A/PE0) (type input))
+        (pin (num 29) (name XCK0/SCL/OC0B/PE1) (type input))
+        (pin (num 30) (name GND) (type power_out))
+        (pin (num 31) (name VCC) (type power_in))
+        (pin (num 32) (name RXD0/OC0C/PE2) (type input))
+        (pin (num 33) (name TXD0/OC0D/PE3) (type input))
+        (pin (num 34) (name PDI_DATA) (type input))
+        (pin (num 35) (name RESET/PDA_CLK) (type input))
+        (pin (num 36) (name TOSC2/XTAL2/PR0) (type input))
+        (pin (num 37) (name TOSC1/XTAL1/PR1) (type input))
+        (pin (num 38) (name GND) (type power_out))
+        (pin (num 39) (name AVCC) (type power_in))
+        (pin (num 40) (name AREF/ACD0/PA0) (type input))
+        (pin (num 41) (name ADC1/PA1) (type input))
+        (pin (num 42) (name ADC2/PA2) (type input))
+        (pin (num 43) (name ADC3/PA3) (type input))
+        (pin (num 44) (name ADC4/PA4) (type input))))
+    (libpart (lib pirmotion) (part RE200B)
+      (fields
+        (field (name Reference) U)
+        (field (name Value) RE200B))
+      (pins
+        (pin (num 1) (name Drain) (type input))
+        (pin (num 2) (name Source) (type input))
+        (pin (num 3) (name GND) (type input))))
+    (libpart (lib ga1a1s) (part GA1A1S)
+      (fields
+        (field (name Reference) U)
+        (field (name Value) GA1A1S))
+      (pins
+        (pin (num 1) (name GND) (type input))
+        (pin (num 2) (name GND) (type input))
+        (pin (num 3) (name OUT) (type input))
+        (pin (num 4) (name VCC) (type input))))
+    (libpart (lib poeremote-cache) (part BF823-PNP-SOT23-BEC)
+      (fields
+        (field (name Reference) T)
+        (field (name Value) BF823-PNP-SOT23-BEC)
+        (field (name Footprint) transistor-SOT23-BEC))
+      (pins
+        (pin (num B) (name B) (type passive))
+        (pin (num C) (name C) (type passive))
+        (pin (num E) (name E) (type passive))))
+    (libpart (lib poeremote-cache) (part BC808-NPN-SOT23-BEC)
+      (fields
+        (field (name Reference) T)
+        (field (name Value) BC808-NPN-SOT23-BEC)
+        (field (name Footprint) transistor-SOT23-BEC))
+      (pins
+        (pin (num B) (name B) (type passive))
+        (pin (num C) (name C) (type passive))
+        (pin (num E) (name E) (type passive))))
+    (libpart (lib Vocanson_display) (part DC08-11)
+      (fields
+        (field (name Reference) AFF)
+        (field (name Value) DC08-11))
+      (pins
+        (pin (num 1) (name e) (type input))
+        (pin (num 2) (name e) (type input))
+        (pin (num 3) (name c) (type input))
+        (pin (num 4) (name DP1) (type input))
+        (pin (num 5) (name D2) (type input))
+        (pin (num 6) (name d) (type input))
+        (pin (num 7) (name g) (type input))
+        (pin (num 8) (name c) (type input))
+        (pin (num 9) (name DP2) (type input))
+        (pin (num 10) (name a) (type input))
+        (pin (num 11) (name f) (type input))
+        (pin (num 12) (name b) (type input))
+        (pin (num 13) (name b) (type input))
+        (pin (num 14) (name f) (type input))
+        (pin (num 15) (name b) (type input))
+        (pin (num 16) (name a) (type input))
+        (pin (num 17) (name g) (type input))
+        (pin (num 18) (name f) (type input)))))
+  (libraries
+    (library (logical device)
+      (uri /usr/local/share/library/device.lib))
+    (library (logical conn)
+      (uri /usr/local/share/library/conn.lib))
+    (library (logical linear)
+      (uri /usr/local/share/library/linear.lib))
+    (library (logical h2019)
+      (uri libs/h2019.lib))
+    (library (logical microchip-enc28j60)
+      (uri libs/microchip-enc28j60.lib))
+    (library (logical amp-rjhs-508x)
+      (uri libs/amp-rjhs-508x.lib))
+    (library (logical si3402)
+      (uri libs/si3402.lib))
+    (library (logical xmega-a4)
+      (uri libs/xmega-a4.lib))
+    (library (logical pirmotion)
+      (uri libs/pirmotion.lib))
+    (library (logical ga1a1s)
+      (uri libs/ga1a1s.lib))
+    (library (logical poeremote-cache)
+      (uri /home/scott/projects/PoE-Remote-Board/hardware/poeremote-cache.lib))
+    (library (logical Vocanson_display)
+      (uri libs/unknown_licenses/Vocanson_display.lib)))
+  (nets
+    (net (code 1) (name +3.3V)
+      (node (ref C33) (pin 1))
+      (node (ref C10) (pin 1))
+      (node (ref U8) (pin 4))
+      (node (ref Q2) (pin E))
+      (node (ref J4) (pin 3))
+      (node (ref C16) (pin 2))
+      (node (ref U5) (pin 39))
+      (node (ref C24) (pin 1))
+      (node (ref C9) (pin 1))
+      (node (ref R13) (pin 1))
+      (node (ref R6) (pin 1))
+      (node (ref C4) (pin 1))
+      (node (ref C25) (pin 1))
+      (node (ref J1) (pin 2))
+      (node (ref D1) (pin 2))
+      (node (ref C12) (pin 2))
+      (node (ref C14) (pin 2))
+      (node (ref C18) (pin 2))
+      (node (ref C21) (pin 1))
+      (node (ref J3) (pin 10))
+      (node (ref J3) (pin 12))
+      (node (ref C5) (pin 1))
+      (node (ref J7) (pin 3))
+      (node (ref U5) (pin 31))
+      (node (ref R4) (pin 2))
+      (node (ref C2) (pin 1))
+      (node (ref U5) (pin 19))
+      (node (ref U1) (pin 8))
+      (node (ref U4) (pin 15))
+      (node (ref U3) (pin 12))
+      (node (ref U5) (pin 9))
+      (node (ref U3) (pin 16))
+      (node (ref R3) (pin 1))
+      (node (ref J5) (pin 1))
+      (node (ref U4) (pin 19))
+      (node (ref U4) (pin 28))
+      (node (ref L3) (pin 1))
+      (node (ref C27) (pin 1))
+      (node (ref U4) (pin 25))
+      (node (ref U4) (pin 20)))
+    (net (code 2) (name /RX-)
+      (node (ref U4) (pin 12))
+      (node (ref T1) (pin 8))
+      (node (ref R47) (pin 2)))
+    (net (code 3) (name "")
+      (node (ref U4) (pin 5)))
+    (net (code 4) (name "")
+      (node (ref J5) (pin 3)))
+    (net (code 5) (name "")
+      (node (ref J5) (pin 4)))
+    (net (code 6) (name GND)
+      (node (ref U4) (pin 2))
+      (node (ref U5) (pin 38))
+      (node (ref C30) (pin 2))
+      (node (ref U5) (pin 18))
+      (node (ref AFF1) (pin 13))
+      (node (ref AFF1) (pin 14))
+      (node (ref R16) (pin 2))
+      (node (ref C3) (pin 2))
+      (node (ref R9) (pin 2))
+      (node (ref C29) (pin 2))
+      (node (ref U4) (pin 18))
+      (node (ref C21) (pin 2))
+      (node (ref C23) (pin 2))
+      (node (ref J1) (pin 1))
+      (node (ref U5) (pin 30))
+      (node (ref R14) (pin 2))
+      (node (ref U4) (pin 22))
+      (node (ref U4) (pin 21))
+      (node (ref U4) (pin 11))
+      (node (ref U1) (pin 4))
+      (node (ref U8) (pin 1))
+      (node (ref R55) (pin 2))
+      (node (ref C35) (pin 2))
+      (node (ref C2) (pin 2))
+      (node (ref D3) (pin 2))
+      (node (ref D4) (pin 2))
+      (node (ref J5) (pin 5))
+      (node (ref U5) (pin 8))
+      (node (ref L1) (pin 1))
+      (node (ref U8) (pin 2))
+      (node (ref J4) (pin 1))
+      (node (ref R40) (pin 1))
+      (node (ref C28) (pin 2))
+      (node (ref Sw1) (pin 3))
+      (node (ref R2) (pin 2))
+      (node (ref C1) (pin 2))
+      (node (ref U6) (pin 3))
+      (node (ref Sw2) (pin 3))
+      (node (ref Sw2) (pin 4))
+      (node (ref Sw1) (pin 4))
+      (node (ref C32) (pin 2))
+      (node (ref C31) (pin 2))
+      (node (ref C33) (pin 2))
+      (node (ref C27) (pin 2)))
+    (net (code 7) (name /PDI_CLK)
+      (node (ref U5) (pin 35))
+      (node (ref J5) (pin 6)))
+    (net (code 8) (name /PDI_DATA)
+      (node (ref J5) (pin 2))
+      (node (ref U5) (pin 34)))
+    (net (code 9) (name "")
+      (node (ref U4) (pin 27))
+      (node (ref R41) (pin 1)))
+    (net (code 10) (name /LED1)
+      (node (ref R41) (pin 2))
+      (node (ref J3) (pin 11)))
+    (net (code 11) (name "")
+      (node (ref C30) (pin 1))
+      (node (ref U4) (pin 1)))
+    (net (code 12) (name /RX+)
+      (node (ref U4) (pin 13))
+      (node (ref T1) (pin 6))
+      (node (ref R48) (pin 2)))
+    (net (code 13) (name "")
+      (node (ref C28) (pin 1))
+      (node (ref R48) (pin 1))
+      (node (ref R47) (pin 1)))
+    (net (code 14) (name "")
+      (node (ref U4) (pin 14))
+      (node (ref R40) (pin 2)))
+    (net (code 15) (name "")
+      (node (ref C31) (pin 1))
+      (node (ref U4) (pin 23))
+      (node (ref X1) (pin 1)))
+    (net (code 16) (name "")
+      (node (ref U4) (pin 24))
+      (node (ref C32) (pin 1))
+      (node (ref X1) (pin 2)))
+    (net (code 17) (name /ETHCS)
+      (node (ref U4) (pin 9))
+      (node (ref U5) (pin 24)))
+    (net (code 18) (name /sw_bottom)
+      (node (ref Sw2) (pin 2))
+      (node (ref U5) (pin 22))
+      (node (ref P2) (pin 1))
+      (node (ref Sw2) (pin 1)))
+    (net (code 19) (name /EXT_PC4)
+      (node (ref U5) (pin 14))
+      (node (ref P2) (pin 7))
+      (node (ref R28) (pin 2)))
+    (net (code 20) (name /EXT_PC7)
+      (node (ref U5) (pin 17))
+      (node (ref R19) (pin 1))
+      (node (ref P2) (pin 4)))
+    (net (code 22) (name /EXT_PD1)
+      (node (ref R21) (pin 1))
+      (node (ref P2) (pin 2))
+      (node (ref U5) (pin 21)))
+    (net (code 23) (name /EXT_PC1)
+      (node (ref R31) (pin 2))
+      (node (ref U5) (pin 11))
+      (node (ref P2) (pin 8)))
+    (net (code 24) (name /EXT_PC0)
+      (node (ref R27) (pin 2))
+      (node (ref U5) (pin 10))
+      (node (ref P2) (pin 9)))
+    (net (code 25) (name /SER_RX)
+      (node (ref J4) (pin 4))
+      (node (ref U5) (pin 33)))
+    (net (code 26) (name /SER_TX)
+      (node (ref J4) (pin 5))
+      (node (ref U5) (pin 32)))
+    (net (code 27) (name "")
+      (node (ref Q2) (pin B))
+      (node (ref R52) (pin 1)))
+    (net (code 28) (name "")
+      (node (ref R51) (pin 2))
+      (node (ref Q2) (pin C)))
+    (net (code 29) (name /PWM5V)
+      (node (ref R51) (pin 1))
+      (node (ref D2) (pin 2))
+      (node (ref J7) (pin 2))
+      (node (ref R53) (pin 2)))
+    (net (code 30) (name /motion_power)
+      (node (ref C1) (pin 1))
+      (node (ref U6) (pin 1))
+      (node (ref R4) (pin 1)))
+    (net (code 31) (name "")
+      (node (ref R24) (pin 2))
+      (node (ref AFF1) (pin 4)))
+    (net (code 32) (name "")
+      (node (ref J3) (pin 1))
+      (node (ref T1) (pin 16)))
+    (net (code 33) (name "")
+      (node (ref R21) (pin 2))
+      (node (ref AFF1) (pin 1)))
+    (net (code 34) (name "")
+      (node (ref R20) (pin 2))
+      (node (ref AFF1) (pin 2)))
+    (net (code 35) (name "")
+      (node (ref AFF1) (pin 3))
+      (node (ref R19) (pin 2)))
+    (net (code 36) (name "")
+      (node (ref AFF1) (pin 11))
+      (node (ref R25) (pin 1)))
+    (net (code 37) (name "")
+      (node (ref AFF1) (pin 5))
+      (node (ref R29) (pin 1)))
+    (net (code 38) (name "")
+      (node (ref AFF1) (pin 6))
+      (node (ref R28) (pin 1)))
+    (net (code 39) (name "")
+      (node (ref AFF1) (pin 7))
+      (node (ref R31) (pin 1)))
+    (net (code 40) (name "")
+      (node (ref AFF1) (pin 8))
+      (node (ref R27) (pin 1)))
+    (net (code 41) (name "")
+      (node (ref R32) (pin 1))
+      (node (ref AFF1) (pin 9)))
+    (net (code 42) (name "")
+      (node (ref AFF1) (pin 10))
+      (node (ref R26) (pin 1)))
+    (net (code 43) (name "")
+      (node (ref AFF1) (pin 12))
+      (node (ref R30) (pin 1)))
+    (net (code 44) (name "")
+      (node (ref R18) (pin 2))
+      (node (ref AFF1) (pin 15)))
+    (net (code 45) (name "")
+      (node (ref AFF1) (pin 16))
+      (node (ref R17) (pin 2)))
+    (net (code 46) (name "")
+      (node (ref AFF1) (pin 17))
+      (node (ref R23) (pin 2)))
+    (net (code 47) (name "")
+      (node (ref R22) (pin 2))
+      (node (ref AFF1) (pin 18)))
+    (net (code 48) (name /EXT_PB3)
+      (node (ref U5) (pin 7))
+      (node (ref P2) (pin 10))
+      (node (ref R32) (pin 2)))
+    (net (code 49) (name "")
+      (node (ref R6) (pin 2))
+      (node (ref U3) (pin 6)))
+    (net (code 50) (name /VNEG)
+      (node (ref R11) (pin 2))
+      (node (ref C4) (pin 2))
+      (node (ref C19) (pin 2))
+      (node (ref C17) (pin 2))
+      (node (ref C13) (pin 2))
+      (node (ref C15) (pin 2))
+      (node (ref U3) (pin 9))
+      (node (ref U3) (pin 21)))
+    (net (code 51) (name /LED2)
+      (node (ref J3) (pin 9))
+      (node (ref R42) (pin 2)))
+    (net (code 53) (name "")
+      (node (ref J3) (pin 2))
+      (node (ref T1) (pin 14)))
+    (net (code 54) (name /SPARE45)
+      (node (ref C13) (pin 1))
+      (node (ref U3) (pin 10))
+      (node (ref J3) (pin 5))
+      (node (ref J3) (pin 4))
+      (node (ref C12) (pin 1)))
+    (net (code 55) (name "")
+      (node (ref J3) (pin 6))
+      (node (ref T1) (pin 9)))
+    (net (code 56) (name "")
+      (node (ref U3) (pin 3))
+      (node (ref U3) (pin 4))
+      (node (ref C6) (pin 2)))
+    (net (code 57) (name "")
+      (node (ref U3) (pin 5)))
+    (net (code 58) (name "")
+      (node (ref U3) (pin 8))
+      (node (ref R11) (pin 1)))
+    (net (code 59) (name /SPARE78)
+      (node (ref C15) (pin 1))
+      (node (ref C14) (pin 1))
+      (node (ref J3) (pin 7))
+      (node (ref U3) (pin 11))
+      (node (ref J3) (pin 8)))
+    (net (code 60) (name /RXCT)
+      (node (ref C18) (pin 1))
+      (node (ref U3) (pin 14))
+      (node (ref C19) (pin 1))
+      (node (ref T1) (pin 10)))
+    (net (code 61) (name "")
+      (node (ref R1) (pin 1))
+      (node (ref C9) (pin 2))
+      (node (ref C10) (pin 2))
+      (node (ref U3) (pin 17))
+      (node (ref R12) (pin 1))
+      (node (ref U3) (pin 19)))
+    (net (code 62) (name "")
+      (node (ref U3) (pin 2))
+      (node (ref C24) (pin 2)))
+    (net (code 63) (name /vfeedback)
+      (node (ref U3) (pin 20))
+      (node (ref R16) (pin 1))
+      (node (ref R3) (pin 2))
+      (node (ref C23) (pin 1)))
+    (net (code 64) (name "")
+      (node (ref L2) (pin 1))
+      (node (ref L1) (pin 2))
+      (node (ref C25) (pin 2)))
+    (net (code 65) (name /switchedout)
+      (node (ref U3) (pin 18))
+      (node (ref D1) (pin 1))
+      (node (ref L2) (pin 2)))
+    (net (code 66) (name "")
+      (node (ref C22) (pin 2))
+      (node (ref U3) (pin 15))
+      (node (ref C6) (pin 1)))
+    (net (code 67) (name "")
+      (node (ref C22) (pin 1))
+      (node (ref C8) (pin 2))
+      (node (ref R10) (pin 2)))
+    (net (code 68) (name /RCT)
+      (node (ref T1) (pin 7)))
+    (net (code 69) (name "")
+      (node (ref J3) (pin 3))
+      (node (ref T1) (pin 11)))
+    (net (code 70) (name /TX-)
+      (node (ref T1) (pin 3))
+      (node (ref U4) (pin 16))
+      (node (ref R50) (pin 2)))
+    (net (code 71) (name /TX+)
+      (node (ref U4) (pin 17))
+      (node (ref T1) (pin 1))
+      (node (ref R49) (pin 2)))
+    (net (code 72) (name /TCT)
+      (node (ref C29) (pin 1))
+      (node (ref R49) (pin 1))
+      (node (ref T1) (pin 2))
+      (node (ref R50) (pin 1))
+      (node (ref L3) (pin 2)))
+    (net (code 73) (name "")
+      (node (ref R42) (pin 1))
+      (node (ref U4) (pin 26)))
+    (net (code 74) (name /SLED2)
+      (node (ref U5) (pin 12))
+      (node (ref R57) (pin 2)))
+    (net (code 75) (name "")
+      (node (ref C8) (pin 1))
+      (node (ref R10) (pin 1))
+      (node (ref Q1) (pin C))
+      (node (ref U3) (pin 1)))
+    (net (code 76) (name "")
+      (node (ref R1) (pin 2))
+      (node (ref Q1) (pin B))
+      (node (ref C20) (pin 2)))
+    (net (code 77) (name /TXCT)
+      (node (ref C17) (pin 1))
+      (node (ref C16) (pin 1))
+      (node (ref U3) (pin 13))
+      (node (ref T1) (pin 15)))
+    (net (code 78) (name /MOT_POS)
+      (node (ref U5) (pin 4))
+      (node (ref U1) (pin 7))
+      (node (ref R15) (pin 2))
+      (node (ref C26) (pin 2)))
+    (net (code 79) (name /motion_output)
+      (node (ref R2) (pin 1))
+      (node (ref U6) (pin 2))
+      (node (ref U1) (pin 3)))
+    (net (code 80) (name /MOT_NEG)
+      (node (ref U1) (pin 5))
+      (node (ref U5) (pin 3))
+      (node (ref R14) (pin 1))
+      (node (ref R13) (pin 2)))
+    (net (code 81) (name /EXT_PA5)
+      (node (ref U5) (pin 1))
+      (node (ref P1) (pin 4))
+      (node (ref R30) (pin 2)))
+    (net (code 82) (name /EXT_PA6)
+      (node (ref R25) (pin 2))
+      (node (ref P1) (pin 5))
+      (node (ref U5) (pin 2)))
+    (net (code 83) (name /LIGHT_V)
+      (node (ref R55) (pin 1))
+      (node (ref C35) (pin 1))
+      (node (ref U8) (pin 3))
+      (node (ref U5) (pin 5)))
+    (net (code 84) (name /EXT_PB2)
+      (node (ref R26) (pin 2))
+      (node (ref U5) (pin 6)))
+    (net (code 85) (name /EXT_PD0)
+      (node (ref R20) (pin 1))
+      (node (ref U5) (pin 20))
+      (node (ref P2) (pin 3)))
+    (net (code 86) (name "")
+      (node (ref U1) (pin 6))
+      (node (ref C26) (pin 1))
+      (node (ref C11) (pin 1))
+      (node (ref R15) (pin 1)))
+    (net (code 87) (name /SER_CTS)
+      (node (ref U5) (pin 40))
+      (node (ref J4) (pin 6)))
+    (net (code 88) (name /motion_firstfilter)
+      (node (ref R8) (pin 1))
+      (node (ref C7) (pin 2))
+      (node (ref R7) (pin 2))
+      (node (ref U1) (pin 1)))
+    (net (code 89) (name "")
+      (node (ref R7) (pin 1))
+      (node (ref U1) (pin 2))
+      (node (ref C7) (pin 1))
+      (node (ref R5) (pin 1)))
+    (net (code 90) (name "")
+      (node (ref C3) (pin 1))
+      (node (ref R5) (pin 2)))
+    (net (code 91) (name "")
+      (node (ref R8) (pin 2))
+      (node (ref R9) (pin 1))
+      (node (ref C11) (pin 2)))
+    (net (code 92) (name "")
+      (node (ref D3) (pin 1))
+      (node (ref R56) (pin 1)))
+    (net (code 93) (name /LAMPPWM)
+      (node (ref R52) (pin 2))
+      (node (ref U5) (pin 29)))
+    (net (code 94) (name "")
+      (node (ref D4) (pin 1))
+      (node (ref R57) (pin 1)))
+    (net (code 95) (name /SER_DTR)
+      (node (ref R22) (pin 1))
+      (node (ref U5) (pin 41))
+      (node (ref J4) (pin 2)))
+    (net (code 96) (name /EXT_PA2)
+      (node (ref P1) (pin 1))
+      (node (ref U5) (pin 42))
+      (node (ref R23) (pin 1)))
+    (net (code 97) (name /SLED1)
+      (node (ref U5) (pin 13))
+      (node (ref R56) (pin 2)))
+    (net (code 98) (name /ETHINT)
+      (node (ref U4) (pin 4))
+      (node (ref U5) (pin 23)))
+    (net (code 99) (name /EXT_PA3)
+      (node (ref P1) (pin 2))
+      (node (ref U5) (pin 43))
+      (node (ref R17) (pin 1)))
+    (net (code 100) (name /Switched48)
+      (node (ref C20) (pin 1))
+      (node (ref R53) (pin 1))
+      (node (ref U3) (pin 7))
+      (node (ref D2) (pin 1))
+      (node (ref J7) (pin 1))
+      (node (ref Q1) (pin E))
+      (node (ref C5) (pin 2))
+      (node (ref R12) (pin 2)))
+    (net (code 101) (name /EXT_PA4)
+      (node (ref R18) (pin 1))
+      (node (ref U5) (pin 44))
+      (node (ref P1) (pin 3)))
+    (net (code 102) (name /EXT_PC5)
+      (node (ref R29) (pin 2))
+      (node (ref P2) (pin 6))
+      (node (ref U5) (pin 15)))
+    (net (code 103) (name /MOSI)
+      (node (ref U5) (pin 25))
+      (node (ref U4) (pin 7)))
+    (net (code 104) (name /EXT_PC6)
+      (node (ref U5) (pin 16))
+      (node (ref P2) (pin 5))
+      (node (ref R24) (pin 1)))
+    (net (code 105) (name /MISO)
+      (node (ref U4) (pin 6))
+      (node (ref U5) (pin 26)))
+    (net (code 106) (name /sw_top)
+      (node (ref U5) (pin 36))
+      (node (ref Sw1) (pin 2))
+      (node (ref Sw1) (pin 1)))
+    (net (code 107) (name /SCK)
+      (node (ref U5) (pin 27))
+      (node (ref U4) (pin 8)))
+    (net (code 108) (name /CLKOUT)
+      (node (ref U4) (pin 3))
+      (node (ref U5) (pin 37)))
+    (net (code 109) (name /ETHRST)
+      (node (ref U4) (pin 10))
+      (node (ref U5) (pin 28)))))

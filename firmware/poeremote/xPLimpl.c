@@ -60,6 +60,8 @@
 #define PWMEXTEND 340
 
 
+//#define MOTIONENABLE
+
 #endif
 
 
@@ -83,7 +85,7 @@ volatile uint8_t pmstartval = 0;
 volatile uint8_t pmendval = 0;
 volatile uint16_t pmsteps = 0;
 
-struct persistentconfig perconf = {0x14,1000,900,1000,"smgpoe-lamp.4"};
+struct persistentconfig perconf = {0x14,1000,900,1000,"smgpoe-lamp.6"};
 
 char const xplname[] PROGMEM = XPLNAME;
 
@@ -93,10 +95,43 @@ static clock_time_t last_heartbeat = 0;
 
 uip_ipaddr_t daddr;
 
+
+#define SETPINFROMBIT(inbit,port,outbit) if(val&(1<<inbit)) port.OUTSET = (1<<outbit); else port.OUTCLR = (1<<outbit);
+
+void init_LEDDisp(void) {
+    PORTA.DIR |= (1<<1) |(1<<2) | (1<<3) | (1<<4) | (1<<5)|(1<<6);
+    PORTB.DIR |= (1<<2) | (1<<3);
+    PORTC.DIR |= (1<<0) | (1<<1) | (1<<4) | (1<<5) | (1<<6)|(1<<7);
+    PORTD.DIR |= (1<<0) | (1<<1) ;
+}
+
+void set_LEDDisp(uint16_t val){
+    SETPINFROMBIT(0,PORTA,6);//A
+    SETPINFROMBIT(1,PORTB,2);
+    SETPINFROMBIT(2,PORTC,0);
+    SETPINFROMBIT(3,PORTC,4);
+    SETPINFROMBIT(4,PORTC,5);
+    SETPINFROMBIT(5,PORTA,5);
+    SETPINFROMBIT(6,PORTC,1);//G
+    SETPINFROMBIT(7,PORTB,3);//DP
+    
+    SETPINFROMBIT(8,PORTA,3);//A
+    SETPINFROMBIT(9,PORTA,4);
+    SETPINFROMBIT(10,PORTC,7);
+    SETPINFROMBIT(11,PORTD,0);
+    SETPINFROMBIT(12,PORTD,1);
+    SETPINFROMBIT(13,PORTA,1);
+    SETPINFROMBIT(14,PORTA,2);//G
+    SETPINFROMBIT(15,PORTC,6);//DP
+    
+}
+
+
+
 /* take a character in buf and make an int out of it, so long as it int is no larger than max */
-static uint8_t str_to_int ( char* buf, uint8_t max )
+static uint16_t str_to_int ( char* buf, uint8_t max )
 {
-    uint8_t out = 0;
+    uint16_t out = 0;
     while ( max )
     {
         if ( ( *buf >= '0' ) && ( *buf<='9' ) )
@@ -136,17 +171,17 @@ static uint16_t str_to_int_16 ( char* buf, uint16_t max )
 
 void initNL ( void )
 {
-    PORTC.DIR |= 0x03;
+    PORTC.DIR |= (1<<3) | (1<<4);
     TCC0.CTRLA = ( TC0_CLKSEL_gm & TC_CLKSEL_DIV8_gc );
-    TCC0.CTRLB |= ( TC0_WGMODE_gm & TC_WGMODE_SS_gc ) | ( TC0_CCAEN_bm ) | ( TC0_CCBEN_bm );
+    TCC0.CTRLB |= ( TC0_WGMODE_gm & TC_WGMODE_SS_gc ) | ( TC0_CCCEN_bm ) | ( TC0_CCDEN_bm );
     TCC0.PER = 256*32;
 }
 
 void setNL ( uint8_t val )
 {
     val = MIN(255,val);
-    TCC0.CCA = val*32;
-    TCC0.CCB = val*32;
+    TCC0.CCC = val*32;
+    TCC0.CCD = val*32;
 }
 
 void gotoNL(uint8_t val) {
@@ -174,6 +209,7 @@ void initPWM ( void )
 void setPWM ( uint8_t val )
 {
     val = MIN(255,val);
+    
 //     PRINTF ( "pwmset %u \n", val );
     if ( val == 0 )
     {
@@ -275,6 +311,17 @@ static int handle_control()
         }
         else return 0;
     }
+    else if ( strcasestr ( message, "device=display" ) != NULL )
+    {
+        if ( strcasestr ( message, "type=variable" ) != NULL )
+        {
+            curs = strcasestr ( message, "current=" );
+            curs += 8;
+            uint16_t val = str_to_int ( curs, 5 );
+            set_LEDDisp(val);
+        }
+        else return 0;
+    }
     else
     {
         PRINTF ( "unknown control message\n" );
@@ -309,7 +356,7 @@ static int handle_sensor()
         } else if ( strcasestr ( message, "device=light" ) != NULL )
         {
 
-            uip_len = sprintf_P ( message, sensorformatlong, "light","light",lightSample(),"lux" );
+            uip_len = sprintf_P ( message, sensorformatlong,perconf.instanceid, "light","light",lightSample(),"lux" );
             uip_udp_packet_sendto ( uip_udp_conn,uip_appdata,uip_len,&daddr,UIP_HTONS ( 3865 ) );
             return 1;
         }
@@ -463,10 +510,10 @@ static void parse_incomming()
             {
 
             }
-//             else if ( strcasestr ( message, "sensor.request" ) != NULL && handle_sensor() )
-//             {
-//                 
-//             }
+            else if ( strcasestr ( message, "sensor.request" ) != NULL && handle_sensor() )
+            {
+                
+            }
             else if ( strcasestr ( message, "config.list" ) != NULL && config_list() ) { }
             else if ( strcasestr ( message, "config.response" ) != NULL && config_response() ) { }
             else if ( strcasestr ( message, "config.current" ) != NULL && config_current() ) { }
@@ -565,7 +612,8 @@ static void udphandler ( const process_event_t ev, const process_data_t data )
         {
             PRINTF ( "hbeat timer!\n" );
 
-            memcpy_P ( udpdata, hbeatmessage, sizeof ( hbeatmessage ) );
+            sprintf_P ( (char*)udpdata, hbeatmessage, perconf.instanceid );
+//             memcpy_P ( udpdata, hbeatmessage, sizeof ( hbeatmessage ) );
             uip_udp_packet_sendto ( udpconn, udpdata,sizeof ( hbeatmessage )-1, &daddr, UIP_HTONS ( 3865 ) );
             last_heartbeat = clock_time();
             return;
@@ -609,6 +657,8 @@ PROCESS_THREAD ( xPL_process, ev, data )
 {
 
     PROCESS_BEGIN();
+    init_LEDDisp();
+    set_LEDDisp(0x0080);
     initNL();
     setNL ( 1 );
     initPWM();
@@ -637,6 +687,8 @@ PROCESS_THREAD ( xPL_process, ev, data )
     }
     printf ( "\n" );
 
+
+    
     //uip_ipaddr_copy(&daddr, &uip_broadcast_addr);
     //uip_ipaddr(&daddr, 192, 168, 1,255);
     //uip_ipaddr(&daddr, 255,255,255,255);
@@ -680,12 +732,14 @@ PROCESS ( clock_tick_process, "clock tick" );
 /*---------------------------------------------------------------------------*/
 PROCESS_THREAD ( clock_tick_process, ev, data )
 {
+    
+    #if defined(MOTIONENABLE)
     static struct etimer timer;
-
     //    uint16_t i;
     PROCESS_BEGIN();
 
     adc_init();
+    
 
 
     while ( 1 )
@@ -716,7 +770,9 @@ PROCESS_THREAD ( clock_tick_process, ev, data )
 
     }
 
+
     PROCESS_END();
+    #endif
 }
 
 PROCESS ( fade_process, "fade" );

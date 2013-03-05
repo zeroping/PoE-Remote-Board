@@ -17,7 +17,7 @@ PROCESS_NAME(fade_process);
 //dynamic now, need to include in the printf
 #define XPLNAME "%s"
 #define XPLNAMESTART "smgpoe-lamp."
-#define HOSTNAME "poelamp4"
+#define HOSTNAME "poelamp6"
 
 extern const char xplname[] PROGMEM;
 
